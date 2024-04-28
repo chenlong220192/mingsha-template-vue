@@ -1,0 +1,19 @@
+# Spring配置
+spring:
+  application:
+    name: mingsha-template-vue
+  main:
+    #当遇到相同名字时,是否允许覆盖注册
+    allow-bean-definition-overriding: false
+  profiles:
+    include:
+      - datasource
+      - devtools
+      - logging
+      - messages
+      - properties
+      - redis
+      - security
+      - swagger
+      - tomcat
+      - monitor

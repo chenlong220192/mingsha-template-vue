@@ -1,0 +1,169 @@
+package ${packageName}.service.impl;
+
+import java.util.List;
+#foreach ($column in $columns)
+#if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
+import site.mingsha.common.utils.DateUtils;
+#break
+#end
+#end
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+#if($table.sub)
+import java.util.ArrayList;
+import site.mingsha.common.utils.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
+import ${packageName}.model.${subClassName}DO;
+#end
+import ${packageName}.model.${ClassName}DO;
+import ${packageName}.dao.${ClassName}DAO;
+import ${packageName}.service.I${ClassName}Service;
+
+/**
+ * ${functionName}Service业务层处理
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl implements I${ClassName}Service
+{
+    @Autowired
+    private ${ClassName}DAO ${className}DAO;
+
+    /**
+     * 查询${functionName}
+     *
+     * @param ${pkColumn.javaField} ${functionName}主键
+     * @return ${functionName}
+     */
+    @Override
+    public ${ClassName}DO select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField})
+    {
+        return ${className}DAO.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField});
+    }
+
+    /**
+     * 查询${functionName}列表
+     *
+     * @param ${className}DO ${functionName}
+     * @return ${functionName}
+     */
+    @Override
+    public List<${ClassName}DO> select${ClassName}List(${ClassName}DO ${className}DO)
+    {
+        return ${className}DAO.select${ClassName}List(${className}DO);
+    }
+
+    /**
+     * 新增${functionName}
+     *
+     * @param ${className}DO ${functionName}
+     * @return 结果
+     */
+#if($table.sub)
+    @Transactional
+#end
+    @Override
+    public int insert${ClassName}(${ClassName}DO ${className}DO)
+    {
+#foreach ($column in $columns)
+#if($column.javaField == 'createTime')
+        ${className}DO.setCreateTime(DateUtils.getNowDate());
+#end
+#end
+#if($table.sub)
+        int rows = ${className}DAO.insert${ClassName}DO(${className}DO);
+        insert${subClassName}(${className}DO);
+        return rows;
+#else
+        return ${className}DAO.insert${ClassName}(${className}DO);
+#end
+    }
+
+    /**
+     * 修改${functionName}
+     *
+     * @param ${className}DO ${functionName}
+     * @return 结果
+     */
+#if($table.sub)
+    @Transactional
+#end
+    @Override
+    public int update${ClassName}(${ClassName}DO ${className}DO)
+    {
+#foreach ($column in $columns)
+#if($column.javaField == 'updateTime')
+        ${className}DO.setUpdateTime(DateUtils.getNowDate());
+#end
+#end
+#if($table.sub)
+        ${className}DAO.delete${subClassName}By${subTableFkClassName}(${className}DO.get${pkColumn.capJavaField}());
+        insert${subClassName}(${className}DO);
+#end
+        return ${className}DAO.update${ClassName}(${className}DO);
+    }
+
+    /**
+     * 批量删除${functionName}
+     *
+     * @param ${pkColumn.javaField}s 需要删除的${functionName}主键
+     * @return 结果
+     */
+#if($table.sub)
+    @Transactional
+#end
+    @Override
+    public int delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaType}[] ${pkColumn.javaField}s)
+    {
+#if($table.sub)
+        ${className}DAO.delete${subClassName}By${subTableFkClassName}s(${pkColumn.javaField}s);
+#end
+        return ${className}DAO.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s);
+    }
+
+    /**
+     * 删除${functionName}信息
+     *
+     * @param ${pkColumn.javaField} ${functionName}主键
+     * @return 结果
+     */
+#if($table.sub)
+    @Transactional
+#end
+    @Override
+    public int delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField})
+    {
+#if($table.sub)
+        ${className}DAO.delete${subClassName}By${subTableFkClassName}(${pkColumn.javaField});
+#end
+        return ${className}DAO.delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField});
+    }
+#if($table.sub)
+
+    /**
+     * 新增${subTable.functionName}信息
+     *
+     * @param ${className}DO ${functionName}对象
+     */
+    public void insert${subClassName}(${ClassName}DO ${className}DO)
+    {
+        List<${subClassName}DO> ${subclassName}DOList = ${className}DO.get${subClassName}List();
+        ${pkColumn.javaType} ${pkColumn.javaField} = ${className}DO.get${pkColumn.capJavaField}();
+        if (StringUtils.isNotNull(${subclassName}DOList))
+        {
+            List<${subClassName}DO> list = new ArrayList<${subClassName}DO>();
+            for (${subClassName}DO ${subclassName}DO : ${subclassName}DOList)
+            {
+                ${subclassName}.set${subTableFkClassName}(${pkColumn.javaField});
+                list.add(${subclassName}DO);
+            }
+            if (list.size() > 0)
+            {
+                ${className}DAO.batch${subClassName}(list);
+            }
+        }
+    }
+#end
+}
