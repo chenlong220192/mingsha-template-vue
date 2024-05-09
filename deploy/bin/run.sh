@@ -25,7 +25,7 @@ DOCKER_IMAGE_TAG=v1.0.0
 # 容器名
 DOCKER_CONTAINER_NAME=mingsha-template-vue
 # 端口号
-APPLICATION_PORT=8090
+APPLICATION_PORT=8001
 # 环境标志
 PROFILE=dev
 if [ -z "$PROFILE" ]; then
