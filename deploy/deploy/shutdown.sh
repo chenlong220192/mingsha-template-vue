@@ -10,7 +10,7 @@
 #======================================================================
 
 # 项目名称
-APPLICATION=mingsha-template-vue
+APPLICATION=mingsha-template-vue-boot
 # 项目启动jar包名称
 APPLICATION_JAR=mingsha-template-vue-boot-v1.0.0.jar
 

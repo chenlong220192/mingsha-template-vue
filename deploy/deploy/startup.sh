@@ -15,7 +15,7 @@
 #======================================================================
 
 # 项目名称
-APPLICATION=mingsha-template-vue
+APPLICATION=mingsha-template-vue-boot
 # 项目启动jar包名称
 APPLICATION_JAR=mingsha-template-vue-boot-v1.0.0.jar
 
@@ -100,7 +100,7 @@ echo "${STARTUP_LOG}" > ${LOG_STARTUP_PATH}
 # -XX:-OmitStackTraceInFastThrow:解决重复异常不打印堆栈信息问题
 #==========================================================================================
 JAVA_OPT=$(for i in `cat ${BASE_PATH}/conf/jvm.options|grep -v "^#"|grep -v ^$`;do echo " $i";done)
-JAVA_OPT="${JAVA_OPT} -Xlog:gc:${LOG_GC_PATH} -XX:HeapDumpPath=${LOG_DUMP_DIR} "
+JAVA_OPT="${JAVA_OPT} -Xlog:gc*:${LOG_GC_PATH} -XX:HeapDumpPath=${LOG_DUMP_DIR} "
 
 #=======================================================
 # 将命令启动相关日志追加到日志文件

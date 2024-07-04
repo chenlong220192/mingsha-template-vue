@@ -17,7 +17,7 @@
 
 # ----------------------- params <---------------------------
 # 容器名
-DOCKER_CONTAINER_NAME=mingsha-template-vue
+DOCKER_CONTAINER_NAME=mingsha-template-vue-boot
 # 环境标志
 PROFILE=dev
 if [ -z "$PROFILE" ]; then

@@ -22,7 +22,7 @@ ENV ?= local
 # app name
 APPLICATION_NAME := $(shell grep "app.name" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //')
 # jar name
-APPLICATION_JAR := $(shell grep "app.name" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //')-boot-$(shell grep "app.version" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //').jar
+APPLICATION_JAR := $(shell grep "app.name" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //')-$(shell grep "app.version" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //').jar
 # port
 APPLICATION_PORT := $(shell grep "app.port" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //')
 # docker.repository.name
@@ -33,6 +33,8 @@ DOCKER_IMAGE_NAME := $(shell grep "docker.image.name" $(BASE_PATH)/config/app.pr
 DOCKER_IMAGE_TAG := $(shell grep "docker.image.tag" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //')
 # docker container name
 DOCKER_CONTAINER_NAME := $(shell grep "docker.container.name" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //')
+# helm namespace
+HELM_NAMESPACE := $(shell grep "helm.namespace" $(BASE_PATH)/config/app.properties | cut -d'=' -f2| sed 's/\ //')
 # ----------------------------- app.properties >-----------------------------
 
 # ----------------------------- maven <-----------------------------
@@ -73,45 +75,54 @@ package.uncompress: package
 
 # ----------------------------- docker <-----------------------------
 docker.init:
-	@cat ${BASE_PATH}/deploy/bin/stop.sh | \
+	@cat ${BASE_PATH}/deploy/bin/docker/stop.sh | \
 		sed 's#DOCKER_CONTAINER_NAME=[^<]*#DOCKER_CONTAINER_NAME=${DOCKER_CONTAINER_NAME}#1' | \
 		sed 's#PROFILE=[^<]*#PROFILE=${ENV}#1' \
-		> ${BASE_PATH}/deploy/bin/stop.sh.newVersion && \
-		mv ${BASE_PATH}/deploy/bin/stop.sh.newVersion ${BASE_PATH}/deploy/bin/stop.sh
-	@cat ${BASE_PATH}/deploy/bin/remove.sh | \
+		> ${BASE_PATH}/deploy/bin/docker/stop.sh.newVersion && \
+		mv ${BASE_PATH}/deploy/bin/docker/stop.sh.newVersion ${BASE_PATH}/deploy/bin/docker/stop.sh
+	@cat ${BASE_PATH}/deploy/bin/docker/remove.sh | \
 		sed 's#DOCKER_CONTAINER_NAME=[^<]*#DOCKER_CONTAINER_NAME=${DOCKER_CONTAINER_NAME}#1' | \
 		sed 's#PROFILE=[^<]*#PROFILE=${ENV}#1' \
-		> ${BASE_PATH}/deploy/bin/remove.sh.newVersion && \
-		mv ${BASE_PATH}/deploy/bin/remove.sh.newVersion ${BASE_PATH}/deploy/bin/remove.sh
-	@cat ${BASE_PATH}/deploy/bin/run.sh | \
+		> ${BASE_PATH}/deploy/bin/docker/remove.sh.newVersion && \
+		mv ${BASE_PATH}/deploy/bin/docker/remove.sh.newVersion ${BASE_PATH}/deploy/bin/docker/remove.sh
+	@cat ${BASE_PATH}/deploy/bin/docker/run.sh | \
 		sed 's#DOCKER_REPOSITORY_NAME=[^<]*#DOCKER_REPOSITORY_NAME=${DOCKER_REPOSITORY_NAME}#1' | \
 		sed 's#DOCKER_IMAGE_NAME=[^<]*#DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME}#1' | \
 		sed 's#DOCKER_IMAGE_TAG=[^<]*#DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG}#1' | \
 		sed 's#DOCKER_CONTAINER_NAME=[^<]*#DOCKER_CONTAINER_NAME=${DOCKER_CONTAINER_NAME}#1' | \
 		sed 's#APPLICATION_PORT=[^<]*#APPLICATION_PORT=${APPLICATION_PORT}#1' | \
 		sed 's#PROFILE=[^<]*#PROFILE=${ENV}#1' \
-		> ${BASE_PATH}/deploy/bin/run.sh.newVersion && \
-		mv ${BASE_PATH}/deploy/bin/run.sh.newVersion ${BASE_PATH}/deploy/bin/run.sh
+		> ${BASE_PATH}/deploy/bin/docker/run.sh.newVersion && \
+		mv ${BASE_PATH}/deploy/bin/docker/run.sh.newVersion ${BASE_PATH}/deploy/bin/docker/run.sh
 
 #
 docker.build: docker.init package.uncompress
-	sh ${BASE_PATH}/deploy/bin/build.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(ENV)
+	sh ${BASE_PATH}/deploy/bin/docker/build.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(ENV)
 
 #
 docker.run: docker.build
-	sh ${BASE_PATH}/deploy/bin/run.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(DOCKER_CONTAINER_NAME) $(ENV)
+	sh ${BASE_PATH}/deploy/bin/docker/run.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(DOCKER_CONTAINER_NAME) $(ENV)
 	# docker logs -f $(DOCKER_CONTAINER_NAME)-$(ENV)
 
 #
 docker.stop:
-	sh ${BASE_PATH}/deploy/bin/stop.sh $(DOCKER_CONTAINER_NAME) $(ENV)
+	sh ${BASE_PATH}/deploy/bin/docker/stop.sh $(DOCKER_CONTAINER_NAME) $(ENV)
 
 #
 docker.remove:
-	sh ${BASE_PATH}/deploy/bin/remove.sh $(DOCKER_CONTAINER_NAME) $(ENV)
+	sh ${BASE_PATH}/deploy/bin/docker/remove.sh $(DOCKER_CONTAINER_NAME) $(ENV)
 
 #
 docker.clear:
 	docker rm -f $(docker ps -a | grep $(DOCKER_CONTAINER_NAME) | grep -v grep | awk '{ print $1 }')
 	docker rmi -f $(docker images | grep $(DOCKER_CONTAINER_NAME) | grep -v grep | awk '{ print $3 }')
 # ----------------------------- docker >-----------------------------
+
+# ----------------------------- helm <-----------------------------
+#
+helm.uninstall:
+	sh ${BASE_PATH}/deploy/bin/helm/uninstall.sh $(APPLICATION_NAME) $(HELM_NAMESPACE) $(ENV)
+#
+helm.upgrade: docker.build helm.uninstall
+	sh ${BASE_PATH}/deploy/bin/helm/install.sh $(APPLICATION_NAME) $(HELM_NAMESPACE) $(ENV)
+# ----------------------------- helm >-----------------------------

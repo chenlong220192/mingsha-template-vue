@@ -24,7 +24,7 @@ fi
 # ----------------------- params <---------------------------
 
 # integration目录绝对路径
-INTEGRATION_PATH=$(cd `dirname $0`; pwd) && cd `dirname $0` && cd .. && cd .. && BASE_PATH=`pwd`
+INTEGRATION_PATH=$(cd `dirname $0`; pwd) && cd `dirname $0` && cd .. && cd .. && cd .. && BASE_PATH=`pwd`
 
 # build
 function build() {
