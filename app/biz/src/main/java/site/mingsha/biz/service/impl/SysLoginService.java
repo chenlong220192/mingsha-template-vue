@@ -1,6 +1,6 @@
 package site.mingsha.biz.service.impl;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import site.mingsha.biz.manager.AsyncManager;
 import site.mingsha.biz.manager.factory.AsyncFactory;

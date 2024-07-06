@@ -1,6 +1,6 @@
 package site.mingsha.dal.generator.model;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 import site.mingsha.common.model._do.BaseDO;
 import site.mingsha.common.utils.StringUtils;
 

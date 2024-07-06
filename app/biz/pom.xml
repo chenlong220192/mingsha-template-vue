@@ -21,6 +21,12 @@
             <artifactId>mingsha-template-vue-dal</artifactId>
         </dependency>
 
+        <!-- spring-doc -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -14,7 +14,6 @@ spring:
       - properties
       - redis
       - security
-      - swagger
       - tomcat
       - monitor
       - context

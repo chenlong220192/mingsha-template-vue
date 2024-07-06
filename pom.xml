@@ -24,21 +24,27 @@
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
         <!--  -->
-        <spring-boot.version>2.5.15</spring-boot.version>
+        <spring-boot.version>3.3.0</spring-boot.version>
         <!--  -->
+        <mybatis-spring-boot.version>3.0.3</mybatis-spring-boot.version>
         <mysql.version>8.4.0</mysql.version>
         <druid.version>1.2.23</druid.version>
         <!--  -->
         <bitwalker.version>1.21</bitwalker.version>
-        <swagger.version>3.0.0</swagger.version>
+<!--        <swagger.version>3.0.0</swagger.version>-->
         <kaptcha.version>2.3.3</kaptcha.version>
-        <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
+        <pagehelper.boot.version>2.1.0</pagehelper.boot.version>
         <fastjson.version>2.0.43</fastjson.version>
-        <oshi.version>6.5.0</oshi.version>
+        <oshi.version>6.6.1</oshi.version>
         <commons.io.version>2.13.0</commons.io.version>
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
         <jwt.version>0.9.1</jwt.version>
+        <!--  -->
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <jakarta.version>6.0.0</jakarta.version>
+        <!--        -->
+        <springdoc.version>2.5.0</springdoc.version>
     </properties>
 
     <modules>
@@ -113,11 +119,11 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- 阿里数据库连接池 -->
+            <!-- spring-doc -->
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
 
             <!-- 解析客户端操作系统、浏览器等 -->
@@ -139,19 +145,6 @@
                 <groupId>com.github.oshi</groupId>
                 <artifactId>oshi-core</artifactId>
                 <version>${oshi.version}</version>
-            </dependency>
-
-            <!-- Swagger3依赖 -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${swagger.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.swagger</groupId>
-                        <artifactId>swagger-models</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- io常用工具类 -->
@@ -196,11 +189,36 @@
                 <version>${kaptcha.version}</version>
             </dependency>
 
+            <!-- database -->
+            <dependency>
+            	<groupId>org.mybatis.spring.boot</groupId>
+            	<artifactId>mybatis-spring-boot-starter</artifactId>
+            	<version>${mybatis-spring-boot.version}</version>
+            </dependency>
             <!-- Mysql驱动包 -->
             <dependency>
                 <groupId>com.mysql</groupId>
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <!-- 阿里数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+            	<groupId>javax.xml.bind</groupId>
+            	<artifactId>jaxb-api</artifactId>
+            	<version>${jaxb-api.version}</version>
+            </dependency>
+
+            <!-- servlet包 -->
+            <dependency>
+            	<groupId>jakarta.servlet</groupId>
+            	<artifactId>jakarta.servlet-api</artifactId>
+            	<version>${jakarta.version}</version>
             </dependency>
 
         </dependencies>
@@ -242,9 +260,11 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
+                    <parameters>true</parameters>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
 
@@ -281,7 +301,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+<!--                    <fork>true</fork> &lt;!&ndash; 如果没有该配置，devtools不会生效 &ndash;&gt;-->
                     <mainClass>site.mingsha.MingshaApplication</mainClass>
                     <layout>ZIP</layout>
                     <includes>

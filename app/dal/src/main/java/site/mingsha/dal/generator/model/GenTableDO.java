@@ -1,8 +1,8 @@
 package site.mingsha.dal.generator.model;
 
 import java.util.List;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.apache.commons.lang3.ArrayUtils;
 import site.mingsha.common.constant.GenConstants;
 import site.mingsha.common.model._do.BaseDO;

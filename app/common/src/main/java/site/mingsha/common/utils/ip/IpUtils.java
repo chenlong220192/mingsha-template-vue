@@ -2,7 +2,7 @@ package site.mingsha.common.utils.ip;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import site.mingsha.common.utils.ServletUtils;
 import site.mingsha.common.utils.StringUtils;
 
