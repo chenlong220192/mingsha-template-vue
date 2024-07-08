@@ -29,15 +29,13 @@ import site.mingsha.biz.service.ISysDictTypeService;
  */
 @RestController
 @RequestMapping("/system/dict/type")
-public class SysDictTypeController extends BaseController
-{
+public class SysDictTypeController extends BaseController {
     @Autowired
     private ISysDictTypeService dictTypeService;
 
     @PreAuthorize("@ss.hasPermi('system:dict:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysDictTypeDO dictType)
-    {
+    public TableDataInfo list(SysDictTypeDO dictType) {
         startPage();
         List<SysDictTypeDO> list = dictTypeService.selectDictTypeList(dictType);
         return getDataTable(list);
@@ -46,8 +44,7 @@ public class SysDictTypeController extends BaseController
     @Log(title = "字典类型", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:dict:export')")
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysDictTypeDO dictType)
-    {
+    public void export(HttpServletResponse response, SysDictTypeDO dictType) {
         List<SysDictTypeDO> list = dictTypeService.selectDictTypeList(dictType);
         ExcelUtil<SysDictTypeDO> util = new ExcelUtil<SysDictTypeDO>(SysDictTypeDO.class);
         util.exportExcel(response, list, "字典类型");
@@ -58,8 +55,7 @@ public class SysDictTypeController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:dict:query')")
     @GetMapping(value = "/{dictId}")
-    public AjaxResponseDTO getInfo(@PathVariable Long dictId)
-    {
+    public AjaxResponseDTO getInfo(@PathVariable Long dictId) {
         return success(dictTypeService.selectDictTypeById(dictId));
     }
 
@@ -69,10 +65,8 @@ public class SysDictTypeController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
     @Log(title = "字典类型", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResponseDTO add(@Validated @RequestBody SysDictTypeDO dict)
-    {
-        if (!dictTypeService.checkDictTypeUnique(dict))
-        {
+    public AjaxResponseDTO add(@Validated @RequestBody SysDictTypeDO dict) {
+        if (!dictTypeService.checkDictTypeUnique(dict)) {
             return error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
         dict.setCreateBy(getUsername());
@@ -85,10 +79,8 @@ public class SysDictTypeController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
     @Log(title = "字典类型", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResponseDTO edit(@Validated @RequestBody SysDictTypeDO dict)
-    {
-        if (!dictTypeService.checkDictTypeUnique(dict))
-        {
+    public AjaxResponseDTO edit(@Validated @RequestBody SysDictTypeDO dict) {
+        if (!dictTypeService.checkDictTypeUnique(dict)) {
             return error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
         dict.setUpdateBy(getUsername());
@@ -101,8 +93,7 @@ public class SysDictTypeController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
     @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictIds}")
-    public AjaxResponseDTO remove(@PathVariable Long[] dictIds)
-    {
+    public AjaxResponseDTO remove(@PathVariable Long[] dictIds) {
         dictTypeService.deleteDictTypeByIds(dictIds);
         return success();
     }
@@ -113,8 +104,7 @@ public class SysDictTypeController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
     @Log(title = "字典类型", businessType = BusinessType.CLEAN)
     @DeleteMapping("/refreshCache")
-    public AjaxResponseDTO refreshCache()
-    {
+    public AjaxResponseDTO refreshCache() {
         dictTypeService.resetDictCache();
         return success();
     }
@@ -123,8 +113,7 @@ public class SysDictTypeController extends BaseController
      * 获取字典选择框列表
      */
     @GetMapping("/optionselect")
-    public AjaxResponseDTO optionselect()
-    {
+    public AjaxResponseDTO optionselect() {
         List<SysDictTypeDO> dictTypes = dictTypeService.selectDictTypeAll();
         return success(dictTypes);
     }

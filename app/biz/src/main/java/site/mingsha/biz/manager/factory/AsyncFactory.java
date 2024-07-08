@@ -10,9 +10,9 @@ import site.mingsha.common.utils.StringUtils;
 import site.mingsha.common.utils.ip.AddressUtils;
 import site.mingsha.common.utils.ip.IpUtils;
 import site.mingsha.common.utils.spring.SpringUtils;
-import site.mingsha.biz.service.ISysLogininforService;
+import site.mingsha.biz.service.ISysLoginLogService;
 import site.mingsha.biz.service.ISysOperLogService;
-import site.mingsha.dal.system.model.SysLogininforDO;
+import site.mingsha.dal.system.model.SysLoginLogDO;
 import site.mingsha.dal.system.model.SysOperLogDO;
 import eu.bitwalker.useragentutils.UserAgent;
 
@@ -21,8 +21,7 @@ import eu.bitwalker.useragentutils.UserAgent;
  * 
  * @author mingsha
  */
-public class AsyncFactory
-{
+public class AsyncFactory {
     private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
 
     /**
@@ -34,16 +33,12 @@ public class AsyncFactory
      * @param args 列表
      * @return 任务task
      */
-    public static TimerTask recordLogininfor(final String username, final String status, final String message,
-            final Object... args)
-    {
+    public static TimerTask recordLoginLog(final String username, final String status, final String message, final Object... args) {
         final UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
         final String ip = IpUtils.getIpAddr();
-        return new TimerTask()
-        {
+        return new TimerTask() {
             @Override
-            public void run()
-            {
+            public void run() {
                 String address = AddressUtils.getRealAddressByIP(ip);
                 StringBuilder s = new StringBuilder();
                 s.append(LogUtils.getBlock(ip));
@@ -58,24 +53,21 @@ public class AsyncFactory
                 // 获取客户端浏览器
                 String browser = userAgent.getBrowser().getName();
                 // 封装对象
-                SysLogininforDO logininfor = new SysLogininforDO();
-                logininfor.setUserName(username);
-                logininfor.setIpaddr(ip);
-                logininfor.setLoginLocation(address);
-                logininfor.setBrowser(browser);
-                logininfor.setOs(os);
-                logininfor.setMsg(message);
+                SysLoginLogDO loginLog = new SysLoginLogDO();
+                loginLog.setUserName(username);
+                loginLog.setIpaddr(ip);
+                loginLog.setLoginLocation(address);
+                loginLog.setBrowser(browser);
+                loginLog.setOs(os);
+                loginLog.setMsg(message);
                 // 日志状态
-                if (StringUtils.equalsAny(status, Constants.LOGIN_SUCCESS, Constants.LOGOUT, Constants.REGISTER))
-                {
-                    logininfor.setStatus(Constants.SUCCESS);
-                }
-                else if (Constants.LOGIN_FAIL.equals(status))
-                {
-                    logininfor.setStatus(Constants.FAIL);
+                if (StringUtils.equalsAny(status, Constants.LOGIN_SUCCESS, Constants.LOGOUT, Constants.REGISTER)) {
+                    loginLog.setStatus(Constants.SUCCESS);
+                } else if (Constants.LOGIN_FAIL.equals(status)) {
+                    loginLog.setStatus(Constants.FAIL);
                 }
                 // 插入数据
-                SpringUtils.getBean(ISysLogininforService.class).insertLogininfor(logininfor);
+                SpringUtils.getBean(ISysLoginLogService.class).insertLoginLog(loginLog);
             }
         };
     }
@@ -86,13 +78,10 @@ public class AsyncFactory
      * @param operLog 操作日志信息
      * @return 任务task
      */
-    public static TimerTask recordOper(final SysOperLogDO operLog)
-    {
-        return new TimerTask()
-        {
+    public static TimerTask recordOper(final SysOperLogDO operLog) {
+        return new TimerTask() {
             @Override
-            public void run()
-            {
+            public void run() {
                 // 远程查询操作地点
                 operLog.setOperLocation(AddressUtils.getRealAddressByIP(operLog.getOperIp()));
                 SpringUtils.getBean(ISysOperLogService.class).insertOperlog(operLog);

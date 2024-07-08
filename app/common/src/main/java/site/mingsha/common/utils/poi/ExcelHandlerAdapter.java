@@ -8,8 +8,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  * 
  * @author mingsha
  */
-public interface ExcelHandlerAdapter
-{
+public interface ExcelHandlerAdapter {
     /**
      * 格式化
      * 

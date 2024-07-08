@@ -8,8 +8,7 @@ import site.mingsha.dal.system.model.SysConfigDO;
  * 
  * @author mingsha
  */
-public interface ISysConfigService
-{
+public interface ISysConfigService {
     /**
      * 查询参数配置信息
      * 

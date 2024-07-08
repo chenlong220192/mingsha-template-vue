@@ -9,8 +9,7 @@ import site.mingsha.dal.system.model.SysDeptDO;
  * 
  * @author mingsha
  */
-public interface ISysDeptService
-{
+public interface ISysDeptService {
     /**
      * 查询部门管理数据
      * 

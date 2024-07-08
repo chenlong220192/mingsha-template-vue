@@ -17,8 +17,8 @@ import site.mingsha.biz.model.dto.page.TableDataInfo;
 import site.mingsha.common.enums.BusinessType;
 import site.mingsha.biz.utils.poi.ExcelUtil;
 import site.mingsha.biz.service.impl.SysPasswordService;
-import site.mingsha.dal.system.model.SysLogininforDO;
-import site.mingsha.biz.service.ISysLogininforService;
+import site.mingsha.dal.system.model.SysLoginLogDO;
+import site.mingsha.biz.service.ISysLoginLogService;
 
 /**
  * 系统访问记录
@@ -27,55 +27,49 @@ import site.mingsha.biz.service.ISysLogininforService;
  */
 @RestController
 @RequestMapping("/monitor/logininfor")
-public class SysLogininforController extends BaseController
-{
+public class SysLogininforController extends BaseController {
     @Autowired
-    private ISysLogininforService logininforService;
+    private ISysLoginLogService logininforService;
 
     @Autowired
-    private SysPasswordService passwordService;
+    private SysPasswordService  passwordService;
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysLogininforDO logininfor)
-    {
+    public TableDataInfo list(SysLoginLogDO logininfor) {
         startPage();
-        List<SysLogininforDO> list = logininforService.selectLogininforList(logininfor);
+        List<SysLoginLogDO> list = logininforService.selectLoginLogList(logininfor);
         return getDataTable(list);
     }
 
     @Log(title = "登录日志", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:export')")
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysLogininforDO logininfor)
-    {
-        List<SysLogininforDO> list = logininforService.selectLogininforList(logininfor);
-        ExcelUtil<SysLogininforDO> util = new ExcelUtil<SysLogininforDO>(SysLogininforDO.class);
+    public void export(HttpServletResponse response, SysLoginLogDO logininfor) {
+        List<SysLoginLogDO> list = logininforService.selectLoginLogList(logininfor);
+        ExcelUtil<SysLoginLogDO> util = new ExcelUtil<SysLoginLogDO>(SysLoginLogDO.class);
         util.exportExcel(response, list, "登录日志");
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
     @Log(title = "登录日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{infoIds}")
-    public AjaxResponseDTO remove(@PathVariable Long[] infoIds)
-    {
-        return toAjax(logininforService.deleteLogininforByIds(infoIds));
+    public AjaxResponseDTO remove(@PathVariable Long[] infoIds) {
+        return toAjax(logininforService.deleteLoginLogByIds(infoIds));
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
     @Log(title = "登录日志", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
-    public AjaxResponseDTO clean()
-    {
-        logininforService.cleanLogininfor();
+    public AjaxResponseDTO clean() {
+        logininforService.cleanLoginLog();
         return success();
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:unlock')")
     @Log(title = "账户解锁", businessType = BusinessType.OTHER)
     @GetMapping("/unlock/{userName}")
-    public AjaxResponseDTO unlock(@PathVariable("userName") String userName)
-    {
+    public AjaxResponseDTO unlock(@PathVariable("userName") String userName) {
         passwordService.clearLoginRecordCache(userName);
         return success();
     }

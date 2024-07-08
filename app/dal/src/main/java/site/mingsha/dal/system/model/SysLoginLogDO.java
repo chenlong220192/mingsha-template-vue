@@ -7,11 +7,11 @@ import site.mingsha.common.annotation.Excel.ColumnType;
 import site.mingsha.common.model._do.BaseDO;
 
 /**
- * 系统访问记录表 sys_logininfor
+ * 系统访问记录表 sys_login_log
  * 
  * @author mingsha
  */
-public class SysLogininforDO extends BaseDO {
+public class SysLoginLogDO extends BaseDO {
     private static final long serialVersionUID = 1L;
 
     /** ID */

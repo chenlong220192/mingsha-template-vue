@@ -8,8 +8,7 @@ import site.mingsha.dal.generator.model.GenTableColumnDO;
  * 
  * @author mingsha
  */
-public interface IGenTableColumnService
-{
+public interface IGenTableColumnService {
     /**
      * 查询业务字段列表
      * 

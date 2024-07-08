@@ -3,9 +3,9 @@ package site.mingsha.biz.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import site.mingsha.biz.service.ISysLogininforService;
-import site.mingsha.dal.system.model.SysLogininforDO;
-import site.mingsha.dal.system.dao.SysLogininforDAO;
+import site.mingsha.biz.service.ISysLoginLogService;
+import site.mingsha.dal.system.model.SysLoginLogDO;
+import site.mingsha.dal.system.dao.SysLoginLogDAO;
 
 /**
  * 系统访问日志情况信息 服务层处理
@@ -13,11 +13,10 @@ import site.mingsha.dal.system.dao.SysLogininforDAO;
  * @author mingsha
  */
 @Service
-public class SysLogininforServiceImpl implements ISysLogininforService
-{
+public class SysLoginLogServiceImpl implements ISysLoginLogService {
 
     @Autowired
-    private SysLogininforDAO logininforMapper;
+    private SysLoginLogDAO loginLogMapper;
 
     /**
      * 新增系统登录日志
@@ -25,9 +24,8 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @param logininfor 访问日志对象
      */
     @Override
-    public void insertLogininfor(SysLogininforDO logininfor)
-    {
-        logininforMapper.insertLogininfor(logininfor);
+    public void insertLoginLog(SysLoginLogDO logininfor) {
+        loginLogMapper.insertLoginLog(logininfor);
     }
 
     /**
@@ -37,9 +35,8 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @return 登录记录集合
      */
     @Override
-    public List<SysLogininforDO> selectLogininforList(SysLogininforDO logininfor)
-    {
-        return logininforMapper.selectLogininforList(logininfor);
+    public List<SysLoginLogDO> selectLoginLogList(SysLoginLogDO logininfor) {
+        return loginLogMapper.selectLoginLogList(logininfor);
     }
 
     /**
@@ -49,17 +46,15 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @return 结果
      */
     @Override
-    public int deleteLogininforByIds(Long[] infoIds)
-    {
-        return logininforMapper.deleteLogininforByIds(infoIds);
+    public int deleteLoginLogByIds(Long[] infoIds) {
+        return loginLogMapper.deleteLoginLogByIds(infoIds);
     }
 
     /**
      * 清空系统登录日志
      */
     @Override
-    public void cleanLogininfor()
-    {
-        logininforMapper.cleanLogininfor();
+    public void cleanLoginLog() {
+        loginLogMapper.cleanLoginLog();
     }
 }

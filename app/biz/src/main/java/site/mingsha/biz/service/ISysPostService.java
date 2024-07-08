@@ -8,8 +8,7 @@ import site.mingsha.dal.system.model.SysPostDO;
  * 
  * @author mingsha
  */
-public interface ISysPostService
-{
+public interface ISysPostService {
     /**
      * 查询岗位信息集合
      * 

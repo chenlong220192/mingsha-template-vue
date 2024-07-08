@@ -8,8 +8,7 @@ import site.mingsha.dal.system.model.SysDictDataDO;
  * 
  * @author mingsha
  */
-public interface ISysDictDataService
-{
+public interface ISysDictDataService {
     /**
      * 根据条件分页查询字典数据
      * 

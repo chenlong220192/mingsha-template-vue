@@ -5,12 +5,10 @@ package site.mingsha.common.exception.user;
  * 
  * @author mingsha
  */
-public class CaptchaExpireException extends UserException
-{
+public class CaptchaExpireException extends UserException {
     private static final long serialVersionUID = 1L;
 
-    public CaptchaExpireException()
-    {
+    public CaptchaExpireException() {
         super("user.jcaptcha.expire", null);
     }
 }

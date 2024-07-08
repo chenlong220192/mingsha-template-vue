@@ -14,12 +14,10 @@ import site.mingsha.biz.model.dto.Server;
  */
 @RestController
 @RequestMapping("/monitor/server")
-public class ServerController
-{
+public class ServerController {
     @PreAuthorize("@ss.hasPermi('monitor:server:list')")
     @GetMapping()
-    public AjaxResponseDTO getInfo() throws Exception
-    {
+    public AjaxResponseDTO getInfo() throws Exception {
         Server server = new Server();
         server.copyTo();
         return AjaxResponseDTO.success(server);

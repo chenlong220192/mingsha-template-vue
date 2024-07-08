@@ -13,8 +13,7 @@ import site.mingsha.dal.system.dao.SysOperLogDAO;
  * @author mingsha
  */
 @Service
-public class SysOperLogServiceImpl implements ISysOperLogService
-{
+public class SysOperLogServiceImpl implements ISysOperLogService {
     @Autowired
     private SysOperLogDAO operLogMapper;
 
@@ -24,8 +23,7 @@ public class SysOperLogServiceImpl implements ISysOperLogService
      * @param operLog 操作日志对象
      */
     @Override
-    public void insertOperlog(SysOperLogDO operLog)
-    {
+    public void insertOperlog(SysOperLogDO operLog) {
         operLogMapper.insertOperlog(operLog);
     }
 
@@ -36,8 +34,7 @@ public class SysOperLogServiceImpl implements ISysOperLogService
      * @return 操作日志集合
      */
     @Override
-    public List<SysOperLogDO> selectOperLogList(SysOperLogDO operLog)
-    {
+    public List<SysOperLogDO> selectOperLogList(SysOperLogDO operLog) {
         return operLogMapper.selectOperLogList(operLog);
     }
 
@@ -48,8 +45,7 @@ public class SysOperLogServiceImpl implements ISysOperLogService
      * @return 结果
      */
     @Override
-    public int deleteOperLogByIds(Long[] operIds)
-    {
+    public int deleteOperLogByIds(Long[] operIds) {
         return operLogMapper.deleteOperLogByIds(operIds);
     }
 
@@ -60,8 +56,7 @@ public class SysOperLogServiceImpl implements ISysOperLogService
      * @return 操作日志对象
      */
     @Override
-    public SysOperLogDO selectOperLogById(Long operId)
-    {
+    public SysOperLogDO selectOperLogById(Long operId) {
         return operLogMapper.selectOperLogById(operId);
     }
 
@@ -69,8 +64,7 @@ public class SysOperLogServiceImpl implements ISysOperLogService
      * 清空操作日志
      */
     @Override
-    public void cleanOperLog()
-    {
+    public void cleanOperLog() {
         operLogMapper.cleanOperLog();
     }
 }

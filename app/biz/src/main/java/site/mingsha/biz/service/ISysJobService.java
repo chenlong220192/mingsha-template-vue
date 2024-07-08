@@ -10,8 +10,7 @@ import site.mingsha.dal.quartz.model.SysJobDO;
  * 
  * @author mingsha
  */
-public interface ISysJobService
-{
+public interface ISysJobService {
     /**
      * 获取quartz调度器的计划任务
      * 

@@ -28,8 +28,7 @@ import site.mingsha.biz.model.vo.SysCacheVO;
  */
 @RestController
 @RequestMapping("/monitor/cache")
-public class CacheController
-{
+public class CacheController {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
@@ -46,8 +45,7 @@ public class CacheController
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")
     @GetMapping()
-    public AjaxResponseDTO getInfo() throws Exception
-    {
+    public AjaxResponseDTO getInfo() throws Exception {
         Properties info = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info());
         Properties commandStats = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info("commandstats"));
         Object dbSize = redisTemplate.execute((RedisCallback<Object>) connection -> connection.dbSize());
@@ -70,23 +68,20 @@ public class CacheController
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")
     @GetMapping("/getNames")
-    public AjaxResponseDTO cache()
-    {
+    public AjaxResponseDTO cache() {
         return AjaxResponseDTO.success(caches);
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")
     @GetMapping("/getKeys/{cacheName}")
-    public AjaxResponseDTO getCacheKeys(@PathVariable String cacheName)
-    {
+    public AjaxResponseDTO getCacheKeys(@PathVariable String cacheName) {
         Set<String> cacheKeys = redisTemplate.keys(cacheName + "*");
         return AjaxResponseDTO.success(cacheKeys);
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")
     @GetMapping("/getValue/{cacheName}/{cacheKey}")
-    public AjaxResponseDTO getCacheValue(@PathVariable String cacheName, @PathVariable String cacheKey)
-    {
+    public AjaxResponseDTO getCacheValue(@PathVariable String cacheName, @PathVariable String cacheKey) {
         String cacheValue = redisTemplate.opsForValue().get(cacheKey);
         SysCacheVO sysCacheVO = SysCacheVO.newInstance(cacheName, cacheKey, cacheValue);
         return AjaxResponseDTO.success(sysCacheVO);
@@ -94,8 +89,7 @@ public class CacheController
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")
     @DeleteMapping("/clearCacheName/{cacheName}")
-    public AjaxResponseDTO clearCacheName(@PathVariable String cacheName)
-    {
+    public AjaxResponseDTO clearCacheName(@PathVariable String cacheName) {
         Collection<String> cacheKeys = redisTemplate.keys(cacheName + "*");
         redisTemplate.delete(cacheKeys);
         return AjaxResponseDTO.success();
@@ -103,16 +97,14 @@ public class CacheController
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")
     @DeleteMapping("/clearCacheKey/{cacheKey}")
-    public AjaxResponseDTO clearCacheKey(@PathVariable String cacheKey)
-    {
+    public AjaxResponseDTO clearCacheKey(@PathVariable String cacheKey) {
         redisTemplate.delete(cacheKey);
         return AjaxResponseDTO.success();
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:cache:list')")
     @DeleteMapping("/clearCacheAll")
-    public AjaxResponseDTO clearCacheAll()
-    {
+    public AjaxResponseDTO clearCacheAll() {
         Collection<String> cacheKeys = redisTemplate.keys("*");
         redisTemplate.delete(cacheKeys);
         return AjaxResponseDTO.success();

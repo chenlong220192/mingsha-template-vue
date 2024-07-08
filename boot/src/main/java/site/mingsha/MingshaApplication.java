@@ -10,10 +10,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author mingsha
  */
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
-public class MingshaApplication
-{
-    public static void main(String[] args)
-    {
+public class MingshaApplication {
+    public static void main(String[] args) {
         SpringApplication.run(MingshaApplication.class, args);
         System.out.println("(♥◠‿◠)ﾉﾞ  启动成功   ლ(´ڡ`ლ)ﾞ  \n");
     }

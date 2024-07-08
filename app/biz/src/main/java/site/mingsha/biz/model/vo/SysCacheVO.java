@@ -24,15 +24,15 @@ public class SysCacheVO {
 
     }
 
-    public static SysCacheVO newInstance(){
+    public static SysCacheVO newInstance() {
         return new SysCacheVO();
     }
 
-    public static SysCacheVO newInstance(String cacheName, String remark){
+    public static SysCacheVO newInstance(String cacheName, String remark) {
         return new SysCacheVO(cacheName, remark);
     }
 
-    public static SysCacheVO newInstance(String cacheName, String cacheKey, String cacheValue){
+    public static SysCacheVO newInstance(String cacheName, String cacheKey, String cacheValue) {
         return new SysCacheVO(cacheName, cacheKey, cacheValue);
     }
 

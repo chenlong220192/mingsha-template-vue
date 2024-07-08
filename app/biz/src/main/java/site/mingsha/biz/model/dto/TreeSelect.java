@@ -12,66 +12,56 @@ import site.mingsha.dal.system.model.SysMenuDO;
  * 
  * @author mingsha
  */
-public class TreeSelect implements Serializable
-{
+public class TreeSelect implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** 节点ID */
-    private Long id;
+    private Long              id;
 
     /** 节点名称 */
-    private String label;
+    private String            label;
 
     /** 子节点 */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private List<TreeSelect> children;
+    private List<TreeSelect>  children;
 
-    public TreeSelect()
-    {
+    public TreeSelect() {
 
     }
 
-    public TreeSelect(SysDeptDO dept)
-    {
+    public TreeSelect(SysDeptDO dept) {
         this.id = dept.getDeptId();
         this.label = dept.getDeptName();
         this.children = dept.getChildren().stream().map(TreeSelect::new).collect(Collectors.toList());
     }
 
-    public TreeSelect(SysMenuDO menu)
-    {
+    public TreeSelect(SysMenuDO menu) {
         this.id = menu.getMenuId();
         this.label = menu.getMenuName();
         this.children = menu.getChildren().stream().map(TreeSelect::new).collect(Collectors.toList());
     }
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getLabel()
-    {
+    public String getLabel() {
         return label;
     }
 
-    public void setLabel(String label)
-    {
+    public void setLabel(String label) {
         this.label = label;
     }
 
-    public List<TreeSelect> getChildren()
-    {
+    public List<TreeSelect> getChildren() {
         return children;
     }
 
-    public void setChildren(List<TreeSelect> children)
-    {
+    public void setChildren(List<TreeSelect> children) {
         this.children = children;
     }
 }

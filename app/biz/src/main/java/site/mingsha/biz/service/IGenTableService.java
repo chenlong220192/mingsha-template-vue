@@ -9,8 +9,7 @@ import site.mingsha.dal.generator.model.GenTableDO;
  * 
  * @author mingsha
  */
-public interface IGenTableService
-{
+public interface IGenTableService {
     /**
      * 查询业务列表
      * 

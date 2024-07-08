@@ -8,8 +8,7 @@ import site.mingsha.dal.system.model.SysUserOnlineDO;
  * 
  * @author mingsha
  */
-public interface ISysUserOnlineService
-{
+public interface ISysUserOnlineService {
     /**
      * 通过登录地址查询信息
      * 

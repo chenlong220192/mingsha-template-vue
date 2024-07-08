@@ -8,11 +8,9 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *
  * @author mingsha
  */
-public class MingshaServletInitializer extends SpringBootServletInitializer
-{
+public class MingshaServletInitializer extends SpringBootServletInitializer {
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application)
-    {
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(MingshaApplication.class);
     }
 }

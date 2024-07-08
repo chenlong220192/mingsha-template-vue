@@ -16,8 +16,7 @@ import site.mingsha.common.utils.poi.ExcelHandlerAdapter;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Excel
-{
+public @interface Excel {
     /**
      * 导出时在excel中排序
      */
@@ -153,34 +152,35 @@ public @interface Excel
      */
     Type type() default Type.ALL;
 
-    public enum Type
-    {
-        ALL(0), EXPORT(1), IMPORT(2);
+    public enum Type {
+                      ALL(0),
+                      EXPORT(1),
+                      IMPORT(2);
+
         private final int value;
 
-        Type(int value)
-        {
+        Type(int value) {
             this.value = value;
         }
 
-        public int value()
-        {
+        public int value() {
             return this.value;
         }
     }
 
-    public enum ColumnType
-    {
-        NUMERIC(0), STRING(1), IMAGE(2), TEXT(3);
+    public enum ColumnType {
+                            NUMERIC(0),
+                            STRING(1),
+                            IMAGE(2),
+                            TEXT(3);
+
         private final int value;
 
-        ColumnType(int value)
-        {
+        ColumnType(int value) {
             this.value = value;
         }
 
-        public int value()
-        {
+        public int value() {
             return this.value;
         }
     }

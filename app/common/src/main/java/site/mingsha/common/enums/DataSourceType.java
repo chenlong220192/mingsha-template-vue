@@ -5,15 +5,14 @@ package site.mingsha.common.enums;
  * 
  * @author mingsha
  */
-public enum DataSourceType
-{
-    /**
-     * 主库
-     */
-    MASTER,
+public enum DataSourceType {
+                            /**
+                             * 主库
+                             */
+                            MASTER,
 
-    /**
-     * 从库
-     */
-    SLAVE
+                            /**
+                             * 从库
+                             */
+                            SLAVE
 }

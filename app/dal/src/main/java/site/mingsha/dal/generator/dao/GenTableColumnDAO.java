@@ -1,6 +1,7 @@
 package site.mingsha.dal.generator.dao;
 
 import java.util.List;
+
 import site.mingsha.dal.generator.model.GenTableColumnDO;
 
 /**

@@ -29,8 +29,7 @@ import site.mingsha.biz.service.ISysPostService;
  */
 @RestController
 @RequestMapping("/system/post")
-public class SysPostController extends BaseController
-{
+public class SysPostController extends BaseController {
     @Autowired
     private ISysPostService postService;
 
@@ -39,18 +38,16 @@ public class SysPostController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:post:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysPostDO post)
-    {
+    public TableDataInfo list(SysPostDO post) {
         startPage();
         List<SysPostDO> list = postService.selectPostList(post);
         return getDataTable(list);
     }
-    
+
     @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:post:export')")
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysPostDO post)
-    {
+    public void export(HttpServletResponse response, SysPostDO post) {
         List<SysPostDO> list = postService.selectPostList(post);
         ExcelUtil<SysPostDO> util = new ExcelUtil<SysPostDO>(SysPostDO.class);
         util.exportExcel(response, list, "岗位数据");
@@ -61,8 +58,7 @@ public class SysPostController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:post:query')")
     @GetMapping(value = "/{postId}")
-    public AjaxResponseDTO getInfo(@PathVariable Long postId)
-    {
+    public AjaxResponseDTO getInfo(@PathVariable Long postId) {
         return success(postService.selectPostById(postId));
     }
 
@@ -72,14 +68,10 @@ public class SysPostController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:post:add')")
     @Log(title = "岗位管理", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResponseDTO add(@Validated @RequestBody SysPostDO post)
-    {
-        if (!postService.checkPostNameUnique(post))
-        {
+    public AjaxResponseDTO add(@Validated @RequestBody SysPostDO post) {
+        if (!postService.checkPostNameUnique(post)) {
             return error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
-        }
-        else if (!postService.checkPostCodeUnique(post))
-        {
+        } else if (!postService.checkPostCodeUnique(post)) {
             return error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
         post.setCreateBy(getUsername());
@@ -92,14 +84,10 @@ public class SysPostController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:post:edit')")
     @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResponseDTO edit(@Validated @RequestBody SysPostDO post)
-    {
-        if (!postService.checkPostNameUnique(post))
-        {
+    public AjaxResponseDTO edit(@Validated @RequestBody SysPostDO post) {
+        if (!postService.checkPostNameUnique(post)) {
             return error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
-        }
-        else if (!postService.checkPostCodeUnique(post))
-        {
+        } else if (!postService.checkPostCodeUnique(post)) {
             return error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
         post.setUpdateBy(getUsername());
@@ -112,8 +100,7 @@ public class SysPostController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:post:remove')")
     @Log(title = "岗位管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{postIds}")
-    public AjaxResponseDTO remove(@PathVariable Long[] postIds)
-    {
+    public AjaxResponseDTO remove(@PathVariable Long[] postIds) {
         return toAjax(postService.deletePostByIds(postIds));
     }
 
@@ -121,8 +108,7 @@ public class SysPostController extends BaseController
      * 获取岗位选择框列表
      */
     @GetMapping("/optionselect")
-    public AjaxResponseDTO optionselect()
-    {
+    public AjaxResponseDTO optionselect() {
         List<SysPostDO> posts = postService.selectPostAll();
         return success(posts);
     }

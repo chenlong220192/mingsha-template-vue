@@ -5,12 +5,10 @@ package site.mingsha.common.exception.user;
  * 
  * @author mingsha
  */
-public class UserNotExistsException extends UserException
-{
+public class UserNotExistsException extends UserException {
     private static final long serialVersionUID = 1L;
 
-    public UserNotExistsException()
-    {
+    public UserNotExistsException() {
         super("user.not.exists", null);
     }
 }

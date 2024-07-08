@@ -23,13 +23,12 @@ import site.mingsha.biz.service.ISysMenuService;
  * @author mingsha
  */
 @RestController
-public class SysLoginController
-{
+public class SysLoginController {
     @Autowired
-    private SysLoginService loginService;
+    private SysLoginService      loginService;
 
     @Autowired
-    private ISysMenuService menuService;
+    private ISysMenuService      menuService;
 
     @Autowired
     private SysPermissionService permissionService;
@@ -41,12 +40,10 @@ public class SysLoginController
      * @return 结果
      */
     @PostMapping("/login")
-    public AjaxResponseDTO login(@RequestBody LoginBodyDTO loginBodyDTO)
-    {
+    public AjaxResponseDTO login(@RequestBody LoginBodyDTO loginBodyDTO) {
         AjaxResponseDTO ajax = AjaxResponseDTO.success();
         // 生成令牌
-        String token = loginService.login(loginBodyDTO.getUsername(), loginBodyDTO.getPassword(), loginBodyDTO.getCode(),
-                loginBodyDTO.getUuid());
+        String token = loginService.login(loginBodyDTO.getUsername(), loginBodyDTO.getPassword(), loginBodyDTO.getCode(), loginBodyDTO.getUuid());
         ajax.put(Constants.TOKEN, token);
         return ajax;
     }
@@ -57,8 +54,7 @@ public class SysLoginController
      * @return 用户信息
      */
     @GetMapping("getInfo")
-    public AjaxResponseDTO getInfo()
-    {
+    public AjaxResponseDTO getInfo() {
         SysUserDO user = SecurityUtils.getLoginUser().getUser();
         // 角色集合
         Set<String> roles = permissionService.getRolePermission(user);
@@ -77,8 +73,7 @@ public class SysLoginController
      * @return 路由信息
      */
     @GetMapping("getRouters")
-    public AjaxResponseDTO getRouters()
-    {
+    public AjaxResponseDTO getRouters() {
         Long userId = SecurityUtils.getUserId();
         List<SysMenuDO> menus = menuService.selectMenuTreeByUserId(userId);
         return AjaxResponseDTO.success(menuService.buildMenus(menus));

@@ -13,8 +13,7 @@ import site.mingsha.dal.system.dao.SysNoticeDAO;
  * @author mingsha
  */
 @Service
-public class SysNoticeServiceImpl implements ISysNoticeService
-{
+public class SysNoticeServiceImpl implements ISysNoticeService {
     @Autowired
     private SysNoticeDAO noticeMapper;
 
@@ -25,8 +24,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
      * @return 公告信息
      */
     @Override
-    public SysNoticeDO selectNoticeById(Long noticeId)
-    {
+    public SysNoticeDO selectNoticeById(Long noticeId) {
         return noticeMapper.selectNoticeById(noticeId);
     }
 
@@ -37,8 +35,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
      * @return 公告集合
      */
     @Override
-    public List<SysNoticeDO> selectNoticeList(SysNoticeDO notice)
-    {
+    public List<SysNoticeDO> selectNoticeList(SysNoticeDO notice) {
         return noticeMapper.selectNoticeList(notice);
     }
 
@@ -49,8 +46,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
      * @return 结果
      */
     @Override
-    public int insertNotice(SysNoticeDO notice)
-    {
+    public int insertNotice(SysNoticeDO notice) {
         return noticeMapper.insertNotice(notice);
     }
 
@@ -61,8 +57,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
      * @return 结果
      */
     @Override
-    public int updateNotice(SysNoticeDO notice)
-    {
+    public int updateNotice(SysNoticeDO notice) {
         return noticeMapper.updateNotice(notice);
     }
 
@@ -73,8 +68,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
      * @return 结果
      */
     @Override
-    public int deleteNoticeById(Long noticeId)
-    {
+    public int deleteNoticeById(Long noticeId) {
         return noticeMapper.deleteNoticeById(noticeId);
     }
 
@@ -85,8 +79,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
      * @return 结果
      */
     @Override
-    public int deleteNoticeByIds(Long[] noticeIds)
-    {
+    public int deleteNoticeByIds(Long[] noticeIds) {
         return noticeMapper.deleteNoticeByIds(noticeIds);
     }
 }

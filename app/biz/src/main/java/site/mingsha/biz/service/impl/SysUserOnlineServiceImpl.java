@@ -12,8 +12,7 @@ import site.mingsha.dal.system.model.SysUserOnlineDO;
  * @author mingsha
  */
 @Service
-public class SysUserOnlineServiceImpl implements ISysUserOnlineService
-{
+public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
     /**
      * 通过登录地址查询信息
      * 
@@ -22,10 +21,8 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService
      * @return 在线用户信息
      */
     @Override
-    public SysUserOnlineDO selectOnlineByIpaddr(String ipaddr, LoginUser user)
-    {
-        if (StringUtils.equals(ipaddr, user.getIpaddr()))
-        {
+    public SysUserOnlineDO selectOnlineByIpaddr(String ipaddr, LoginUser user) {
+        if (StringUtils.equals(ipaddr, user.getIpaddr())) {
             return loginUserToUserOnline(user);
         }
         return null;
@@ -39,10 +36,8 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService
      * @return 在线用户信息
      */
     @Override
-    public SysUserOnlineDO selectOnlineByUserName(String userName, LoginUser user)
-    {
-        if (StringUtils.equals(userName, user.getUsername()))
-        {
+    public SysUserOnlineDO selectOnlineByUserName(String userName, LoginUser user) {
+        if (StringUtils.equals(userName, user.getUsername())) {
             return loginUserToUserOnline(user);
         }
         return null;
@@ -57,10 +52,8 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService
      * @return 在线用户信息
      */
     @Override
-    public SysUserOnlineDO selectOnlineByInfo(String ipaddr, String userName, LoginUser user)
-    {
-        if (StringUtils.equals(ipaddr, user.getIpaddr()) && StringUtils.equals(userName, user.getUsername()))
-        {
+    public SysUserOnlineDO selectOnlineByInfo(String ipaddr, String userName, LoginUser user) {
+        if (StringUtils.equals(ipaddr, user.getIpaddr()) && StringUtils.equals(userName, user.getUsername())) {
             return loginUserToUserOnline(user);
         }
         return null;
@@ -73,10 +66,8 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService
      * @return 在线用户
      */
     @Override
-    public SysUserOnlineDO loginUserToUserOnline(LoginUser user)
-    {
-        if (StringUtils.isNull(user) || StringUtils.isNull(user.getUser()))
-        {
+    public SysUserOnlineDO loginUserToUserOnline(LoginUser user) {
+        if (StringUtils.isNull(user) || StringUtils.isNull(user.getUser())) {
             return null;
         }
         SysUserOnlineDO sysUserOnlineDO = new SysUserOnlineDO();
@@ -87,8 +78,7 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService
         sysUserOnlineDO.setBrowser(user.getBrowser());
         sysUserOnlineDO.setOs(user.getOs());
         sysUserOnlineDO.setLoginTime(user.getLoginTime());
-        if (StringUtils.isNotNull(user.getUser().getDept()))
-        {
+        if (StringUtils.isNotNull(user.getUser().getDept())) {
             sysUserOnlineDO.setDeptName(user.getUser().getDept().getDeptName());
         }
         return sysUserOnlineDO;

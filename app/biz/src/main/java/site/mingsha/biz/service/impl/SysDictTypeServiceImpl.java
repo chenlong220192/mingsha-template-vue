@@ -24,8 +24,7 @@ import site.mingsha.dal.system.dao.SysDictTypeDAO;
  * @author mingsha
  */
 @Service
-public class SysDictTypeServiceImpl implements ISysDictTypeService
-{
+public class SysDictTypeServiceImpl implements ISysDictTypeService {
     @Autowired
     private SysDictTypeDAO dictTypeMapper;
 
@@ -36,8 +35,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * 项目启动时，初始化字典到缓存
      */
     @PostConstruct
-    public void init()
-    {
+    public void init() {
         loadingDictCache();
     }
 
@@ -48,8 +46,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @return 字典类型集合信息
      */
     @Override
-    public List<SysDictTypeDO> selectDictTypeList(SysDictTypeDO dictType)
-    {
+    public List<SysDictTypeDO> selectDictTypeList(SysDictTypeDO dictType) {
         return dictTypeMapper.selectDictTypeList(dictType);
     }
 
@@ -59,8 +56,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @return 字典类型集合信息
      */
     @Override
-    public List<SysDictTypeDO> selectDictTypeAll()
-    {
+    public List<SysDictTypeDO> selectDictTypeAll() {
         return dictTypeMapper.selectDictTypeAll();
     }
 
@@ -71,16 +67,13 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @return 字典数据集合信息
      */
     @Override
-    public List<SysDictDataDO> selectDictDataByType(String dictType)
-    {
+    public List<SysDictDataDO> selectDictDataByType(String dictType) {
         List<SysDictDataDO> dictDatas = DictUtils.getDictCache(dictType);
-        if (StringUtils.isNotEmpty(dictDatas))
-        {
+        if (StringUtils.isNotEmpty(dictDatas)) {
             return dictDatas;
         }
         dictDatas = dictDataMapper.selectDictDataByType(dictType);
-        if (StringUtils.isNotEmpty(dictDatas))
-        {
+        if (StringUtils.isNotEmpty(dictDatas)) {
             DictUtils.setDictCache(dictType, dictDatas);
             return dictDatas;
         }
@@ -94,8 +87,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @return 字典类型
      */
     @Override
-    public SysDictTypeDO selectDictTypeById(Long dictId)
-    {
+    public SysDictTypeDO selectDictTypeById(Long dictId) {
         return dictTypeMapper.selectDictTypeById(dictId);
     }
 
@@ -106,8 +98,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @return 字典类型
      */
     @Override
-    public SysDictTypeDO selectDictTypeByType(String dictType)
-    {
+    public SysDictTypeDO selectDictTypeByType(String dictType) {
         return dictTypeMapper.selectDictTypeByType(dictType);
     }
 
@@ -117,13 +108,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @param dictIds 需要删除的字典ID
      */
     @Override
-    public void deleteDictTypeByIds(Long[] dictIds)
-    {
-        for (Long dictId : dictIds)
-        {
+    public void deleteDictTypeByIds(Long[] dictIds) {
+        for (Long dictId : dictIds) {
             SysDictTypeDO dictType = selectDictTypeById(dictId);
-            if (dictDataMapper.countDictDataByType(dictType.getDictType()) > 0)
-            {
+            if (dictDataMapper.countDictDataByType(dictType.getDictType()) > 0) {
                 throw new ServiceException(String.format("%1$s已分配,不能删除", dictType.getDictName()));
             }
             dictTypeMapper.deleteDictTypeById(dictId);
@@ -135,13 +123,11 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * 加载字典缓存数据
      */
     @Override
-    public void loadingDictCache()
-    {
+    public void loadingDictCache() {
         SysDictDataDO dictData = new SysDictDataDO();
         dictData.setStatus("0");
         Map<String, List<SysDictDataDO>> dictDataMap = dictDataMapper.selectDictDataList(dictData).stream().collect(Collectors.groupingBy(SysDictDataDO::getDictType));
-        for (Map.Entry<String, List<SysDictDataDO>> entry : dictDataMap.entrySet())
-        {
+        for (Map.Entry<String, List<SysDictDataDO>> entry : dictDataMap.entrySet()) {
             DictUtils.setDictCache(entry.getKey(), entry.getValue().stream().sorted(Comparator.comparing(SysDictDataDO::getDictSort)).collect(Collectors.toList()));
         }
     }
@@ -150,8 +136,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * 清空字典缓存数据
      */
     @Override
-    public void clearDictCache()
-    {
+    public void clearDictCache() {
         DictUtils.clearDictCache();
     }
 
@@ -159,8 +144,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * 重置字典缓存数据
      */
     @Override
-    public void resetDictCache()
-    {
+    public void resetDictCache() {
         clearDictCache();
         loadingDictCache();
     }
@@ -172,11 +156,9 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @return 结果
      */
     @Override
-    public int insertDictType(SysDictTypeDO dict)
-    {
+    public int insertDictType(SysDictTypeDO dict) {
         int row = dictTypeMapper.insertDictType(dict);
-        if (row > 0)
-        {
+        if (row > 0) {
             DictUtils.setDictCache(dict.getDictType(), null);
         }
         return row;
@@ -190,13 +172,11 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      */
     @Override
     @Transactional
-    public int updateDictType(SysDictTypeDO dict)
-    {
+    public int updateDictType(SysDictTypeDO dict) {
         SysDictTypeDO oldDict = dictTypeMapper.selectDictTypeById(dict.getDictId());
         dictDataMapper.updateDictDataType(oldDict.getDictType(), dict.getDictType());
         int row = dictTypeMapper.updateDictType(dict);
-        if (row > 0)
-        {
+        if (row > 0) {
             List<SysDictDataDO> dictDatas = dictDataMapper.selectDictDataByType(dict.getDictType());
             DictUtils.setDictCache(dict.getDictType(), dictDatas);
         }
@@ -210,12 +190,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
      * @return 结果
      */
     @Override
-    public boolean checkDictTypeUnique(SysDictTypeDO dict)
-    {
+    public boolean checkDictTypeUnique(SysDictTypeDO dict) {
         Long dictId = StringUtils.isNull(dict.getDictId()) ? -1L : dict.getDictId();
         SysDictTypeDO dictType = dictTypeMapper.checkDictTypeUnique(dict.getDictType());
-        if (StringUtils.isNotNull(dictType) && dictType.getDictId().longValue() != dictId.longValue())
-        {
+        if (StringUtils.isNotNull(dictType) && dictType.getDictId().longValue() != dictId.longValue()) {
             return UserConstants.NOT_UNIQUE;
         }
         return UserConstants.UNIQUE;

@@ -15,7 +15,7 @@ import site.mingsha.common.config.MingshaConfig;
 /**
  * Swagger2的接口配置
  *
- * @author ruoyi
+ * @author mingsha
  */
 @Configuration
 public class SwaggerConfig {

@@ -8,8 +8,7 @@ import site.mingsha.dal.system.model.SysOperLogDO;
  * 
  * @author mingsha
  */
-public interface ISysOperLogService
-{
+public interface ISysOperLogService {
     /**
      * 新增操作日志
      * 

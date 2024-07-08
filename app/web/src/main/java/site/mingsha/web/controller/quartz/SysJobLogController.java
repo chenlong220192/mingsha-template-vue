@@ -26,8 +26,7 @@ import site.mingsha.biz.service.ISysJobLogService;
  */
 @RestController
 @RequestMapping("/monitor/jobLog")
-public class SysJobLogController extends BaseController
-{
+public class SysJobLogController extends BaseController {
     @Autowired
     private ISysJobLogService jobLogService;
 
@@ -36,8 +35,7 @@ public class SysJobLogController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysJobLogDO sysJobLogDO)
-    {
+    public TableDataInfo list(SysJobLogDO sysJobLogDO) {
         startPage();
         List<SysJobLogDO> list = jobLogService.selectJobLogList(sysJobLogDO);
         return getDataTable(list);
@@ -49,23 +47,20 @@ public class SysJobLogController extends BaseController
     @PreAuthorize("@ss.hasPermi('monitor:job:export')")
     @Log(title = "任务调度日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysJobLogDO sysJobLogDO)
-    {
+    public void export(HttpServletResponse response, SysJobLogDO sysJobLogDO) {
         List<SysJobLogDO> list = jobLogService.selectJobLogList(sysJobLogDO);
         ExcelUtil<SysJobLogDO> util = new ExcelUtil<SysJobLogDO>(SysJobLogDO.class);
         util.exportExcel(response, list, "调度日志");
     }
-    
+
     /**
      * 根据调度编号获取详细信息
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:query')")
     @GetMapping(value = "/{jobLogId}")
-    public AjaxResponseDTO getInfo(@PathVariable Long jobLogId)
-    {
+    public AjaxResponseDTO getInfo(@PathVariable Long jobLogId) {
         return success(jobLogService.selectJobLogById(jobLogId));
     }
-
 
     /**
      * 删除定时任务调度日志
@@ -73,8 +68,7 @@ public class SysJobLogController extends BaseController
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
     @Log(title = "定时任务调度日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{jobLogIds}")
-    public AjaxResponseDTO remove(@PathVariable Long[] jobLogIds)
-    {
+    public AjaxResponseDTO remove(@PathVariable Long[] jobLogIds) {
         return toAjax(jobLogService.deleteJobLogByIds(jobLogIds));
     }
 
@@ -84,8 +78,7 @@ public class SysJobLogController extends BaseController
     @PreAuthorize("@ss.hasPermi('monitor:job:remove')")
     @Log(title = "调度日志", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
-    public AjaxResponseDTO clean()
-    {
+    public AjaxResponseDTO clean() {
         jobLogService.cleanJobLog();
         return success();
     }

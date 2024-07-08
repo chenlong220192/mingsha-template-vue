@@ -166,7 +166,7 @@ CREATE TABLE `sys_dept` (
 
 LOCK TABLES `sys_dept` WRITE;
 /*!40000 ALTER TABLE `sys_dept` DISABLE KEYS */;
-INSERT INTO `sys_dept` VALUES (100,0,'0','XXX科技',0,'鸣沙','18388888888','mingsha@site.com','0','0','admin','2024-04-13 22:07:38','admin','2024-04-13 22:59:43'),(101,100,'0,100','研发中心',1,'鸣沙','18388888888','mingsha@site.com','0','0','admin','2024-04-13 22:07:39','admin','2024-04-18 19:40:37'),(103,101,'0,100,101','研发部',1,'鸣沙','18388888888','mingsha@site.com','0','0','admin','2024-04-13 22:07:39','admin','2024-04-18 19:40:45');
+INSERT INTO `sys_dept` VALUES (1,0,'0','研发部',0,'鸣沙','18388888888','mingsha@site.com','0','0','admin','2024-07-08 19:23:46','admin','2024-07-08 19:23:46');
 /*!40000 ALTER TABLE `sys_dept` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,13 +303,13 @@ LOCK TABLES `sys_job_log` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `sys_logininfor`
+-- Table structure for table `sys_login_log`
 --
 
-DROP TABLE IF EXISTS `sys_logininfor`;
+DROP TABLE IF EXISTS `sys_login_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sys_logininfor` (
+CREATE TABLE `sys_login_log` (
   `info_id` bigint NOT NULL AUTO_INCREMENT COMMENT '访问ID',
   `user_name` varchar(50) DEFAULT '' COMMENT '用户账号',
   `ipaddr` varchar(128) DEFAULT '' COMMENT '登录IP地址',
@@ -322,17 +322,16 @@ CREATE TABLE `sys_logininfor` (
   PRIMARY KEY (`info_id`),
   KEY `idx_sys_logininfor_s` (`status`),
   KEY `idx_sys_logininfor_lt` (`login_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='系统访问记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='系统访问记录';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sys_logininfor`
+-- Dumping data for table `sys_login_log`
 --
 
-LOCK TABLES `sys_logininfor` WRITE;
-/*!40000 ALTER TABLE `sys_logininfor` DISABLE KEYS */;
-INSERT INTO `sys_logininfor` VALUES (120,'admin','10.1.0.195','内网IP','Chrome 12','Mac OS X','1','用户不存在/密码错误','2024-05-12 23:23:52'),(121,'admin','10.1.0.195','内网IP','Chrome 12','Mac OS X','0','登录成功','2024-05-12 23:23:57'),(122,'admin','10.1.0.233','内网IP','Chrome 12','Mac OS X','0','登录成功','2024-05-13 00:01:35'),(123,'admin','10.1.0.233','内网IP','Chrome 12','Mac OS X','0','登录成功','2024-05-13 00:56:05');
-/*!40000 ALTER TABLE `sys_logininfor` ENABLE KEYS */;
+LOCK TABLES `sys_login_log` WRITE;
+/*!40000 ALTER TABLE `sys_login_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_login_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -363,7 +362,7 @@ CREATE TABLE `sys_menu` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2033 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='菜单权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=2034 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='菜单权限表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -372,7 +371,7 @@ CREATE TABLE `sys_menu` (
 
 LOCK TABLES `sys_menu` WRITE;
 /*!40000 ALTER TABLE `sys_menu` DISABLE KEYS */;
-INSERT INTO `sys_menu` VALUES (1,'系统管理',0,1,'system',NULL,'',1,0,'M','0','0','','system','admin','2024-04-13 22:07:39','',NULL,'系统管理目录'),(2,'系统监控',0,2,'monitor',NULL,'',1,0,'M','0','0','','monitor','admin','2024-04-13 22:07:39','',NULL,'系统监控目录'),(3,'系统工具',0,3,'tool',NULL,'',1,0,'M','0','0','','tool','admin','2024-04-13 22:07:39','',NULL,'系统工具目录'),(100,'用户管理',1,1,'user','system/user/index','',1,0,'C','0','0','system:user:list','user','admin','2024-04-13 22:07:39','',NULL,'用户管理菜单'),(101,'角色管理',1,2,'role','system/role/index','',1,0,'C','0','0','system:role:list','peoples','admin','2024-04-13 22:07:39','',NULL,'角色管理菜单'),(102,'菜单管理',1,3,'menu','system/menu/index','',1,0,'C','0','0','system:menu:list','tree-table','admin','2024-04-13 22:07:39','',NULL,'菜单管理菜单'),(103,'部门管理',1,4,'dept','system/dept/index','',1,0,'C','0','0','system:dept:list','tree','admin','2024-04-13 22:07:39','',NULL,'部门管理菜单'),(104,'岗位管理',1,5,'post','system/post/index','',1,0,'C','0','0','system:post:list','post','admin','2024-04-13 22:07:39','',NULL,'岗位管理菜单'),(105,'字典管理',1,6,'dict','system/dict/index','',1,0,'C','0','0','system:dict:list','dict','admin','2024-04-13 22:07:39','',NULL,'字典管理菜单'),(106,'参数设置',1,7,'config','system/config/index','',1,0,'C','0','0','system:config:list','edit','admin','2024-04-13 22:07:39','',NULL,'参数设置菜单'),(107,'通知公告',1,8,'notice','system/notice/index','',1,0,'C','0','0','system:notice:list','message','admin','2024-04-13 22:07:39','',NULL,'通知公告菜单'),(108,'日志管理',1,9,'log','','',1,0,'M','0','0','','log','admin','2024-04-13 22:07:39','',NULL,'日志管理菜单'),(109,'在线用户',2,1,'online','monitor/online/index','',1,0,'C','0','0','monitor:online:list','online','admin','2024-04-13 22:07:39','',NULL,'在线用户菜单'),(110,'定时任务',2,2,'job','monitor/job/index','',1,0,'C','0','0','monitor:job:list','job','admin','2024-04-13 22:07:39','',NULL,'定时任务菜单'),(111,'数据监控',2,3,'druid','monitor/druid/index','',1,0,'C','0','0','monitor:druid:list','druid','admin','2024-04-13 22:07:39','',NULL,'数据监控菜单'),(112,'服务监控',2,4,'server','monitor/server/index','',1,0,'C','0','0','monitor:server:list','server','admin','2024-04-13 22:07:39','',NULL,'服务监控菜单'),(113,'缓存监控',2,5,'cache','monitor/cache/index','',1,0,'C','0','0','monitor:cache:list','redis','admin','2024-04-13 22:07:39','',NULL,'缓存监控菜单'),(114,'缓存列表',2,6,'cacheList','monitor/cache/list','',1,0,'C','0','0','monitor:cache:list','redis-list','admin','2024-04-13 22:07:39','',NULL,'缓存列表菜单'),(115,'表单构建',3,1,'build','tool/build/index','',1,0,'C','0','0','tool:build:list','build','admin','2024-04-13 22:07:39','',NULL,'表单构建菜单'),(116,'代码生成',3,2,'gen','tool/gen/index','',1,0,'C','0','0','tool:gen:list','code','admin','2024-04-13 22:07:39','',NULL,'代码生成菜单'),(117,'系统接口',3,3,'swagger','tool/swagger/index','',1,0,'C','0','0','tool:swagger:list','swagger','admin','2024-04-13 22:07:39','',NULL,'系统接口菜单'),(500,'操作日志',108,1,'operlog','monitor/operlog/index','',1,0,'C','0','0','monitor:operlog:list','form','admin','2024-04-13 22:07:39','',NULL,'操作日志菜单'),(501,'登录日志',108,2,'logininfor','monitor/logininfor/index','',1,0,'C','0','0','monitor:logininfor:list','logininfor','admin','2024-04-13 22:07:39','',NULL,'登录日志菜单'),(1000,'用户查询',100,1,'','','',1,0,'F','0','0','system:user:query','#','admin','2024-04-13 22:07:39','',NULL,''),(1001,'用户新增',100,2,'','','',1,0,'F','0','0','system:user:add','#','admin','2024-04-13 22:07:39','',NULL,''),(1002,'用户修改',100,3,'','','',1,0,'F','0','0','system:user:edit','#','admin','2024-04-13 22:07:39','',NULL,''),(1003,'用户删除',100,4,'','','',1,0,'F','0','0','system:user:remove','#','admin','2024-04-13 22:07:39','',NULL,''),(1004,'用户导出',100,5,'','','',1,0,'F','0','0','system:user:export','#','admin','2024-04-13 22:07:39','',NULL,''),(1005,'用户导入',100,6,'','','',1,0,'F','0','0','system:user:import','#','admin','2024-04-13 22:07:39','',NULL,''),(1006,'重置密码',100,7,'','','',1,0,'F','0','0','system:user:resetPwd','#','admin','2024-04-13 22:07:39','',NULL,''),(1007,'角色查询',101,1,'','','',1,0,'F','0','0','system:role:query','#','admin','2024-04-13 22:07:39','',NULL,''),(1008,'角色新增',101,2,'','','',1,0,'F','0','0','system:role:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1009,'角色修改',101,3,'','','',1,0,'F','0','0','system:role:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1010,'角色删除',101,4,'','','',1,0,'F','0','0','system:role:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1011,'角色导出',101,5,'','','',1,0,'F','0','0','system:role:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1012,'菜单查询',102,1,'','','',1,0,'F','0','0','system:menu:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1013,'菜单新增',102,2,'','','',1,0,'F','0','0','system:menu:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1014,'菜单修改',102,3,'','','',1,0,'F','0','0','system:menu:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1015,'菜单删除',102,4,'','','',1,0,'F','0','0','system:menu:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1016,'部门查询',103,1,'','','',1,0,'F','0','0','system:dept:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1017,'部门新增',103,2,'','','',1,0,'F','0','0','system:dept:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1018,'部门修改',103,3,'','','',1,0,'F','0','0','system:dept:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1019,'部门删除',103,4,'','','',1,0,'F','0','0','system:dept:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1020,'岗位查询',104,1,'','','',1,0,'F','0','0','system:post:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1021,'岗位新增',104,2,'','','',1,0,'F','0','0','system:post:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1022,'岗位修改',104,3,'','','',1,0,'F','0','0','system:post:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1023,'岗位删除',104,4,'','','',1,0,'F','0','0','system:post:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1024,'岗位导出',104,5,'','','',1,0,'F','0','0','system:post:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1025,'字典查询',105,1,'#','','',1,0,'F','0','0','system:dict:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1026,'字典新增',105,2,'#','','',1,0,'F','0','0','system:dict:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1027,'字典修改',105,3,'#','','',1,0,'F','0','0','system:dict:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1028,'字典删除',105,4,'#','','',1,0,'F','0','0','system:dict:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1029,'字典导出',105,5,'#','','',1,0,'F','0','0','system:dict:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1030,'参数查询',106,1,'#','','',1,0,'F','0','0','system:config:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1031,'参数新增',106,2,'#','','',1,0,'F','0','0','system:config:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1032,'参数修改',106,3,'#','','',1,0,'F','0','0','system:config:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1033,'参数删除',106,4,'#','','',1,0,'F','0','0','system:config:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1034,'参数导出',106,5,'#','','',1,0,'F','0','0','system:config:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1035,'公告查询',107,1,'#','','',1,0,'F','0','0','system:notice:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1036,'公告新增',107,2,'#','','',1,0,'F','0','0','system:notice:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1037,'公告修改',107,3,'#','','',1,0,'F','0','0','system:notice:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1038,'公告删除',107,4,'#','','',1,0,'F','0','0','system:notice:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1039,'操作查询',500,1,'#','','',1,0,'F','0','0','monitor:operlog:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1040,'操作删除',500,2,'#','','',1,0,'F','0','0','monitor:operlog:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1041,'日志导出',500,3,'#','','',1,0,'F','0','0','monitor:operlog:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1042,'登录查询',501,1,'#','','',1,0,'F','0','0','monitor:logininfor:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1043,'登录删除',501,2,'#','','',1,0,'F','0','0','monitor:logininfor:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1044,'日志导出',501,3,'#','','',1,0,'F','0','0','monitor:logininfor:export','#','admin','2024-04-13 22:07:41','',NULL,''),(1045,'账户解锁',501,4,'#','','',1,0,'F','0','0','monitor:logininfor:unlock','#','admin','2024-04-13 22:07:41','',NULL,''),(1046,'在线查询',109,1,'#','','',1,0,'F','0','0','monitor:online:query','#','admin','2024-04-13 22:07:41','',NULL,''),(1047,'批量强退',109,2,'#','','',1,0,'F','0','0','monitor:online:batchLogout','#','admin','2024-04-13 22:07:41','',NULL,''),(1048,'单条强退',109,3,'#','','',1,0,'F','0','0','monitor:online:forceLogout','#','admin','2024-04-13 22:07:41','',NULL,''),(1049,'任务查询',110,1,'#','','',1,0,'F','0','0','monitor:job:query','#','admin','2024-04-13 22:07:41','',NULL,''),(1050,'任务新增',110,2,'#','','',1,0,'F','0','0','monitor:job:add','#','admin','2024-04-13 22:07:41','',NULL,''),(1051,'任务修改',110,3,'#','','',1,0,'F','0','0','monitor:job:edit','#','admin','2024-04-13 22:07:41','',NULL,''),(1052,'任务删除',110,4,'#','','',1,0,'F','0','0','monitor:job:remove','#','admin','2024-04-13 22:07:41','',NULL,''),(1053,'状态修改',110,5,'#','','',1,0,'F','0','0','monitor:job:changeStatus','#','admin','2024-04-13 22:07:41','',NULL,''),(1054,'任务导出',110,6,'#','','',1,0,'F','0','0','monitor:job:export','#','admin','2024-04-13 22:07:41','',NULL,''),(1055,'生成查询',116,1,'#','','',1,0,'F','0','0','tool:gen:query','#','admin','2024-04-13 22:07:41','',NULL,''),(1056,'生成修改',116,2,'#','','',1,0,'F','0','0','tool:gen:edit','#','admin','2024-04-13 22:07:41','',NULL,''),(1057,'生成删除',116,3,'#','','',1,0,'F','0','0','tool:gen:remove','#','admin','2024-04-13 22:07:41','',NULL,''),(1058,'导入代码',116,4,'#','','',1,0,'F','0','0','tool:gen:import','#','admin','2024-04-13 22:07:41','',NULL,''),(1059,'预览代码',116,5,'#','','',1,0,'F','0','0','tool:gen:preview','#','admin','2024-04-13 22:07:41','',NULL,''),(1060,'生成代码',116,6,'#','','',1,0,'F','0','0','tool:gen:code','#','admin','2024-04-13 22:07:41','',NULL,'');
+INSERT INTO `sys_menu` VALUES (1,'系统管理',0,1,'system',NULL,'',1,0,'M','0','0','','system','admin','2024-04-13 22:07:39','',NULL,'系统管理目录'),(2,'系统配置',0,2,'config',NULL,NULL,1,0,'M','0','0',NULL,'dict','admin','2024-07-08 19:13:04','',NULL,''),(3,'系统监控',0,3,'monitor',NULL,'',1,0,'M','0','0','','monitor','admin','2024-04-13 22:07:39','admin','2024-07-08 19:13:11','系统监控目录'),(4,'系统工具',0,4,'tool',NULL,'',1,0,'M','0','0','','tool','admin','2024-04-13 22:07:39','admin','2024-07-08 19:13:17','系统工具目录'),(100,'用户管理',1,4,'user','system/user/index','',1,0,'C','0','0','system:user:list','user','admin','2024-04-13 22:07:39','admin','2024-07-08 19:14:16','用户管理菜单'),(101,'角色管理',1,3,'role','system/role/index','',1,0,'C','0','0','system:role:list','peoples','admin','2024-04-13 22:07:39','admin','2024-07-08 19:14:12','角色管理菜单'),(102,'菜单管理',1,5,'menu','system/menu/index','',1,0,'C','0','0','system:menu:list','tree-table','admin','2024-04-13 22:07:39','admin','2024-07-08 19:14:41','菜单管理菜单'),(103,'部门管理',1,1,'dept','system/dept/index','',1,0,'C','0','0','system:dept:list','tree','admin','2024-04-13 22:07:39','admin','2024-07-08 19:14:03','部门管理菜单'),(104,'岗位管理',1,2,'post','system/post/index','',1,0,'C','0','0','system:post:list','post','admin','2024-04-13 22:07:39','admin','2024-07-08 19:14:07','岗位管理菜单'),(105,'字典配置',2,2,'dict','system/dict/index','',1,0,'C','0','0','system:dict:list','dict','admin','2024-04-13 22:07:39','admin','2024-07-08 19:33:54','字典管理菜单'),(106,'参数配置',2,1,'config','system/config/index','',1,0,'C','0','0','system:config:list','edit','admin','2024-04-13 22:07:39','admin','2024-07-08 19:33:48','参数设置菜单'),(107,'通知公告',1,6,'notice','system/notice/index','',1,0,'C','0','0','system:notice:list','message','admin','2024-04-13 22:07:39','admin','2024-07-08 19:14:47','通知公告菜单'),(108,'日志管理',1,7,'log','','',1,0,'M','0','0','','log','admin','2024-04-13 22:07:39','admin','2024-07-08 19:14:50','日志管理菜单'),(109,'在线用户',3,1,'online','monitor/online/index','',1,0,'C','0','0','monitor:online:list','online','admin','2024-04-13 22:07:39','',NULL,'在线用户菜单'),(110,'定时任务',3,2,'job','monitor/job/index','',1,0,'C','0','0','monitor:job:list','job','admin','2024-04-13 22:07:39','',NULL,'定时任务菜单'),(111,'数据监控',3,3,'druid','monitor/druid/index','',1,0,'C','0','0','monitor:druid:list','druid','admin','2024-04-13 22:07:39','',NULL,'数据监控菜单'),(112,'服务监控',3,4,'server','monitor/server/index','',1,0,'C','0','0','monitor:server:list','server','admin','2024-04-13 22:07:39','',NULL,'服务监控菜单'),(113,'缓存监控',3,5,'cache','monitor/cache/index','',1,0,'C','0','0','monitor:cache:list','redis','admin','2024-04-13 22:07:39','',NULL,'缓存监控菜单'),(114,'缓存列表',3,6,'cacheList','monitor/cache/list','',1,0,'C','0','0','monitor:cache:list','redis-list','admin','2024-04-13 22:07:39','',NULL,'缓存列表菜单'),(115,'表单构建',4,1,'build','tool/build/index','',1,0,'C','0','0','tool:build:list','build','admin','2024-04-13 22:07:39','',NULL,'表单构建菜单'),(116,'代码生成',4,2,'gen','tool/gen/index','',1,0,'C','0','0','tool:gen:list','code','admin','2024-04-13 22:07:39','',NULL,'代码生成菜单'),(117,'系统接口',4,3,'swagger','tool/swagger/index','',1,0,'C','0','0','tool:swagger:list','swagger','admin','2024-04-13 22:07:39','',NULL,'系统接口菜单'),(500,'操作日志',108,1,'operlog','monitor/operlog/index','',1,0,'C','0','0','monitor:operlog:list','form','admin','2024-04-13 22:07:39','',NULL,'操作日志菜单'),(501,'登录日志',108,2,'logininfor','monitor/logininfor/index','',1,0,'C','0','0','monitor:logininfor:list','logininfor','admin','2024-04-13 22:07:39','',NULL,'登录日志菜单'),(1000,'用户查询',100,1,'','','',1,0,'F','0','0','system:user:query','#','admin','2024-04-13 22:07:39','',NULL,''),(1001,'用户新增',100,2,'','','',1,0,'F','0','0','system:user:add','#','admin','2024-04-13 22:07:39','',NULL,''),(1002,'用户修改',100,3,'','','',1,0,'F','0','0','system:user:edit','#','admin','2024-04-13 22:07:39','',NULL,''),(1003,'用户删除',100,4,'','','',1,0,'F','0','0','system:user:remove','#','admin','2024-04-13 22:07:39','',NULL,''),(1004,'用户导出',100,5,'','','',1,0,'F','0','0','system:user:export','#','admin','2024-04-13 22:07:39','',NULL,''),(1005,'用户导入',100,6,'','','',1,0,'F','0','0','system:user:import','#','admin','2024-04-13 22:07:39','',NULL,''),(1006,'重置密码',100,7,'','','',1,0,'F','0','0','system:user:resetPwd','#','admin','2024-04-13 22:07:39','',NULL,''),(1007,'角色查询',101,1,'','','',1,0,'F','0','0','system:role:query','#','admin','2024-04-13 22:07:39','',NULL,''),(1008,'角色新增',101,2,'','','',1,0,'F','0','0','system:role:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1009,'角色修改',101,3,'','','',1,0,'F','0','0','system:role:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1010,'角色删除',101,4,'','','',1,0,'F','0','0','system:role:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1011,'角色导出',101,5,'','','',1,0,'F','0','0','system:role:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1012,'菜单查询',102,1,'','','',1,0,'F','0','0','system:menu:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1013,'菜单新增',102,2,'','','',1,0,'F','0','0','system:menu:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1014,'菜单修改',102,3,'','','',1,0,'F','0','0','system:menu:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1015,'菜单删除',102,4,'','','',1,0,'F','0','0','system:menu:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1016,'部门查询',103,1,'','','',1,0,'F','0','0','system:dept:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1017,'部门新增',103,2,'','','',1,0,'F','0','0','system:dept:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1018,'部门修改',103,3,'','','',1,0,'F','0','0','system:dept:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1019,'部门删除',103,4,'','','',1,0,'F','0','0','system:dept:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1020,'岗位查询',104,1,'','','',1,0,'F','0','0','system:post:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1021,'岗位新增',104,2,'','','',1,0,'F','0','0','system:post:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1022,'岗位修改',104,3,'','','',1,0,'F','0','0','system:post:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1023,'岗位删除',104,4,'','','',1,0,'F','0','0','system:post:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1024,'岗位导出',104,5,'','','',1,0,'F','0','0','system:post:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1025,'字典查询',105,1,'#','','',1,0,'F','0','0','system:dict:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1026,'字典新增',105,2,'#','','',1,0,'F','0','0','system:dict:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1027,'字典修改',105,3,'#','','',1,0,'F','0','0','system:dict:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1028,'字典删除',105,4,'#','','',1,0,'F','0','0','system:dict:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1029,'字典导出',105,5,'#','','',1,0,'F','0','0','system:dict:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1030,'参数查询',106,1,'#','','',1,0,'F','0','0','system:config:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1031,'参数新增',106,2,'#','','',1,0,'F','0','0','system:config:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1032,'参数修改',106,3,'#','','',1,0,'F','0','0','system:config:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1033,'参数删除',106,4,'#','','',1,0,'F','0','0','system:config:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1034,'参数导出',106,5,'#','','',1,0,'F','0','0','system:config:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1035,'公告查询',107,1,'#','','',1,0,'F','0','0','system:notice:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1036,'公告新增',107,2,'#','','',1,0,'F','0','0','system:notice:add','#','admin','2024-04-13 22:07:40','',NULL,''),(1037,'公告修改',107,3,'#','','',1,0,'F','0','0','system:notice:edit','#','admin','2024-04-13 22:07:40','',NULL,''),(1038,'公告删除',107,4,'#','','',1,0,'F','0','0','system:notice:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1039,'操作查询',500,1,'#','','',1,0,'F','0','0','monitor:operlog:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1040,'操作删除',500,2,'#','','',1,0,'F','0','0','monitor:operlog:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1041,'日志导出',500,3,'#','','',1,0,'F','0','0','monitor:operlog:export','#','admin','2024-04-13 22:07:40','',NULL,''),(1042,'登录查询',501,1,'#','','',1,0,'F','0','0','monitor:logininfor:query','#','admin','2024-04-13 22:07:40','',NULL,''),(1043,'登录删除',501,2,'#','','',1,0,'F','0','0','monitor:logininfor:remove','#','admin','2024-04-13 22:07:40','',NULL,''),(1044,'日志导出',501,3,'#','','',1,0,'F','0','0','monitor:logininfor:export','#','admin','2024-04-13 22:07:41','',NULL,''),(1045,'账户解锁',501,4,'#','','',1,0,'F','0','0','monitor:logininfor:unlock','#','admin','2024-04-13 22:07:41','',NULL,''),(1046,'在线查询',109,1,'#','','',1,0,'F','0','0','monitor:online:query','#','admin','2024-04-13 22:07:41','',NULL,''),(1047,'批量强退',109,2,'#','','',1,0,'F','0','0','monitor:online:batchLogout','#','admin','2024-04-13 22:07:41','',NULL,''),(1048,'单条强退',109,3,'#','','',1,0,'F','0','0','monitor:online:forceLogout','#','admin','2024-04-13 22:07:41','',NULL,''),(1049,'任务查询',110,1,'#','','',1,0,'F','0','0','monitor:job:query','#','admin','2024-04-13 22:07:41','',NULL,''),(1050,'任务新增',110,2,'#','','',1,0,'F','0','0','monitor:job:add','#','admin','2024-04-13 22:07:41','',NULL,''),(1051,'任务修改',110,3,'#','','',1,0,'F','0','0','monitor:job:edit','#','admin','2024-04-13 22:07:41','',NULL,''),(1052,'任务删除',110,4,'#','','',1,0,'F','0','0','monitor:job:remove','#','admin','2024-04-13 22:07:41','',NULL,''),(1053,'状态修改',110,5,'#','','',1,0,'F','0','0','monitor:job:changeStatus','#','admin','2024-04-13 22:07:41','',NULL,''),(1054,'任务导出',110,6,'#','','',1,0,'F','0','0','monitor:job:export','#','admin','2024-04-13 22:07:41','',NULL,''),(1055,'生成查询',116,1,'#','','',1,0,'F','0','0','tool:gen:query','#','admin','2024-04-13 22:07:41','',NULL,''),(1056,'生成修改',116,2,'#','','',1,0,'F','0','0','tool:gen:edit','#','admin','2024-04-13 22:07:41','',NULL,''),(1057,'生成删除',116,3,'#','','',1,0,'F','0','0','tool:gen:remove','#','admin','2024-04-13 22:07:41','',NULL,''),(1058,'导入代码',116,4,'#','','',1,0,'F','0','0','tool:gen:import','#','admin','2024-04-13 22:07:41','',NULL,''),(1059,'预览代码',116,5,'#','','',1,0,'F','0','0','tool:gen:preview','#','admin','2024-04-13 22:07:41','',NULL,''),(1060,'生成代码',116,6,'#','','',1,0,'F','0','0','tool:gen:code','#','admin','2024-04-13 22:07:41','',NULL,'');
 /*!40000 ALTER TABLE `sys_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -437,7 +436,7 @@ CREATE TABLE `sys_oper_log` (
   KEY `idx_sys_oper_log_bt` (`business_type`),
   KEY `idx_sys_oper_log_s` (`status`),
   KEY `idx_sys_oper_log_ot` (`oper_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='操作日志记录';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -446,6 +445,7 @@ CREATE TABLE `sys_oper_log` (
 
 LOCK TABLES `sys_oper_log` WRITE;
 /*!40000 ALTER TABLE `sys_oper_log` DISABLE KEYS */;
+INSERT INTO `sys_oper_log` VALUES (2,'操作日志',3,'site.mingsha.web.controller.monitor.SysOperlogController.remove()','DELETE',1,'admin','研发部','/monitor/operlog/1','10.1.3.57','内网IP','{}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2024-07-08 19:48:45',7),(3,'登录日志',9,'site.mingsha.web.controller.monitor.SysLogininforController.clean()','DELETE',1,'admin','研发部','/monitor/logininfor/clean','10.1.3.57','内网IP','{}','{\"msg\":\"操作成功\",\"code\":200}',0,NULL,'2024-07-08 20:09:40',43);
 /*!40000 ALTER TABLE `sys_oper_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -477,7 +477,7 @@ CREATE TABLE `sys_post` (
 
 LOCK TABLES `sys_post` WRITE;
 /*!40000 ALTER TABLE `sys_post` DISABLE KEYS */;
-INSERT INTO `sys_post` VALUES (1,'ceo','CEO',1,'0','admin','2024-04-13 22:07:39','admin','2024-04-18 19:41:25',''),(2,'se','技术专家',2,'0','admin','2024-04-13 22:07:39','admin','2024-04-18 19:41:33',''),(4,'user','普通员工',4,'0','admin','2024-04-13 22:07:39','',NULL,'');
+INSERT INTO `sys_post` VALUES (1,'it','IT',1,'0','admin','2024-04-13 22:07:39','admin','2024-04-18 19:41:25','');
 /*!40000 ALTER TABLE `sys_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,7 +504,7 @@ CREATE TABLE `sys_role` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -513,7 +513,7 @@ CREATE TABLE `sys_role` (
 
 LOCK TABLES `sys_role` WRITE;
 /*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
-INSERT INTO `sys_role` VALUES (1,'超级管理员','admin',1,'1',1,1,'0','0','admin','2024-04-13 22:07:39','',NULL,'超级管理员'),(2,'普通角色','common',2,'2',1,1,'0','0','admin','2024-04-13 22:07:39','admin','2024-04-18 19:43:59','普通角色');
+INSERT INTO `sys_role` VALUES (1,'超级管理员','admin',1,'1',1,1,'0','0','admin','2024-07-08 19:23:46','',NULL,'超级管理员'),(2,'管理员','user',2,'1',1,1,'0','0','admin','2024-07-08 19:23:46','admin','2024-07-08 19:32:08',NULL),(3,'普通用户','common',3,'1',1,1,'0','0','admin','2024-07-08 19:24:04','admin','2024-07-08 19:32:12',NULL);
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -537,7 +537,7 @@ CREATE TABLE `sys_role_dept` (
 
 LOCK TABLES `sys_role_dept` WRITE;
 /*!40000 ALTER TABLE `sys_role_dept` DISABLE KEYS */;
-INSERT INTO `sys_role_dept` VALUES (2,100),(2,101),(2,105);
+INSERT INTO `sys_role_dept` VALUES (1,1),(2,1),(3,1);
 /*!40000 ALTER TABLE `sys_role_dept` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -561,7 +561,7 @@ CREATE TABLE `sys_role_menu` (
 
 LOCK TABLES `sys_role_menu` WRITE;
 /*!40000 ALTER TABLE `sys_role_menu` DISABLE KEYS */;
-INSERT INTO `sys_role_menu` VALUES (2,2000),(2,2007),(2,2008),(2,2009),(2,2010),(2,2011),(2,2012),(2,2013),(2,2014),(2,2015),(2,2016),(2,2017),(2,2018),(2,2019),(2,2020),(2,2021),(2,2022),(2,2023),(2,2024),(2,2025),(2,2026),(2,2027),(2,2028),(2,2029),(2,2030),(2,2031),(2,2032);
+INSERT INTO `sys_role_menu` VALUES (2,2),(2,3),(2,105),(2,106),(2,109),(2,110),(2,111),(2,112),(2,113),(2,114),(2,1025),(2,1026),(2,1027),(2,1028),(2,1029),(2,1030),(2,1031),(2,1032),(2,1033),(2,1034),(2,1046),(2,1047),(2,1048),(2,1049),(2,1050),(2,1051),(2,1052),(2,1053),(2,1054);
 /*!40000 ALTER TABLE `sys_role_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -593,7 +593,7 @@ CREATE TABLE `sys_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -602,7 +602,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,103,'admin','鸣沙','00','admin@site.com','18388888888','0','','$2a$10$1QuRovwH9v7nNDu9ScjlKuRpQf6HbnZaOa16qjZuIHYSe/45Byep2','0','0','10.1.0.233','2024-05-13 00:56:05','admin','2024-04-13 22:07:39','','2024-05-13 00:56:05','管理员'),(100,103,'mingsha','mingsha','00','mingsha@site.com','18388889999','0','','$2a$10$1QuRovwH9v7nNDu9ScjlKuRpQf6HbnZaOa16qjZuIHYSe/45Byep2','0','0','192.168.65.1','2024-04-18 20:19:30','admin','2024-04-18 19:43:51','admin','2024-04-28 11:41:52',NULL);
+INSERT INTO `sys_user` VALUES (1,1,'admin','鸣沙','00','admin@site.com','18388888888','0','','$2a$10$1QuRovwH9v7nNDu9ScjlKuRpQf6HbnZaOa16qjZuIHYSe/45Byep2','0','0','10.1.3.57','2024-07-08 20:08:18','admin','2024-04-13 22:07:39','','2024-07-08 20:08:18','管理员'),(2,1,'testme1','testme1','00','testme1@mingsha.site','18300000001','0','','$2a$10$7PubdyJrkMNWlHTvr2LexuffFihEwF7mTUciPsHDqrHI.TEkZ0KIe','0','0','10.1.3.57','2024-07-08 19:32:36','admin','2024-07-08 19:27:52','','2024-07-08 19:32:35',NULL),(3,1,'testme2','testme2','00','testme2@mingsha.site','18300000002','1','','$2a$10$cpv7653xNqNerH/1ayUkM.BQ9N5m45IUFNnpbdDaR1TSluXIrKDme','0','0','10.1.3.57','2024-07-08 19:33:21','admin','2024-07-08 19:28:18','','2024-07-08 19:33:20',NULL);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -626,7 +626,7 @@ CREATE TABLE `sys_user_post` (
 
 LOCK TABLES `sys_user_post` WRITE;
 /*!40000 ALTER TABLE `sys_user_post` DISABLE KEYS */;
-INSERT INTO `sys_user_post` VALUES (1,1),(2,2),(100,4);
+INSERT INTO `sys_user_post` VALUES (1,1),(2,1),(3,1);
 /*!40000 ALTER TABLE `sys_user_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -650,7 +650,7 @@ CREATE TABLE `sys_user_role` (
 
 LOCK TABLES `sys_user_role` WRITE;
 /*!40000 ALTER TABLE `sys_user_role` DISABLE KEYS */;
-INSERT INTO `sys_user_role` VALUES (1,1),(2,2),(100,2);
+INSERT INTO `sys_user_role` VALUES (1,1),(2,2),(3,3);
 /*!40000 ALTER TABLE `sys_user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -663,4 +663,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-13  1:17:08
+-- Dump completed on 2024-07-08 20:10:52

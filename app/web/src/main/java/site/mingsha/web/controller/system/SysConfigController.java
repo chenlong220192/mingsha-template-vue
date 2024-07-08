@@ -29,8 +29,7 @@ import site.mingsha.biz.service.ISysConfigService;
  */
 @RestController
 @RequestMapping("/system/config")
-public class SysConfigController extends BaseController
-{
+public class SysConfigController extends BaseController {
     @Autowired
     private ISysConfigService configService;
 
@@ -39,8 +38,7 @@ public class SysConfigController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:config:list')")
     @GetMapping("/list")
-    public TableDataInfo list(SysConfigDO config)
-    {
+    public TableDataInfo list(SysConfigDO config) {
         startPage();
         List<SysConfigDO> list = configService.selectConfigList(config);
         return getDataTable(list);
@@ -49,8 +47,7 @@ public class SysConfigController extends BaseController
     @Log(title = "参数管理", businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:config:export')")
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysConfigDO config)
-    {
+    public void export(HttpServletResponse response, SysConfigDO config) {
         List<SysConfigDO> list = configService.selectConfigList(config);
         ExcelUtil<SysConfigDO> util = new ExcelUtil<SysConfigDO>(SysConfigDO.class);
         util.exportExcel(response, list, "参数数据");
@@ -61,8 +58,7 @@ public class SysConfigController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:config:query')")
     @GetMapping(value = "/{configId}")
-    public AjaxResponseDTO getInfo(@PathVariable Long configId)
-    {
+    public AjaxResponseDTO getInfo(@PathVariable Long configId) {
         return success(configService.selectConfigById(configId));
     }
 
@@ -70,8 +66,7 @@ public class SysConfigController extends BaseController
      * 根据参数键名查询参数值
      */
     @GetMapping(value = "/configKey/{configKey}")
-    public AjaxResponseDTO getConfigKey(@PathVariable String configKey)
-    {
+    public AjaxResponseDTO getConfigKey(@PathVariable String configKey) {
         return success(configService.selectConfigByKey(configKey));
     }
 
@@ -81,10 +76,8 @@ public class SysConfigController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:config:add')")
     @Log(title = "参数管理", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResponseDTO add(@Validated @RequestBody SysConfigDO config)
-    {
-        if (!configService.checkConfigKeyUnique(config))
-        {
+    public AjaxResponseDTO add(@Validated @RequestBody SysConfigDO config) {
+        if (!configService.checkConfigKeyUnique(config)) {
             return error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
         config.setCreateBy(getUsername());
@@ -97,10 +90,8 @@ public class SysConfigController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:config:edit')")
     @Log(title = "参数管理", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResponseDTO edit(@Validated @RequestBody SysConfigDO config)
-    {
-        if (!configService.checkConfigKeyUnique(config))
-        {
+    public AjaxResponseDTO edit(@Validated @RequestBody SysConfigDO config) {
+        if (!configService.checkConfigKeyUnique(config)) {
             return error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
         config.setUpdateBy(getUsername());
@@ -113,8 +104,7 @@ public class SysConfigController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{configIds}")
-    public AjaxResponseDTO remove(@PathVariable Long[] configIds)
-    {
+    public AjaxResponseDTO remove(@PathVariable Long[] configIds) {
         configService.deleteConfigByIds(configIds);
         return success();
     }
@@ -125,8 +115,7 @@ public class SysConfigController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理", businessType = BusinessType.CLEAN)
     @DeleteMapping("/refreshCache")
-    public AjaxResponseDTO refreshCache()
-    {
+    public AjaxResponseDTO refreshCache() {
         configService.resetConfigCache();
         return success();
     }
