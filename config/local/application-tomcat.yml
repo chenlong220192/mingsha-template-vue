@@ -6,6 +6,9 @@ server:
     # 应用上下文
     context-path: /
   tomcat:
+    # tomcat检测, 这个不开启可能会导致tomcat的指标获取不到
+    mbeanregistry:
+      enabled: true
     # tomcat的URI编码
     uri-encoding: UTF-8
     # 连接数满后的排队数，默认为100
