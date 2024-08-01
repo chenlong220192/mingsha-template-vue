@@ -1,5 +1,5 @@
 # 1、基础镜像
-FROM nginx:1.25-alpine
+FROM nginx:1.27-alpine
 
 WORKDIR /app/
 

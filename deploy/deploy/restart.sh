@@ -12,7 +12,7 @@
 # 项目名称
 APPLICATION=mingsha-template-vue-boot
 # 项目启动jar包名称
-APPLICATION_JAR=mingsha-template-vue-boot-v1.0.0.jar
+APPLICATION_JAR=mingsha-template-vue-boot-1.0.0.jar
 
 # bin目录绝对路径
 BIN_PATH=$(cd `dirname $0`; pwd)

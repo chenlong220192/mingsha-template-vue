@@ -25,4 +25,4 @@ docker run -d -it \
   --memory 128m \
   --restart=always \
   --name ${APPNAME}-ui-${ENV} \
-  site.mingsha/app/${APPNAME}-ui-${ENV}:${VERSION}
+  site.mingsha:5555/app/${APPNAME}-ui-${ENV}:${VERSION}

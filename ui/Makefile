@@ -16,7 +16,7 @@ export BASE_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 ENV ?= prod
 #
 APPNAME ?= mingsha-template-vue-ui
-VERSION ?= v1.0.0
+VERSION ?= 1.0.0
 PORT ?= 8000
 HELM_NAMESPACE ?= mingsha
 # ----------------------------- variables >-----------------------------

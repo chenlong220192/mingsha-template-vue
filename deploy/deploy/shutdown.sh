@@ -12,7 +12,7 @@
 # 项目名称
 APPLICATION=mingsha-template-vue-boot
 # 项目启动jar包名称
-APPLICATION_JAR=mingsha-template-vue-boot-v1.0.0.jar
+APPLICATION_JAR=mingsha-template-vue-boot-1.0.0.jar
 
 PID=$(ps -eo user,pid,tty,args | grep "${APPLICATION_JAR}" | grep -v grep | awk '{ print $2 }')
 if [[ -z "$PID" ]]
