@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import site.mingsha.common.annotation.Excel;
 #if($table.crud || $table.sub)
-import ${packageName}.model.${subClassName}DO;
+import ${packageName}.model._do.BaseDO;
 #elseif($table.tree)
 #end
 
@@ -18,7 +18,7 @@ import ${packageName}.model.${subClassName}DO;
  * @date ${datetime}
  */
 #if($table.crud || $table.sub)
-#set($Entity="BaseEntity")
+#set($Entity="BaseDO")
 #elseif($table.tree)
 #set($Entity="TreeEntity")
 #end
