@@ -1,38 +1,33 @@
 <template>
   <div class="app-container home">
     <el-row :gutter="20">
-      <el-col :sm="24" :lg="12" style="padding-left: 50px">
-        <el-row>
-          <el-col :span="12">
-            <h2>技术选型</h2>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="6">
-            <h4>后端技术</h4>
-            <ul>
-              <li>SpringBoot</li>
-              <li>Spring Security</li>
-              <li>JWT</li>
-              <li>MyBatis</li>
-              <li>Druid</li>
-              <li>Fastjson</li>
-              <li>...</li>
-            </ul>
-          </el-col>
-          <el-col :span="6">
-            <h4>前端技术</h4>
-            <ul>
-              <li>Vue</li>
-              <li>Vuex</li>
-              <li>Element-ui</li>
-              <li>Axios</li>
-              <li>Sass</li>
-              <li>Quill</li>
-              <li>...</li>
-            </ul>
-          </el-col>
-        </el-row>
+      <el-col :span="10">
+        <el-card shadow="hover" style="width: 100%;">
+          <div slot="header" class="clearfix">
+            <span>文嘉《明日歌》</span>
+            <el-button
+              style="float: right; padding: 3px 0"
+              type="text"
+              @click="clickFn"
+              >暂停</el-button
+            >
+          </div>
+          <div style="font-size: 18px;text-align: center; margin-top: 35px;">
+            明日复明日
+          </div>
+          <div style="font-size: 18px;text-align: center;">明日何其多</div>
+          <div style="font-size: 18px;text-align: center;">我生待明日</div>
+          <div style="font-size: 18px;text-align: center;">万事成蹉跎</div>
+          <div style="margin-top: 35px;"></div>
+          <el-statistic
+            ref="statistic"
+            @finish="hilarity"
+            format="HH:mm:ss"
+            :value="deadline"
+            title="距离明日："
+            time-indices >
+          </el-statistic>
+        </el-card>
       </el-col>
     </el-row>
   </div>
@@ -44,13 +39,25 @@ export default {
   data() {
     return {
       // 版本号
-      version: "1.0.0"
+      version: "1.0.0",
+      deadline: Date.now() + (new Date().setHours(23, 59, 59) - Date.now()),
+      stop: true,
     };
   },
   methods: {
     goTarget(href) {
       window.open(href, "_blank");
-    }
+    },
+    hilarity() {
+      this.$notify({
+        title: "提示",
+        message: "时间已到"
+      });
+    },
+    clickFn() {
+      this.$refs.statistic.suspend(this.stop);
+      this.stop = !this.stop;
+    },
   }
 };
 </script>

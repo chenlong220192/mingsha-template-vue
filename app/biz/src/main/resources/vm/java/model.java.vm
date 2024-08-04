@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import site.mingsha.common.annotation.Excel;
 #if($table.crud || $table.sub)
-import ${packageName}.model._do.BaseDO;
+import site.mingsha.common.model._do.BaseDO;
 #elseif($table.tree)
 #end
 
