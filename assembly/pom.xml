@@ -139,9 +139,8 @@
     </build>
 
     <!--MAVEN打包选择运行环境-->
-    <!-- dev        —— 本地（默认） -->
-    <!-- uat        —— uat -->
-    <!-- prod       —— prod -->
+    <!-- local        —— 本地（默认） -->
+    <!-- dev        ——  开发 -->
     <profiles>
         <profile>
             <id>local</id>
@@ -156,24 +155,6 @@
             <id>dev</id>
             <properties>
                 <profileActive>dev</profileActive>
-            </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>uat</id>
-            <properties>
-                <profileActive>uat</profileActive>
-            </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <profileActive>prod</profileActive>
             </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>

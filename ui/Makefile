@@ -13,7 +13,7 @@ export BASE_PATH := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 # ----------------------------- variables <-----------------------------
 # unit test flag
-ENV ?= prod
+ENV ?= local
 #
 APPNAME ?= mingsha-template-vue-ui
 VERSION ?= 1.0.0

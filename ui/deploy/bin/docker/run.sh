@@ -24,5 +24,5 @@ docker run -d -it \
   -p ${PORT}:${PORT} \
   --memory 128m \
   --restart=always \
-  --name ${APPNAME}-ui-${ENV} \
-  site.mingsha:5555/app/${APPNAME}-ui-${ENV}:${VERSION}
+  --name ${APPNAME}-${ENV} \
+  site.mingsha:5555/app/${APPNAME}-${ENV}:${VERSION}

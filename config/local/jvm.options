@@ -5,3 +5,4 @@
 -XX:MaxGCPauseMillis=200
 -XX:MetaspaceSize=128M
 -XX:MaxMetaspaceSize=256M
+-XX:+UseContainerSupport

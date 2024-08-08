@@ -1,0 +1,13 @@
+# 1、基础镜像
+FROM nginx:1.27-alpine
+
+WORKDIR /app/
+
+# 3、复制制品内容到目标目录
+COPY ./deploy/config/local /etc/nginx/conf.d
+
+# 4、复制制品
+COPY ./dist /app
+
+# 5、容器启动后执行命令
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

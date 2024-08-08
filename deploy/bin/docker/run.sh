@@ -27,9 +27,9 @@ DOCKER_CONTAINER_NAME=mingsha-template-vue-boot
 # 端口号
 APPLICATION_PORT=8001
 # 环境标志
-PROFILE=dev
+PROFILE=local
 if [ -z "$PROFILE" ]; then
-    PROFILE=dev
+    PROFILE=local
 fi
 # ----------------------- params >---------------------------
 
