@@ -25,4 +25,4 @@ docker run -d -it \
   --memory 128m \
   --restart=always \
   --name ${APPNAME}-${ENV} \
-  site.mingsha:5555/app/${APPNAME}-${ENV}:${VERSION}
+  mingsha.site:5555/app/${APPNAME}-${ENV}:${VERSION}

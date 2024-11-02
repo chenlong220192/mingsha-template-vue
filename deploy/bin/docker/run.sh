@@ -17,7 +17,7 @@
 
 # ----------------------- params <---------------------------
 # 仓库名
-DOCKER_REPOSITORY_NAME=site.mingsha:5555
+DOCKER_REPOSITORY_NAME=mingsha.site:5555
 # 镜像名
 DOCKER_IMAGE_NAME=app/mingsha-template-vue-boot
 # tag
@@ -27,9 +27,9 @@ DOCKER_CONTAINER_NAME=mingsha-template-vue-boot
 # 端口号
 APPLICATION_PORT=8001
 # 环境标志
-PROFILE=local
+PROFILE=dev
 if [ -z "$PROFILE" ]; then
-    PROFILE=local
+    PROFILE=dev
 fi
 # ----------------------- params >---------------------------
 

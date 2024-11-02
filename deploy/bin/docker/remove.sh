@@ -19,9 +19,9 @@
 # 容器名
 DOCKER_CONTAINER_NAME=mingsha-template-vue-boot
 # 环境标志
-PROFILE=local
+PROFILE=dev
 if [ -z "$PROFILE" ]; then
-    PROFILE=local
+    PROFILE=dev
 fi
 # ----------------------- params >---------------------------
 
