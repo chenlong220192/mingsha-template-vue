@@ -17,7 +17,7 @@
 
 # ----------------------- params <---------------------------
 # 仓库名
-DOCKER_REPOSITORY_NAME=site.mingsha:5555
+DOCKER_REPOSITORY_NAME=mingsha.site:5555
 # 镜像名
 DOCKER_IMAGE_NAME=app/mingsha-template-vue-boot
 # tag
