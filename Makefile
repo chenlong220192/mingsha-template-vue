@@ -96,11 +96,15 @@ docker.init:
 		mv ${BASE_PATH}/deploy/bin/docker/run.sh.newVersion ${BASE_PATH}/deploy/bin/docker/run.sh
 
 #
-docker.build: docker.init package.uncompress
+docker.build: docker.init
 	sh ${BASE_PATH}/deploy/bin/docker/build.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(ENV)
 
 #
-docker.run: docker.build
+docker.push:
+	sh ${BASE_PATH}/deploy/bin/docker/push.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(ENV)
+
+#
+docker.run:
 	sh ${BASE_PATH}/deploy/bin/docker/run.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(DOCKER_CONTAINER_NAME) $(ENV)
 	# docker logs -f $(DOCKER_CONTAINER_NAME)-$(ENV)
 
