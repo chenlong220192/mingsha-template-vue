@@ -127,6 +127,6 @@ docker.clear:
 helm.uninstall:
 	sh ${BASE_PATH}/deploy/bin/helm/uninstall.sh $(APPLICATION_NAME) $(HELM_NAMESPACE) $(ENV)
 #
-helm.upgrade: docker.build helm.uninstall
+helm.upgrade:
 	sh ${BASE_PATH}/deploy/bin/helm/install.sh $(APPLICATION_NAME) $(HELM_NAMESPACE) $(ENV)
 # ----------------------------- helm >-----------------------------
