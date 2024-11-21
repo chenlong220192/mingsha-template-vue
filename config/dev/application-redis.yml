@@ -10,7 +10,7 @@ spring:
       # 数据库索引
       database: 0
       # 密码
-      password: 123456
+      password: ENC(i6tDjChEIlFuN00qAgtp6g==)
       # 连接超时时间
       timeout: 10s
       lettuce:

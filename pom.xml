@@ -24,7 +24,7 @@
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
         <!--  -->
-        <spring-boot.version>3.3.2</spring-boot.version>
+        <spring-boot.version>3.3.5</spring-boot.version>
         <!--  -->
         <mybatis-spring-boot.version>3.0.3</mybatis-spring-boot.version>
         <mysql.version>8.4.0</mysql.version>
@@ -43,8 +43,10 @@
         <!--  -->
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jakarta.version>6.0.0</jakarta.version>
-        <!--        -->
+        <!--  -->
         <springdoc.version>2.5.0</springdoc.version>
+        <!-- jasypt -->
+        <jasypt.version>3.0.5</jasypt.version>
     </properties>
 
     <modules>
@@ -124,6 +126,13 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.version}</version>
+            </dependency>
+
+            <!-- jasypt -->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt.version}</version>
             </dependency>
 
             <!-- 解析客户端操作系统、浏览器等 -->
