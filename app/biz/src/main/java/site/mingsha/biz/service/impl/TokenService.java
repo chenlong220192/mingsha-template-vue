@@ -160,8 +160,7 @@ public class TokenService {
      * @return 令牌
      */
     private String createToken(Map<String, Object> claims) {
-        String token = Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
-        return token;
+        return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
     /**
@@ -171,7 +170,11 @@ public class TokenService {
      * @return 数据声明
      */
     private Claims parseToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     /**

@@ -20,6 +20,10 @@
             <groupId>site.mingsha</groupId>
             <artifactId>mingsha-template-vue-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
 
     </dependencies>
 
