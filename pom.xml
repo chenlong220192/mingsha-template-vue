@@ -16,22 +16,21 @@
     <properties>
         <!-- version -->
         <revision>1.0.0</revision>
-        <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+        <flatten-maven-plugin.version>1.7.0</flatten-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- compiler -->
         <java.version>17</java.version>
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
         <!--  -->
-        <spring-boot.version>3.4.2</spring-boot.version>
+        <spring-boot.version>3.4.3</spring-boot.version>
         <!--  -->
         <mybatis-spring-boot.version>3.0.4</mybatis-spring-boot.version>
         <mysql.version>9.2.0</mysql.version>
         <druid.version>1.2.24</druid.version>
         <!--  -->
         <bitwalker.version>1.21</bitwalker.version>
-<!--        <swagger.version>3.0.0</swagger.version>-->
         <kaptcha.version>2.3.3</kaptcha.version>
         <pagehelper.boot.version>2.1.0</pagehelper.boot.version>
         <fastjson.version>2.0.54</fastjson.version>

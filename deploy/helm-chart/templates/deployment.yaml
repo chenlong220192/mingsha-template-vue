@@ -32,6 +32,36 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- end }}
+      initContainers:
+        {{- if .Values.initContainer.enabled }}
+        - name: check-pods
+          image: {{ .Values.initContainer.image }}
+          command:
+            - sh
+            - -c
+            - |
+              {{- range $target := .Values.initContainer.targetPods }}
+              {{- if $target.serviceName }}
+              # 检测 Service 型目标
+              {{- $ns := default $.Release.Namespace $target.namespace }}
+              {{- $dns := printf "%s.%s.svc.cluster.local" $target.serviceName $ns }}
+              until nc -z {{ $dns }} {{ $target.port }}; do
+                echo "等待服务 {{ $target.serviceName }}:{{ $target.port }} 就绪..."
+                sleep 5
+              done
+              {{- else if $target.podDomain }}
+              # 检测直接指定的 Pod
+              until nc -z {{ $target.podDomain }} {{ $target.port }}; do
+                echo "等待 Pod {{ $target.podName }}:{{ $target.port }} 就绪..."
+                sleep 5
+              done
+              {{- end }}
+              {{- end }}
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+        {{- end }}
       containers:
         - name: {{ .Release.Name }}
           {{- if .Values.securityContext }}

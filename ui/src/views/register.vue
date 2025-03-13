@@ -61,7 +61,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-register-footer">
-      <span>Copyright © 2024 mingsha.site All Rights Reserved.</span>
+      <span>Copyright © 2025 mingsha.site All Rights Reserved.</span>
     </div>
   </div>
 </template>

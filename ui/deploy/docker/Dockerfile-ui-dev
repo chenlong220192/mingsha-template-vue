@@ -1,6 +1,8 @@
 # 1、基础镜像
 FROM nginx:1.27-alpine
 
+ENV TZ=Asia/Shanghai
+
 WORKDIR /app/
 
 # 3、复制制品内容到目标目录

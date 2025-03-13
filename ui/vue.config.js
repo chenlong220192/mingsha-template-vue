@@ -59,7 +59,7 @@ module.exports = {
       }
     },
     plugins: [
-      // http://doc.mingsha.site/ruoyi-vue/other/faq.html#使用gzip解压缩静态文件
+      // 使用gzip解压缩静态文件
       new CompressionPlugin({
         cache: false,                                  // 不启用文件缓存
         test: /\.(js|css|html|jpe?g|png|gif|svg)?$/i,  // 压缩文件格式

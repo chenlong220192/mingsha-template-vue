@@ -1,4 +1,4 @@
-import { parseTime } from './ruoyi'
+import { parseTime } from './mingsha'
 
 /**
  * 表格时间格式化
@@ -387,4 +387,3 @@ export function camelCase(str) {
 export function isNumberStr(str) {
   return /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g.test(str)
 }
-

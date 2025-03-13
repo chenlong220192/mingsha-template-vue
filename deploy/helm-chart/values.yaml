@@ -37,6 +37,19 @@ service:
 #       protocol: TCP
 
 #**********************************************************#
+#                      == initContainer ==                         #
+#**********************************************************#
+initContainer:
+  enabled: true
+  image: busybox:1.36.0
+  targetPods:
+    - namespace: "mysql"
+      serviceName: "mysql"
+      port: 3306
+    - namespace: "redis"
+      serviceName: "redis-master"
+      port: 6379
+#**********************************************************#
 #                      == Image ==                         #
 #**********************************************************#
 
