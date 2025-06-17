@@ -1,5 +1,5 @@
 # 1、基础镜像
-FROM mingsha.site:5555/base/dragonwell:jdk17-alpine-3.21
+FROM mingsha.site:5555/base/dragonwell:jdk17-alpine-3.22
 
 ENV TZ=Asia/Shanghai
 
