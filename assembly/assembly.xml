@@ -11,7 +11,7 @@
         <!-- <format>zip</format> -->
     </formats>
 
-    <!-- 指定打的包是否包含打包层目录（比如finalName是eproe-template，当值为true，所有文件被放在包内的eproe-template目录下，否则直接放在包的根目录下）-->
+    <!-- 指定打的包是否包含打包层目录（比如finalName是mingsha-template，当值为true，所有文件被放在包内的mingsha-template目录下，否则直接放在包的根目录下）-->
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <!-- 制定打包模块 -->
