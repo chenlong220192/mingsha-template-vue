@@ -15,7 +15,7 @@
 
 **🎯 快速构建企业级管理系统 | 🔐 完善的权限控制 | 📊 丰富的监控功能 | 🐳 容器化部署支持**
 
-[📖 在线文档](https://github.com/mingsha/mingsha-template-vue) | [📚 文档导航](#-文档导航) | [📋 功能特性](#-功能特性) | [🔧 技术栈](#-技术栈) | [📦 部署指南](#-部署指南)
+[📖 在线文档](https://github.com/chenlong220192/mingsha-template-vue) | [📚 文档导航](#-文档导航) | [📋 功能特性](#-功能特性) | [🔧 技术栈](#-技术栈) | [📦 贡献指南](#-贡献指南)
 
 </div>
 
@@ -40,13 +40,11 @@
 
 ### 🎨 系统截图
 
-<div align="center">
+#### 🔐 登录页面
+![登录页面](docs/img/00-登陆页面.png)
 
-![登录页面](https://via.placeholder.com/800x400/4fc08d/ffffff?text=登录页面)
-![仪表盘](https://via.placeholder.com/800x400/409eff/ffffff?text=系统仪表盘)
-![用户管理](https://via.placeholder.com/800x400/67c23a/ffffff?text=用户管理)
-
-</div>
+#### 📋 菜单管理
+![菜单管理](docs/img/01-菜单管理.png)
 
 ### 🌟 核心优势
 

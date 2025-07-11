@@ -57,6 +57,7 @@
                 <include>NOTICE</include>
                 <include>*.md</include>
                 <include>docs/*</include>
+                <include>docs/img/*</include>
             </includes>
         </fileSet>
 
