@@ -5,7 +5,7 @@
 # default local profile
 # example:'sh build.sh [<local>|<dev>|<test>|<prod>]'
 #
-# author: chenlong
+# author: mingsha
 # date: 2024-04-27
 #======================================================================
 

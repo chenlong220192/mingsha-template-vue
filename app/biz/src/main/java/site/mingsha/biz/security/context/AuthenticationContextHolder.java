@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
  * 身份验证信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class AuthenticationContextHolder {
     private static final ThreadLocal<Authentication> contextHolder = new ThreadLocal<>();

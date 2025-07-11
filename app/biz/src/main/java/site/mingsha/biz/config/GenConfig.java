@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
  * 读取代码生成相关配置
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 @ConfigurationProperties(prefix = "gen")

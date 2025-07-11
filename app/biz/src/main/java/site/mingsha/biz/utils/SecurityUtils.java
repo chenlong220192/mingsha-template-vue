@@ -18,6 +18,7 @@ import site.mingsha.common.utils.StringUtils;
  * 安全服务工具类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SecurityUtils {
 

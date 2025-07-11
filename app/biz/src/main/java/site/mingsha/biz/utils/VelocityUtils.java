@@ -17,6 +17,7 @@ import site.mingsha.dal.generator.model.GenTableColumnDO;
  * 模板处理工具类
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class VelocityUtils {
     /** 项目空间路径 */
@@ -158,23 +159,26 @@ public class VelocityUtils {
         // 业务名称
         String businessName = genTableDO.getBusinessName();
 
-        String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
-        String mybatisPath = MYBATIS_PATH + "/" + moduleName;
-        String vuePath = "vue";
+        // 根据模块化结构生成不同的路径
+        String dalJavaPath = "app/dal/src/main/java/site/mingsha/dal/" + moduleName;
+        String bizJavaPath = "app/biz/src/main/java/site/mingsha/biz";
+        String webJavaPath = "app/web/src/main/java/site/mingsha/web/controller/" + moduleName;
+        String mybatisPath = "app/dal/src/main/resources/mapper/" + moduleName;
+        String vuePath = "ui/src";
 
         if (template.contains("model.java.vm")) {
-            fileName = StringUtils.format("{}/model/{}DO.java", javaPath, className);
+            fileName = StringUtils.format("{}/model/{}DO.java", dalJavaPath, className);
         }
         if (template.contains("sub-model.java.vm") && StringUtils.equals(GenConstants.TPL_SUB, genTableDO.getTplCategory())) {
-            fileName = StringUtils.format("{}/model/{}DO.java", javaPath, genTableDO.getSubTable().getClassName());
+            fileName = StringUtils.format("{}/model/{}DO.java", dalJavaPath, genTableDO.getSubTable().getClassName());
         } else if (template.contains("dao.java.vm")) {
-            fileName = StringUtils.format("{}/dao/{}DAO.java", javaPath, className);
+            fileName = StringUtils.format("{}/dao/{}DAO.java", dalJavaPath, className);
         } else if (template.contains("service.java.vm")) {
-            fileName = StringUtils.format("{}/service/I{}Service.java", javaPath, className);
+            fileName = StringUtils.format("{}/service/I{}Service.java", bizJavaPath, className);
         } else if (template.contains("serviceImpl.java.vm")) {
-            fileName = StringUtils.format("{}/service/impl/{}ServiceImpl.java", javaPath, className);
+            fileName = StringUtils.format("{}/service/impl/{}ServiceImpl.java", bizJavaPath, className);
         } else if (template.contains("controller.java.vm")) {
-            fileName = StringUtils.format("{}/controller/{}Controller.java", javaPath, className);
+            fileName = StringUtils.format("{}/{}Controller.java", webJavaPath, className);
         } else if (template.contains("dao.xml.vm")) {
             fileName = StringUtils.format("{}/{}DAO.xml", mybatisPath, className);
         } else if (template.contains("sql.vm")) {

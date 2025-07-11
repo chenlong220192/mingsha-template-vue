@@ -6,6 +6,7 @@ import site.mingsha.common.utils.StringUtils;
  * 转义和反转义工具类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class EscapeUtil {
     public static final String    RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)";

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
  * Md5加密方法
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class Md5Utils {
     private static final Logger log = LoggerFactory.getLogger(Md5Utils.class);

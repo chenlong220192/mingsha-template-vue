@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
  * 匿名访问不鉴权注解
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)

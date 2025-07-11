@@ -4,6 +4,7 @@ package site.mingsha.common.utils.uuid;
  * ID生成器工具类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class IdUtils {
     /**

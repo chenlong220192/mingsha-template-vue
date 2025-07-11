@@ -18,6 +18,7 @@ import site.mingsha.common.enums.HttpMethod;
  * 防止XSS攻击的过滤器
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class XssFilter implements Filter {
     /**

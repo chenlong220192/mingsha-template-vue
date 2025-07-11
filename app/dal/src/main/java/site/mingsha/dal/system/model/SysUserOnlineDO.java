@@ -4,6 +4,7 @@ package site.mingsha.dal.system.model;
  * 当前在线会话
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysUserOnlineDO {
     /** 会话编号 */

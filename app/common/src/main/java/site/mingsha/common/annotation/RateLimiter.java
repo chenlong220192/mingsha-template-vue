@@ -12,6 +12,7 @@ import site.mingsha.common.enums.LimitType;
  * 限流注解
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

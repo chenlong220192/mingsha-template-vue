@@ -27,6 +27,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
  * token验证处理
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class TokenService {

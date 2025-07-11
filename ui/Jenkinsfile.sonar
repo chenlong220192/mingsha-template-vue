@@ -1,0 +1,293 @@
+pipeline {
+    agent any
+    
+    environment {
+        NODE_VERSION = '16'
+        NPM_REGISTRY = 'https://registry.npmmirror.com'
+        SONAR_HOST_URL = 'http://sonarqube:9000'
+        SONAR_TOKEN = credentials('sonar-token')
+        PROJECT_KEY = 'mingsha-ui'
+        PROJECT_NAME = '鸣沙管理平台-前端'
+    }
+    
+    parameters {
+        choice(
+            name: 'ANALYSIS_TYPE',
+            choices: ['full', 'incremental'],
+            description: '分析类型'
+        )
+        booleanParam(
+            name: 'FAIL_ON_QUALITY_GATE',
+            defaultValue: true,
+            description: '质量门禁失败时停止构建'
+        )
+    }
+    
+    stages {
+        stage('环境准备') {
+            steps {
+                script {
+                    echo "🔍 开始代码质量分析"
+                    echo "📊 分析类型: ${ANALYSIS_TYPE}"
+                    echo "🚨 质量门禁: ${FAIL_ON_QUALITY_GATE}"
+                }
+                
+                // 清理工作空间
+                cleanWs()
+                
+                // 检出代码
+                checkout scm
+                
+                // 切换到ui目录
+                dir('ui') {
+                    // 设置Node.js环境
+                    sh """
+                        echo "📦 安装 Node.js ${NODE_VERSION}"
+                        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm install ${NODE_VERSION}
+                        nvm use ${NODE_VERSION}
+                        node --version
+                        npm --version
+                    """
+                }
+            }
+        }
+        
+        stage('依赖安装') {
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+                        
+                        echo "📦 安装项目依赖"
+                        npm config set registry ${NPM_REGISTRY}
+                        npm install --verbose
+                        
+                        echo "📦 安装SonarQube Scanner"
+                        npm install -g sonarqube-scanner
+                        
+                        echo "📋 依赖安装完成"
+                    """
+                }
+            }
+        }
+        
+        stage('代码检查') {
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+                        
+                        echo "🔍 执行代码检查"
+                        npm run lint
+                        
+                        echo "✅ 代码检查通过"
+                    """
+                }
+            }
+        }
+        
+        stage('单元测试') {
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+                        
+                        echo "🧪 执行单元测试"
+                        npm run test:unit -- --coverage
+                        
+                        echo "✅ 单元测试完成"
+                    """
+                }
+            }
+        }
+        
+        stage('构建项目') {
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+                        
+                        echo "🏗️ 构建项目"
+                        npm run build:prod
+                        
+                        echo "✅ 项目构建完成"
+                    """
+                }
+            }
+        }
+        
+        stage('SonarQube分析') {
+            steps {
+                dir('ui') {
+                    script {
+                        echo "🔍 开始SonarQube代码质量分析"
+                        
+                        // 准备SonarQube配置文件
+                        writeFile file: 'sonar-project.properties', text: """
+                            sonar.projectKey=${PROJECT_KEY}
+                            sonar.projectName=${PROJECT_NAME}
+                            sonar.projectVersion=${env.BUILD_NUMBER}
+                            sonar.sources=src
+                            sonar.tests=src
+                            sonar.exclusions=**/node_modules/**,**/dist/**,**/coverage/**,**/*.test.js,**/*.spec.js
+                            sonar.test.inclusions=**/*.test.js,**/*.spec.js
+                            sonar.javascript.lcov.reportPaths=coverage/lcov.info
+                            sonar.coverage.exclusions=**/*.test.js,**/*.spec.js,**/node_modules/**
+                            sonar.sourceEncoding=UTF-8
+                            sonar.host.url=${SONAR_HOST_URL}
+                            sonar.login=${SONAR_TOKEN}
+                        """
+                        
+                        // 执行SonarQube分析
+                        sh """
+                            export NVM_DIR="\$HOME/.nvm"
+                            [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                            nvm use ${NODE_VERSION}
+                            
+                            echo "🔍 执行SonarQube分析"
+                            sonar-scanner -Dsonar.projectKey=${PROJECT_KEY} \\
+                                -Dsonar.sources=src \\
+                                -Dsonar.tests=src \\
+                                -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \\
+                                -Dsonar.host.url=${SONAR_HOST_URL} \\
+                                -Dsonar.login=${SONAR_TOKEN}
+                            
+                            echo "✅ SonarQube分析完成"
+                        """
+                    }
+                }
+            }
+        }
+        
+        stage('质量门禁检查') {
+            when {
+                expression { params.FAIL_ON_QUALITY_GATE == 'true' }
+            }
+            steps {
+                script {
+                    echo "🚨 检查质量门禁"
+                    
+                    // 等待SonarQube分析完成
+                    timeout(time: 5, unit: 'MINUTES') {
+                        script {
+                            def qualityGate = waitForQualityGate()
+                            if (qualityGate.status != 'OK') {
+                                error "质量门禁未通过: ${qualityGate.status}"
+                            }
+                        }
+                    }
+                    
+                    echo "✅ 质量门禁检查通过"
+                }
+            }
+        }
+        
+        stage('生成报告') {
+            steps {
+                script {
+                    echo "📊 生成质量报告"
+                    
+                    // 归档测试覆盖率报告
+                    dir('ui') {
+                        archiveArtifacts artifacts: 'coverage/**/*', fingerprint: true
+                    }
+                    
+                    // 发布SonarQube报告
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'ui/coverage/lcov-report',
+                        reportFiles: 'index.html',
+                        reportName: '测试覆盖率报告'
+                    ])
+                    
+                    echo "✅ 报告生成完成"
+                }
+            }
+        }
+        
+        stage('清理') {
+            always {
+                script {
+                    echo "🧹 清理分析环境"
+                    
+                    // 清理工作空间
+                    cleanWs()
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            script {
+                echo "🎉 代码质量分析成功！"
+                echo "📊 分析信息:"
+                echo "   - 项目: ${PROJECT_NAME}"
+                echo "   - 构建号: ${env.BUILD_NUMBER}"
+                echo "   - 分析类型: ${ANALYSIS_TYPE}"
+                echo "   - 质量门禁: ${FAIL_ON_QUALITY_GATE}"
+                echo "   - SonarQube: ${SONAR_HOST_URL}/dashboard?id=${PROJECT_KEY}"
+                
+                // 发送成功通知
+                emailext (
+                    subject: "✅ 代码质量分析成功 - ${PROJECT_NAME} #${env.BUILD_NUMBER}",
+                    body: """
+                        代码质量分析成功：
+                        - 项目: ${PROJECT_NAME}
+                        - 构建号: ${env.BUILD_NUMBER}
+                        - 分析类型: ${ANALYSIS_TYPE}
+                        - 质量门禁: 通过
+                        
+                        SonarQube报告: ${SONAR_HOST_URL}/dashboard?id=${PROJECT_KEY}
+                        构建日志: ${env.BUILD_URL}console
+                    """,
+                    recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                )
+            }
+        }
+        
+        failure {
+            script {
+                echo "❌ 代码质量分析失败！"
+                echo "🔍 请检查构建日志获取详细信息"
+                
+                // 发送失败通知
+                emailext (
+                    subject: "❌ 代码质量分析失败 - ${PROJECT_NAME} #${env.BUILD_NUMBER}",
+                    body: """
+                        代码质量分析失败：
+                        - 项目: ${PROJECT_NAME}
+                        - 构建号: ${env.BUILD_NUMBER}
+                        - 分析类型: ${ANALYSIS_TYPE}
+                        - 失败原因: 请查看构建日志
+                        
+                        构建日志: ${env.BUILD_URL}console
+                    """,
+                    recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                )
+            }
+        }
+        
+        always {
+            script {
+                echo "📈 分析统计:"
+                echo "   - 分析时长: ${currentBuild.durationString}"
+                echo "   - 分析结果: ${currentBuild.result}"
+                echo "   - SonarQube报告: ${SONAR_HOST_URL}/dashboard?id=${PROJECT_KEY}"
+            }
+        }
+    }
+} 

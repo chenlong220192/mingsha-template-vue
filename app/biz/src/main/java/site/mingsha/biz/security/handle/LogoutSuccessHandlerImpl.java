@@ -23,6 +23,7 @@ import site.mingsha.biz.service.impl.TokenService;
  * 自定义退出处理类 返回成功
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Configuration
 public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {

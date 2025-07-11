@@ -7,6 +7,7 @@ import site.mingsha.dal.quartz.model.SysJobLogDO;
  * 定时任务调度日志信息信息 服务层
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public interface ISysJobLogService {
     /**

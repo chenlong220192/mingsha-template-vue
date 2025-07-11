@@ -19,6 +19,7 @@ import site.mingsha.common.utils.StringUtils;
  * 用户验证处理
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

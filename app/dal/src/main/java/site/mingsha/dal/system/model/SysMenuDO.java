@@ -13,6 +13,7 @@ import site.mingsha.common.model._do.BaseDO;
  * 菜单权限表 sys_menu
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysMenuDO extends BaseDO {
     private static final long serialVersionUID = 1L;

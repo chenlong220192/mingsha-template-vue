@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * web容器中进行部署
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class MingshaServletInitializer extends SpringBootServletInitializer {
     @Override

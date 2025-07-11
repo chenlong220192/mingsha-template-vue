@@ -20,6 +20,7 @@ import site.mingsha.common.constant.Constants;
  * 通用配置
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer {

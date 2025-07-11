@@ -11,6 +11,7 @@ import site.mingsha.common.exception.UtilException;
  * 提供通用唯一识别码（universally unique identifier）（UUID）实现
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public final class UUID implements java.io.Serializable, Comparable<UUID> {
     private static final long serialVersionUID = -1185015143654744140L;

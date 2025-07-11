@@ -16,6 +16,7 @@ import site.mingsha.common.config.MingshaConfig;
  * Swagger2的接口配置
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Configuration
 public class SwaggerConfig {

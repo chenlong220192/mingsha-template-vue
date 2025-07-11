@@ -22,6 +22,7 @@ import site.mingsha.common.utils.http.HttpHelper;
  * 如果和上次相同，则是重复提交表单。 有效时间为10秒内。
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {

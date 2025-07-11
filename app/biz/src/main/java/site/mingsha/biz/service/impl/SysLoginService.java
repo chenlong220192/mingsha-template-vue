@@ -34,6 +34,7 @@ import site.mingsha.common.utils.ip.IpUtils;
  * 登录校验方法
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class SysLoginService {

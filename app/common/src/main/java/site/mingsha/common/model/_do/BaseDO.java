@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * Entity基类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class BaseDO implements Serializable {
     private static final long   serialVersionUID = 1L;

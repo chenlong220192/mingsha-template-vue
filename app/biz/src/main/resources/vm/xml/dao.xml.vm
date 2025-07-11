@@ -2,20 +2,20 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${packageName}.dao.${ClassName}DAO">
+<mapper namespace="site.mingsha.dal.${moduleName}.dao.${ClassName}DAO">
 
-    <resultMap type="${packageName}.model.${ClassName}DO" id="${ClassName}DOResult">
+    <resultMap type="site.mingsha.dal.${moduleName}.model.${ClassName}DO" id="${ClassName}DOResult">
 #foreach ($column in $columns)
         <result property="${column.javaField}"    column="${column.columnName}"    />
 #end
     </resultMap>
 #if($table.sub)
 
-    <resultMap id="${ClassName}DO${subClassName}DOResult" type="${packageName}.model.${ClassName}DO" extends="${ClassName}DOResult">
+    <resultMap id="${ClassName}DO${subClassName}DOResult" type="site.mingsha.dal.${moduleName}.model.${ClassName}DO" extends="${ClassName}DOResult">
         <collection property="${subclassName}List" notNullColumn="sub_${subTable.pkColumn.columnName}" javaType="java.util.List" resultMap="${subClassName}DOResult" />
     </resultMap>
 
-    <resultMap type="${packageName}.model.${subClassName}DO" id="${subClassName}DOResult">
+    <resultMap type="site.mingsha.dal.${moduleName}.model.${subClassName}DO" id="${subClassName}DOResult">
 #foreach ($column in $subTable.columns)
         <result property="${column.javaField}"    column="sub_${column.columnName}"    />
 #end
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select#foreach($column in $columns) $column.columnName#if($foreach.count != $columns.size()),#end#end from ${tableName}
     </sql>
 
-    <select id="select${ClassName}List" parameterType="${packageName}.model.${ClassName}DO" resultMap="${ClassName}DOResult">
+    <select id="select${ClassName}List" parameterType="site.mingsha.dal.${moduleName}.model.${ClassName}DO" resultMap="${ClassName}DOResult">
         <include refid="select${ClassName}VO"/>
         <where>
 #foreach($column in $columns)
@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 #end
     </select>
 
-    <insert id="insert${ClassName}" parameterType="${packageName}.model.${ClassName}DO"#if($pkColumn.increment) useGeneratedKeys="true" keyProperty="$pkColumn.javaField"#end>
+    <insert id="insert${ClassName}" parameterType="site.mingsha.dal.${moduleName}.model.${ClassName}DO"#if($pkColumn.increment) useGeneratedKeys="true" keyProperty="$pkColumn.javaField"#end>
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
 #foreach($column in $columns)
@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="update${ClassName}" parameterType="${packageName}.model.${ClassName}DO">
+    <update id="update${ClassName}" parameterType="site.mingsha.dal.${moduleName}.model.${ClassName}DO">
         update ${tableName}
         <trim prefix="SET" suffixOverrides=",">
 #foreach($column in $columns)

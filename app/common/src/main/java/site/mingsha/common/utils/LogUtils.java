@@ -4,6 +4,7 @@ package site.mingsha.common.utils;
  * 处理并记录日志文件
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class LogUtils {
     public static String getBlock(Object msg) {

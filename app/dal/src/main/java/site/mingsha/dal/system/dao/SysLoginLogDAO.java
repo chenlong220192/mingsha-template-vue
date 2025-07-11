@@ -7,6 +7,7 @@ import site.mingsha.dal.system.model.SysLoginLogDO;
  * 系统访问日志情况信息 数据层
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public interface SysLoginLogDAO {
     /**

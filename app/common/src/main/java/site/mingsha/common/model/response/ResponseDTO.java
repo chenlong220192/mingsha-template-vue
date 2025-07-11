@@ -7,6 +7,7 @@ import site.mingsha.common.constant.HttpStatus;
  * 响应信息主体
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class ResponseDTO<T> implements Serializable {
     private static final long serialVersionUID = 1L;

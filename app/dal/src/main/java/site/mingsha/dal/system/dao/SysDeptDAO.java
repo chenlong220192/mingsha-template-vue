@@ -9,6 +9,7 @@ import site.mingsha.dal.system.model.SysDeptDO;
  * 部门管理 数据层
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public interface SysDeptDAO {
     /**

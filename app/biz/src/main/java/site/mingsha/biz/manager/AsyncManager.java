@@ -10,6 +10,7 @@ import site.mingsha.common.utils.spring.SpringUtils;
  * 异步任务管理器
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class AsyncManager {
     /**

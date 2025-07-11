@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 用户和岗位关联 sys_user_post
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysUserPostDO {
     /** 用户ID */

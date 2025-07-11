@@ -8,6 +8,7 @@ import site.mingsha.dal.system.model.SysMenuDO;
  * 菜单表 数据层
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public interface SysMenuDAO {
     /**

@@ -1,4 +1,4 @@
-package ${packageName}.controller;
+package site.mingsha.web.controller.${moduleName};
 
 import java.util.List;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,8 +16,8 @@ import site.mingsha.common.annotation.Log;
 import site.mingsha.biz.core.BaseController;
 import site.mingsha.common.model.response.AjaxResponseDTO;
 import site.mingsha.common.enums.BusinessType;
-import ${packageName}.model.${ClassName}DO;
-import ${packageName}.service.I${ClassName}Service;
+import site.mingsha.dal.${moduleName}.model.${ClassName}DO;
+import site.mingsha.biz.service.I${ClassName}Service;
 import site.mingsha.biz.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
 import site.mingsha.biz.model.dto.page.TableDataInfo;
@@ -27,8 +27,8 @@ import site.mingsha.biz.model.dto.page.TableDataInfo;
 /**
  * ${functionName}Controller
  *
- * @author ${author}
- * @date ${datetime}
+ * @author mingsha
+ * @date 2025-07-11
  */
 @RestController
 @RequestMapping("/${moduleName}/${businessName}")

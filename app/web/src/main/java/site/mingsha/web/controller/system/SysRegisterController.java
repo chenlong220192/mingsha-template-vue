@@ -15,6 +15,7 @@ import site.mingsha.biz.service.ISysConfigService;
  * 注册验证
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @RestController
 public class SysRegisterController extends BaseController {

@@ -8,6 +8,7 @@ import com.alibaba.druid.pool.DruidDataSource;
  * druid 配置属性
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Configuration
 public class DruidProperties {

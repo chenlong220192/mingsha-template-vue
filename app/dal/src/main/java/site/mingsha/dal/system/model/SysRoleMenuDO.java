@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 角色和菜单关联 sys_role_menu
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysRoleMenuDO {
     /** 角色ID */

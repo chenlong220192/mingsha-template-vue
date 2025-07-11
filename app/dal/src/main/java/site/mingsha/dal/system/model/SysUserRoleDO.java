@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 用户和角色关联 sys_user_role
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysUserRoleDO {
     /** 用户ID */

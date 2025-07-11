@@ -12,6 +12,7 @@ import site.mingsha.dal.generator.dao.GenTableColumnDAO;
  * 业务字段 服务层实现
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Service
 public class GenTableColumnServiceImpl implements IGenTableColumnService {

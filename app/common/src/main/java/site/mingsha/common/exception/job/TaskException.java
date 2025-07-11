@@ -4,6 +4,7 @@ package site.mingsha.common.exception.job;
  * 计划策略异常
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class TaskException extends Exception {
     private static final long serialVersionUID = 1L;

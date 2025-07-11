@@ -20,6 +20,7 @@ import site.mingsha.biz.service.ISysJobLogService;
  * 抽象quartz调用
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public abstract class AbstractQuartzJob implements Job {
 

@@ -7,6 +7,7 @@ import io.jsonwebtoken.Claims;
  * 通用常量信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class Constants {
     /**

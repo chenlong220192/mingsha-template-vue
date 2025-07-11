@@ -15,6 +15,7 @@ import site.mingsha.common.utils.StringUtils;
  * 自定义权限实现，ss取自SpringSecurity首字母
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Service("ss")
 public class PermissionService {

@@ -10,6 +10,7 @@ import jakarta.annotation.PreDestroy;
  * 确保应用退出时能关闭后台线程
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class ShutdownManager {

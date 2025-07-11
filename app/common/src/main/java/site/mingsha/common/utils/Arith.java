@@ -7,6 +7,7 @@ import java.math.RoundingMode;
  * 精确的浮点数运算
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class Arith {
 

@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  * Bean 工具类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils {
     /** Bean方法名中属性名开始的下标 */

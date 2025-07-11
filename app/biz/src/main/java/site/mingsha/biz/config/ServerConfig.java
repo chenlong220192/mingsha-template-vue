@@ -8,6 +8,7 @@ import site.mingsha.common.utils.ServletUtils;
  * 服务相关配置
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class ServerConfig {

@@ -8,6 +8,7 @@ import org.springframework.lang.Nullable;
  * 请求方式
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public enum HttpMethod {
                         GET,

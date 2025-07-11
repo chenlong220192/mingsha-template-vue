@@ -1,0 +1,275 @@
+pipeline {
+    agent any
+
+    environment {
+        NODE_VERSION = '16'
+        NPM_REGISTRY = 'https://registry.npmmirror.com'
+        BUILD_ENV = "${params.BUILD_ENV ?: 'dev'}"
+        SKIP_TESTS = "${params.SKIP_TESTS ?: 'false'}"
+        DOCKER_IMAGE = 'mingsha-template-vue-ui'
+        DOCKER_TAG = "${BUILD_ENV}-${BUILD_NUMBER}"
+    }
+
+    parameters {
+        choice(
+            name: 'BUILD_ENV',
+            choices: ['dev', 'test', 'prod'],
+            description: '构建环境'
+        )
+        booleanParam(
+            name: 'SKIP_TESTS',
+            defaultValue: false,
+            description: '跳过测试'
+        )
+        booleanParam(
+            name: 'DOCKER_BUILD',
+            defaultValue: false,
+            description: '构建Docker镜像'
+        )
+        booleanParam(
+            name: 'DEPLOY',
+            defaultValue: false,
+            description: '自动部署'
+        )
+    }
+
+    stages {
+        stage('环境准备') {
+            steps {
+                script {
+                    echo "🚀 开始构建前端项目 - 环境: ${BUILD_ENV}"
+                    echo "📦 Node.js 版本: ${NODE_VERSION}"
+                    echo "🔧 跳过测试: ${SKIP_TESTS}"
+                    echo "🐳 构建Docker: ${DOCKER_BUILD}"
+                    echo "🚀 自动部署: ${DEPLOY}"
+                }
+
+                // 清理工作空间
+                cleanWs()
+
+                // 检出代码
+                checkout scm
+
+                // 切换到ui目录
+                dir('ui') {
+                    // 设置Node.js环境
+                    sh """
+                        echo "📦 安装 Node.js ${NODE_VERSION}"
+                        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm install ${NODE_VERSION}
+                        nvm use ${NODE_VERSION}
+                        node --version
+                        npm --version
+                    """
+                }
+            }
+        }
+
+        stage('依赖安装') {
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+
+                        echo "📦 安装项目依赖"
+                        npm config set registry ${NPM_REGISTRY}
+                        npm install --verbose
+
+                        echo "📋 依赖安装完成"
+                        npm list --depth=0
+                    """
+                }
+            }
+        }
+
+        stage('代码检查') {
+            when {
+                expression { params.SKIP_TESTS == 'false' }
+            }
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+
+                        echo "🔍 执行代码检查"
+                        npm run lint
+
+                        echo "✅ 代码检查通过"
+                    """
+                }
+            }
+        }
+
+        stage('单元测试') {
+            when {
+                expression { params.SKIP_TESTS == 'false' }
+            }
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+
+                        echo "🧪 执行单元测试"
+                        npm run test:unit
+
+                        echo "✅ 单元测试通过"
+                    """
+                }
+            }
+        }
+
+        stage('构建项目') {
+            steps {
+                dir('ui') {
+                    sh """
+                        export NVM_DIR="\$HOME/.nvm"
+                        [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"
+                        nvm use ${NODE_VERSION}
+
+                        echo "🏗️ 开始构建项目 - 环境: ${BUILD_ENV}"
+
+                        if [ "${BUILD_ENV}" = "prod" ]; then
+                            npm run build:prod
+                        elif [ "${BUILD_ENV}" = "test" ]; then
+                            npm run build:stage
+                        else
+                            npm run build:dev
+                        fi
+
+                        echo "✅ 项目构建完成"
+                        ls -la dist/
+                    """
+                }
+            }
+        }
+
+        stage('构建Docker镜像') {
+            when {
+                expression { params.DOCKER_BUILD == 'true' }
+            }
+            steps {
+                dir('ui') {
+                    sh """
+                        echo "🐳 构建Docker镜像"
+                        docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
+                        docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:${BUILD_ENV}
+
+                        echo "📋 Docker镜像信息"
+                        docker images | grep ${DOCKER_IMAGE}
+                    """
+                }
+            }
+        }
+
+        stage('部署') {
+            when {
+                expression { params.DEPLOY == 'true' }
+            }
+            steps {
+                script {
+                    echo "🚀 开始部署到 ${BUILD_ENV} 环境"
+
+                    if (params.DOCKER_BUILD == 'true') {
+                        // Docker部署
+                        sh """
+                            echo "🐳 使用Docker部署"
+                            docker stop mingsha-template-vue-ui-${BUILD_ENV} || true
+                            docker rm mingsha-template-vue-ui-${BUILD_ENV} || true
+                            docker run -d \\
+                                --name mingsha-template-vue-ui-${BUILD_ENV} \\
+                                -p 80:80 \\
+                                -e NODE_ENV=${BUILD_ENV} \\
+                                ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        """
+                    } else {
+                        // 直接部署
+                        sh """
+                            echo "📁 直接部署构建文件"
+                            sudo mkdir -p /var/www/mingsha-template-vue-ui-${BUILD_ENV}
+                            sudo cp -r ui/dist/* /var/www/mingsha-template-vue-ui-${BUILD_ENV}/
+                            sudo chown -R www-data:www-data /var/www/mingsha-template-vue-ui-${BUILD_ENV}
+                        """
+                    }
+
+                    echo "✅ 部署完成"
+                }
+            }
+        }
+
+        stage('清理') {
+            always {
+                script {
+                    echo "🧹 清理构建环境"
+
+                    // 清理Docker镜像（保留最新版本）
+                    if (params.DOCKER_BUILD == 'true') {
+                        sh """
+                            docker images ${DOCKER_IMAGE} --format "table {{.Repository}}\\t{{.Tag}}\\t{{.CreatedAt}}" | grep -v "${DOCKER_TAG}" | grep -v "${BUILD_ENV}" | awk '{print \$1":"\$2}' | xargs -r docker rmi || true
+                        """
+                    }
+
+                    // 清理工作空间
+                    cleanWs()
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            script {
+                echo "🎉 构建成功！"
+                echo "📊 构建信息:"
+                echo "   - 环境: ${BUILD_ENV}"
+                echo "   - 构建号: ${BUILD_NUMBER}"
+                echo "   - 构建时间: ${new Date().format('yyyy-MM-dd HH:mm:ss')}"
+
+                if (params.DOCKER_BUILD == 'true') {
+                    echo "🐳 Docker镜像: ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                }
+
+                if (params.DEPLOY == 'true') {
+                    echo "🚀 已部署到 ${BUILD_ENV} 环境"
+                }
+            }
+        }
+
+        failure {
+            script {
+                echo "❌ 构建失败！"
+                echo "🔍 请检查构建日志获取详细信息"
+
+                // 发送通知
+                emailext (
+                    subject: "❌ 前端构建失败 - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: """
+                        构建失败详情：
+                        - 项目: ${env.JOB_NAME}
+                        - 构建号: ${env.BUILD_NUMBER}
+                        - 环境: ${BUILD_ENV}
+                        - 失败原因: 请查看构建日志
+
+                        构建日志: ${env.BUILD_URL}console
+                    """,
+                    recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                )
+            }
+        }
+
+        always {
+            script {
+                echo "📈 构建统计:"
+                echo "   - 构建时长: ${currentBuild.durationString}"
+                echo "   - 构建结果: ${currentBuild.result}"
+            }
+        }
+    }
+}

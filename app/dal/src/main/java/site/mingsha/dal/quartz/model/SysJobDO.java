@@ -17,6 +17,7 @@ import site.mingsha.common.utils.StringUtils;
  * 定时任务调度表 sys_job
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysJobDO extends BaseDO {
     private static final long serialVersionUID = 1L;

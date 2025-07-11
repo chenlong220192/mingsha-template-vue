@@ -1,16 +1,16 @@
-package ${packageName}.dao;
+package site.mingsha.dal.${moduleName}.dao;
 
 import java.util.List;
-import ${packageName}.model.${ClassName}DO;
+import site.mingsha.dal.${moduleName}.model.${ClassName}DO;
 #if($table.sub)
-import ${packageName}.model.${subClassName}DO;
+import site.mingsha.dal.${moduleName}.model.${subClassName}DO;
 #end
 
 /**
  * ${functionName}DAO接口
  *
- * @author ${author}
- * @date ${datetime}
+ * @author mingsha
+ * @date 2025-07-11
  */
 public interface ${ClassName}DAO
 {

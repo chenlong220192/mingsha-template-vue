@@ -1,13 +1,13 @@
-package ${packageName}.service;
+package site.mingsha.biz.service;
 
 import java.util.List;
-import ${packageName}.model.${ClassName}DO;
+import site.mingsha.dal.${moduleName}.model.${ClassName}DO;
 
 /**
  * ${functionName}Service接口
  *
- * @author ${author}
- * @date ${datetime}
+ * @author mingsha
+ * @date 2025-07-11
  */
 public interface I${ClassName}Service
 {

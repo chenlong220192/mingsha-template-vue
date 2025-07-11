@@ -16,6 +16,7 @@ import site.mingsha.common.utils.html.EscapeUtil;
  * XSS过滤处理
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     /**

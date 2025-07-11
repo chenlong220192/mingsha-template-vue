@@ -2,8 +2,8 @@
 gen:
   # 作者
   author: mingsha
-  # 默认生成包路径 system 需改成自己的模块名称 如 system monitor tool
-  packageName: site.mingsha.system
+  # 默认生成包路径 - 修改为符合模块化结构的配置
+  packageName: site.mingsha
   # 自动去除表前缀，默认是false
   autoRemovePre: false
   # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）

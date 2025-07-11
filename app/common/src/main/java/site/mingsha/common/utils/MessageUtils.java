@@ -8,6 +8,7 @@ import site.mingsha.common.utils.spring.SpringUtils;
  * 获取i18n资源文件
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class MessageUtils {
     /**

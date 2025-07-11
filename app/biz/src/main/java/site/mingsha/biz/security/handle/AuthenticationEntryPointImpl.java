@@ -17,6 +17,7 @@ import site.mingsha.common.utils.StringUtils;
  * 认证失败处理类 返回未授权
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, Serializable {

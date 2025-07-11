@@ -14,6 +14,7 @@ import site.mingsha.common.annotation.Excel.ColumnType;
  * 角色表 sys_role
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysRoleDO extends BaseDO {
     private static final long serialVersionUID = 1L;

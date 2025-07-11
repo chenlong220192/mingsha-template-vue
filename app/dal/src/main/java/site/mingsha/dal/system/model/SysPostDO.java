@@ -13,6 +13,7 @@ import site.mingsha.common.model._do.BaseDO;
  * 岗位表 sys_post
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysPostDO extends BaseDO {
     private static final long serialVersionUID = 1L;

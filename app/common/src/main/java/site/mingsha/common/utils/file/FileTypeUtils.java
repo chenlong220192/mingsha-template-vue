@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
  * 文件类型工具类
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class FileTypeUtils {
     /**

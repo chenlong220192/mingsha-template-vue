@@ -13,6 +13,7 @@ import site.mingsha.common.constant.Constants;
  * 资源文件配置加载
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Configuration
 public class I18nConfig implements WebMvcConfigurer {

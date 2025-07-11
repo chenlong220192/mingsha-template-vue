@@ -8,6 +8,7 @@ import site.mingsha.common.utils.text.Convert;
  * 权限信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class PermissionContextHolder {
     private static final String PERMISSION_CONTEXT_ATTRIBUTES = "PERMISSION_CONTEXT";

@@ -4,6 +4,7 @@ package site.mingsha.common.enums;
  * 操作人类别
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public enum OperatorType {
                           /**

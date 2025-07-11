@@ -11,6 +11,7 @@ import site.mingsha.common.model._do.BaseDO;
  * 定时任务调度日志表 sys_job_log
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysJobLogDO extends BaseDO {
     private static final long serialVersionUID = 1L;

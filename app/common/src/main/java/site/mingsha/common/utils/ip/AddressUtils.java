@@ -13,6 +13,7 @@ import site.mingsha.common.utils.http.HttpUtils;
  * 获取地址类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class AddressUtils {
     private static final Logger log     = LoggerFactory.getLogger(AddressUtils.class);

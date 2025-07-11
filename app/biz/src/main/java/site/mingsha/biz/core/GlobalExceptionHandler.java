@@ -21,6 +21,7 @@ import site.mingsha.common.utils.StringUtils;
  * 全局异常处理器
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {

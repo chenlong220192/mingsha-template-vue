@@ -11,6 +11,7 @@ import site.mingsha.common.xss.Xss;
  * 通知公告表 sys_notice
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysNoticeDO extends BaseDO {
     private static final long serialVersionUID = 1L;

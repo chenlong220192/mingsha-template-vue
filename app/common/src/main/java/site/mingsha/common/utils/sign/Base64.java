@@ -4,6 +4,7 @@ package site.mingsha.common.utils.sign;
  * Base64工具类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public final class Base64 {
     static private final int    BASELENGTH           = 128;

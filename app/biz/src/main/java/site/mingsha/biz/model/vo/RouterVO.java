@@ -7,6 +7,7 @@ import java.util.List;
  * 路由配置信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RouterVO {

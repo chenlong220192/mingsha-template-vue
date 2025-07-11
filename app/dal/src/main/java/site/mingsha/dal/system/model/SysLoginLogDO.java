@@ -10,6 +10,7 @@ import site.mingsha.common.model._do.BaseDO;
  * 系统访问记录表 sys_login_log
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysLoginLogDO extends BaseDO {
     private static final long serialVersionUID = 1L;

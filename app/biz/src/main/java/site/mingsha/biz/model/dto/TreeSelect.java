@@ -11,6 +11,7 @@ import site.mingsha.dal.system.model.SysMenuDO;
  * Treeselect树结构实体类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class TreeSelect implements Serializable {
     private static final long serialVersionUID = 1L;

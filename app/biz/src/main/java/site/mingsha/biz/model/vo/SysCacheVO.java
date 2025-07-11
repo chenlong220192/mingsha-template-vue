@@ -6,6 +6,7 @@ import site.mingsha.common.utils.StringUtils;
  * 缓存信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysCacheVO {
     /** 缓存名称 */

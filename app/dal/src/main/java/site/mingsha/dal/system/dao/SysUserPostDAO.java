@@ -7,6 +7,7 @@ import site.mingsha.dal.system.model.SysUserPostDO;
  * 用户与岗位关联表 数据层
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public interface SysUserPostDAO {
     /**

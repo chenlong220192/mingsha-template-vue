@@ -4,6 +4,7 @@ package site.mingsha.common.enums;
  * 用户状态
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public enum UserStatus {
                         OK("0", "正常"),

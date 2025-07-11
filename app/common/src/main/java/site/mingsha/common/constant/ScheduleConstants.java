@@ -4,6 +4,7 @@ package site.mingsha.common.constant;
  * 任务调度通用常量
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class ScheduleConstants {
     public static final String TASK_CLASS_NAME          = "TASK_CLASS_NAME";

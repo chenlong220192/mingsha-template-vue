@@ -8,6 +8,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
  * 错误信息处理类。
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class ExceptionUtil {
     /**

@@ -4,6 +4,7 @@ package site.mingsha.common.exception;
  * 全局异常
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class GlobalException extends RuntimeException {
     private static final long serialVersionUID = 1L;

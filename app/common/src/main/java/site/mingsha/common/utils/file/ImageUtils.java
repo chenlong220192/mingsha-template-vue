@@ -17,6 +17,7 @@ import site.mingsha.common.utils.StringUtils;
  * 图片处理工具类
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class ImageUtils {
     private static final Logger log = LoggerFactory.getLogger(ImageUtils.class);

@@ -26,6 +26,7 @@ import site.mingsha.common.utils.StringUtils;
  * 通用http发送方法
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class HttpUtils {
     private static final Logger log = LoggerFactory.getLogger(HttpUtils.class);

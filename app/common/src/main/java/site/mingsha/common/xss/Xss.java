@@ -11,6 +11,7 @@ import java.lang.annotation.Target;
  * 自定义xss校验注解
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = { ElementType.METHOD, ElementType.FIELD, ElementType.CONSTRUCTOR, ElementType.PARAMETER })

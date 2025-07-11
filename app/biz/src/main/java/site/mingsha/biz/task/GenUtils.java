@@ -12,6 +12,7 @@ import site.mingsha.dal.generator.model.GenTableColumnDO;
  * 代码生成器 工具类
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class GenUtils {
     /**

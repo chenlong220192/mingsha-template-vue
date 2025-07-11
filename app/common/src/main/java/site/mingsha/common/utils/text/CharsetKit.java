@@ -8,6 +8,7 @@ import site.mingsha.common.utils.StringUtils;
  * 字符集工具类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class CharsetKit {
     /** ISO-8859-1 */

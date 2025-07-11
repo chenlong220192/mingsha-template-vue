@@ -4,6 +4,7 @@ package site.mingsha.biz.model.dto;
  * 用户登录对象
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class LoginBodyDTO {
     /**

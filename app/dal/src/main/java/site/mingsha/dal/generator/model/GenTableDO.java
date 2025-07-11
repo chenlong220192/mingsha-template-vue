@@ -12,6 +12,7 @@ import site.mingsha.common.utils.StringUtils;
  * 业务表 gen_table
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class GenTableDO extends BaseDO {
     private static final long      serialVersionUID = 1L;

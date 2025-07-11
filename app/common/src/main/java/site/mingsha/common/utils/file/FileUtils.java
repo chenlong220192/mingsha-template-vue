@@ -23,6 +23,7 @@ import org.apache.commons.io.FilenameUtils;
  * 文件处理工具类
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class FileUtils {
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";

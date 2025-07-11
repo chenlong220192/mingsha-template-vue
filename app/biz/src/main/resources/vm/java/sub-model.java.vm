@@ -1,4 +1,4 @@
-package ${packageName}.model;
+package site.mingsha.dal.${moduleName}.model;
 
 #foreach ($import in $subImportList)
 import ${import};
@@ -10,8 +10,8 @@ import site.mingsha.common.annotation.Excel;
 /**
  * ${subTable.functionName}对象 ${subTableName}
  *
- * @author ${author}
- * @date ${datetime}
+ * @author mingsha
+ * @date 2025-07-11
  */
 public class ${subClassName}DO extends BaseEntity
 {

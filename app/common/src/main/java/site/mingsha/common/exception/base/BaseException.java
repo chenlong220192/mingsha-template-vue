@@ -7,6 +7,7 @@ import site.mingsha.common.utils.StringUtils;
  * 基础异常
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class BaseException extends RuntimeException {
     private static final long serialVersionUID = 1L;

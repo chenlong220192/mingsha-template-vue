@@ -22,6 +22,7 @@ import site.mingsha.common.utils.StringUtils;
  * 注册校验方法
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class SysRegisterService

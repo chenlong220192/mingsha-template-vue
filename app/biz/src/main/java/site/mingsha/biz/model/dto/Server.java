@@ -25,6 +25,7 @@ import oshi.util.Util;
  * 服务器相关信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class Server {
     private static final int OSHI_WAIT_SECOND = 1000;

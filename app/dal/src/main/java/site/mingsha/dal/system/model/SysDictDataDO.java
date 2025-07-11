@@ -13,6 +13,7 @@ import site.mingsha.common.constant.UserConstants;
  * 字典数据表 sys_dict_data
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysDictDataDO extends BaseDO {
     private static final long serialVersionUID = 1L;

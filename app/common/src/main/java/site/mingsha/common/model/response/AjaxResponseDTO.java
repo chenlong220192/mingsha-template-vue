@@ -9,6 +9,7 @@ import site.mingsha.common.utils.StringUtils;
  * 操作消息提醒
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class AjaxResponseDTO extends HashMap<String, Object> {
     private static final long  serialVersionUID = 1L;

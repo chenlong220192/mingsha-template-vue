@@ -28,6 +28,7 @@ import site.mingsha.common.utils.StringUtils;
  * Mybatis支持*匹配扫描包
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Configuration
 public class MyBatisConfig {

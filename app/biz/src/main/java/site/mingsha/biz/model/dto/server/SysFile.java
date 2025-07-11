@@ -4,6 +4,7 @@ package site.mingsha.biz.model.dto.server;
  * 系统文件相关信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysFile {
     /**

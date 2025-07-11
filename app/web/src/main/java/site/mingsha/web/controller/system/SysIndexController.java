@@ -10,6 +10,7 @@ import site.mingsha.common.utils.StringUtils;
  * 首页
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @RestController
 public class SysIndexController {

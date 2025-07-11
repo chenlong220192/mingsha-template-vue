@@ -1,4 +1,4 @@
-package ${packageName}.service.impl;
+package site.mingsha.biz.service.impl;
 
 import java.util.List;
 #foreach ($column in $columns)
@@ -13,17 +13,17 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import site.mingsha.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
-import ${packageName}.model.${subClassName}DO;
+import site.mingsha.dal.${moduleName}.model.${subClassName}DO;
 #end
-import ${packageName}.model.${ClassName}DO;
-import ${packageName}.dao.${ClassName}DAO;
-import ${packageName}.service.I${ClassName}Service;
+import site.mingsha.dal.${moduleName}.model.${ClassName}DO;
+import site.mingsha.dal.${moduleName}.dao.${ClassName}DAO;
+import site.mingsha.biz.service.I${ClassName}Service;
 
 /**
  * ${functionName}Service业务层处理
  *
- * @author ${author}
- * @date ${datetime}
+ * @author mingsha
+ * @date 2025-07-11
  */
 @Service
 public class ${ClassName}ServiceImpl implements I${ClassName}Service

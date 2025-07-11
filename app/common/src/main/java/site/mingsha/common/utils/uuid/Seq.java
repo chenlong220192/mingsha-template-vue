@@ -5,7 +5,8 @@ import site.mingsha.common.utils.DateUtils;
 import site.mingsha.common.utils.StringUtils;
 
 /**
- * @author mingsha 序列生成类
+ * @author mingsha
+ * @date 2025-07-11 序列生成类
  */
 public class Seq {
     // 通用序列类型

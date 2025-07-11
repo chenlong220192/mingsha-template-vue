@@ -19,6 +19,7 @@ import site.mingsha.common.utils.uuid.Seq;
  * 文件上传工具类
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 public class FileUploadUtils {
     /**

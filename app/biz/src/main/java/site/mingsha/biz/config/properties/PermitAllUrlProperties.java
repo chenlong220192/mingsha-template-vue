@@ -22,6 +22,7 @@ import site.mingsha.common.annotation.Anonymous;
  * 设置Anonymous注解允许匿名访问的url
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Configuration
 public class PermitAllUrlProperties implements InitializingBean, ApplicationContextAware {

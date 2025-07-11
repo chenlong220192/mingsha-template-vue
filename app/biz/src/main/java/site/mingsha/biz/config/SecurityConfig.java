@@ -27,6 +27,7 @@ import site.mingsha.biz.security.handle.LogoutSuccessHandlerImpl;
  * spring security配置
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @Configuration

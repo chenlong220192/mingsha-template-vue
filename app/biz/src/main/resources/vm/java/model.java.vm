@@ -1,4 +1,4 @@
-package ${packageName}.model;
+package site.mingsha.dal.${moduleName}.model;
 
 #foreach ($import in $importList)
 import ${import};
@@ -14,8 +14,8 @@ import site.mingsha.common.model._do.BaseDO;
 /**
  * ${functionName}对象 ${tableName}
  *
- * @author ${author}
- * @date ${datetime}
+ * @author mingsha
+ * @date 2025-07-11
  */
 #if($table.crud || $table.sub)
 #set($Entity="BaseDO")

@@ -4,6 +4,7 @@ package site.mingsha.common.constant;
  * 用户常量信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class UserConstants {
     /**

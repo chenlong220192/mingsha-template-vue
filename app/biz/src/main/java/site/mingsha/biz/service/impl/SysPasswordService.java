@@ -18,6 +18,7 @@ import site.mingsha.biz.utils.SecurityUtils;
  * 登录密码方法
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public class SysPasswordService {

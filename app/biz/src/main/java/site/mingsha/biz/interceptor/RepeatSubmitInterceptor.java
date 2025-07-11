@@ -15,6 +15,7 @@ import site.mingsha.common.utils.ServletUtils;
  * 防止重复提交拦截器
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 @Component
 public abstract class RepeatSubmitInterceptor implements HandlerInterceptor {

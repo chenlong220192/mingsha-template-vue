@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 角色和部门关联 sys_role_dept
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysRoleDeptDO {
     /** 角色ID */

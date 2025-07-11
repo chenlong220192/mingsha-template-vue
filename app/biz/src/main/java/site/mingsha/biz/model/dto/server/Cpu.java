@@ -6,6 +6,7 @@ import site.mingsha.common.utils.Arith;
  * CPU相关信息
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class Cpu {
     /**

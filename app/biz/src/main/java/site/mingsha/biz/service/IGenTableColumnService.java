@@ -7,6 +7,7 @@ import site.mingsha.dal.generator.model.GenTableColumnDO;
  * 业务字段 服务层
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public interface IGenTableColumnService {
     /**

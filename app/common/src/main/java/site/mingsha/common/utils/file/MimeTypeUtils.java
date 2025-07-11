@@ -4,6 +4,7 @@ package site.mingsha.common.utils.file;
  * 媒体类型工具类
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class MimeTypeUtils {
     public static final String   IMAGE_PNG                 = "image/png";

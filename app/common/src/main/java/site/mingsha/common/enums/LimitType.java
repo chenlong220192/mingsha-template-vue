@@ -4,6 +4,7 @@ package site.mingsha.common.enums;
  * 限流类型
  *
  * @author mingsha
+ * @date 2025-07-11
  */
 
 public enum LimitType {

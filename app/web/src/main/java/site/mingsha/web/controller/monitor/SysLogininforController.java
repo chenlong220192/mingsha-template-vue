@@ -24,6 +24,7 @@ import site.mingsha.biz.service.ISysLoginLogService;
  * 系统访问记录
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 @RestController
 @RequestMapping("/monitor/logininfor")

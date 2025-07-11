@@ -16,6 +16,7 @@ import site.mingsha.common.xss.Xss;
  * 用户对象 sys_user
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysUserDO extends BaseDO {
     private static final long serialVersionUID = 1L;

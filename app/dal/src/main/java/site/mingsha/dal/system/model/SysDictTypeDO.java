@@ -13,6 +13,7 @@ import site.mingsha.common.annotation.Excel.ColumnType;
  * 字典类型表 sys_dict_type
  * 
  * @author mingsha
+ * @date 2025-07-11
  */
 public class SysDictTypeDO extends BaseDO {
     private static final long serialVersionUID = 1L;
