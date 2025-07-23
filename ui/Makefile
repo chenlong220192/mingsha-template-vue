@@ -41,7 +41,7 @@ BUILD := 🔨
 
 # ----------------------------- variables <-----------------------------
 # unit test flag
-ENV ?= local
+ENV ?= dev
 #
 APPNAME ?= mingsha-template-vue-ui
 VERSION ?= 1.0.0

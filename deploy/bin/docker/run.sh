@@ -17,9 +17,9 @@
 
 # ----------------------- params <---------------------------
 # 仓库名
-DOCKER_REPOSITORY_NAME=mingsha.site:5555
+DOCKER_REPOSITORY_NAME=mingsha/app
 # 镜像名
-DOCKER_IMAGE_NAME=app/mingsha-template-vue-boot
+DOCKER_IMAGE_NAME=mingsha-template-vue-boot
 # tag
 DOCKER_IMAGE_TAG=1.0.0
 # 容器名
@@ -48,7 +48,7 @@ function run() {
     --memory 2048m \
     --restart=always \
     --name ${DOCKER_CONTAINER_NAME}-${PROFILE} \
-    ${DOCKER_REPOSITORY_NAME}/${DOCKER_IMAGE_NAME}-${PROFILE}:${DOCKER_IMAGE_TAG}
+    ${DOCKER_REPOSITORY_NAME}:${DOCKER_IMAGE_NAME}-${DOCKER_IMAGE_TAG}-${PROFILE}
   if [[ $? -eq 0 ]]
   then
     echo "${str} Success."
