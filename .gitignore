@@ -72,7 +72,6 @@ out/
 .classpath
 .settings/
 .metadata/
-bin/
 tmp/
 *.tmp
 *.bak
