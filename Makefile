@@ -166,7 +166,7 @@ docker.init: ## $(DOCKER) 初始化Docker配置
 	@printf "${GREEN}${DOCKER} Docker配置初始化完成！${RESET}\n"
 
 #
-docker.build: docker.init ## $(DOCKER) 构建Docker镜像
+docker.build: ## $(DOCKER) 构建Docker镜像
 	@printf "${BLUE}${DOCKER} 构建Docker镜像 (环境: ${ENV})...${RESET}\n"
 	sh ${BASE_PATH}/deploy/bin/docker/build.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(ENV)
 	@printf "${GREEN}${DOCKER} Docker镜像构建完成！${RESET}\n"
