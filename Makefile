@@ -172,6 +172,12 @@ docker.build: docker.init ## $(DOCKER) 构建Docker镜像
 	@printf "${GREEN}${DOCKER} Docker镜像构建完成！${RESET}\n"
 
 #
+docker.push: ## $(DOCKER) 构建Docker镜像
+	@printf "${BLUE}${DOCKER} 推送Docker镜像 (环境: ${ENV})...${RESET}\n"
+	sh ${BASE_PATH}/deploy/bin/docker/push.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(ENV)
+	@printf "${GREEN}${DOCKER} Docker镜像推送完成！${RESET}\n"
+
+#
 docker.run: package.uncompress docker.init docker.build ## $(DOCKER) 运行Docker容器
 	@printf "${BLUE}${DOCKER} 运行Docker容器...${RESET}\n"
 	sh ${BASE_PATH}/deploy/bin/docker/run.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(DOCKER_CONTAINER_NAME) $(ENV)
