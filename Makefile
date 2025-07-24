@@ -166,13 +166,13 @@ docker.init: ## $(DOCKER) 初始化Docker配置
 	@printf "${GREEN}${DOCKER} Docker配置初始化完成！${RESET}\n"
 
 #
-docker.build: docker.init package.uncompress ## $(DOCKER) 构建Docker镜像
+docker.build: docker.init ## $(DOCKER) 构建Docker镜像
 	@printf "${BLUE}${DOCKER} 构建Docker镜像 (环境: ${ENV})...${RESET}\n"
 	sh ${BASE_PATH}/deploy/bin/docker/build.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(ENV)
 	@printf "${GREEN}${DOCKER} Docker镜像构建完成！${RESET}\n"
 
 #
-docker.run: docker.build ## $(DOCKER) 运行Docker容器
+docker.run: package.uncompress docker.init docker.build ## $(DOCKER) 运行Docker容器
 	@printf "${BLUE}${DOCKER} 运行Docker容器...${RESET}\n"
 	sh ${BASE_PATH}/deploy/bin/docker/run.sh $(DOCKER_REPOSITORY_NAME) $(DOCKER_IMAGE_NAME) $(DOCKER_IMAGE_TAG) $(DOCKER_CONTAINER_NAME) $(ENV)
 	# docker logs -f $(DOCKER_CONTAINER_NAME)-$(ENV)
