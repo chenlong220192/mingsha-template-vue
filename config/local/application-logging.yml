@@ -1,0 +1,6 @@
+# 日志配置
+logging:
+  level:
+    root: info
+    site.mingsha: info
+    org.springframework: info

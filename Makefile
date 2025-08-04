@@ -211,7 +211,7 @@ helm.uninstall: ## $(HELM) 卸载Helm部署
 	sh ${BASE_PATH}/deploy/bin/helm/uninstall.sh $(APPLICATION_NAME) $(HELM_NAMESPACE) $(ENV)
 	@printf "${GREEN}${HELM} Helm部署卸载完成！${RESET}\n"
 #
-helm.upgrade: docker.build helm.uninstall ## $(HELM) 升级Helm部署
+helm.upgrade: package.uncompress docker.init docker.build helm.uninstall ## $(HELM) 升级Helm部署
 	@printf "${BLUE}${HELM} 升级Helm部署 (环境: ${ENV})...${RESET}\n"
 	sh ${BASE_PATH}/deploy/bin/helm/install.sh $(APPLICATION_NAME) $(HELM_NAMESPACE) $(ENV)
 	@printf "${GREEN}${HELM} Helm部署升级完成！${RESET}\n"
