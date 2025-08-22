@@ -85,7 +85,6 @@ local.properties
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
@@ -131,9 +130,6 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons
-build/Release
-
 # Dependency directories
 jspm_packages/
 
@@ -178,7 +174,6 @@ dist
 
 # Gatsby files
 .cache/
-public
 
 # Storybook build outputs
 .out
@@ -195,13 +190,11 @@ temp/
 
 # Gradle
 .gradle/
-build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
 # Ant
-build/
 ant-build/
 
 # ===================================================================
@@ -386,14 +379,12 @@ deploy/temp/
 
 # 前端构建产物
 ui/dist/
-ui/build/
 
 # 本地配置文件
 application-local.yml
 application-local.properties
 
 # 开发工具配置
-.devcontainer/
 .vscode/settings.json
 .vscode/launch.json
 .vscode/tasks.json

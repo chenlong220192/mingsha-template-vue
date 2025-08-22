@@ -1,8 +1,7 @@
 -server
--Xms256M
--Xmx1024M
+-XX:+UseContainerSupport
+-XX:MaxRAMPercentage=75.0
+-XX:MaxMetaspaceSize=128m
+-XX:MaxDirectMemorySize=128m
 -XX:+UseG1GC
 -XX:MaxGCPauseMillis=200
--XX:MetaspaceSize=128M
--XX:MaxMetaspaceSize=256M
--XX:+UseContainerSupport

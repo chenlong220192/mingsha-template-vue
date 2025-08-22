@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `mingsha_template_vue` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `mingsha_template_vue`;
--- MySQL dump 10.13  Distrib 8.0.41, for macos15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.43, for macos15 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mingsha_template_vue
 -- ------------------------------------------------------
@@ -166,7 +166,7 @@ CREATE TABLE `sys_dept` (
 
 LOCK TABLES `sys_dept` WRITE;
 /*!40000 ALTER TABLE `sys_dept` DISABLE KEYS */;
-INSERT INTO `sys_dept` VALUES (1,0,'0','研发部',0,'鸣沙','18388888888','mingsha@site.com','0','0','admin','2025-03-13 19:31:38','admin','2025-03-13 19:31:38');
+INSERT INTO `sys_dept` VALUES (1,0,'0','研发部',0,'admin','18388888888','admin@site.com','0','0','admin','2025-03-13 19:31:38','admin','2025-08-20 19:36:10');
 /*!40000 ALTER TABLE `sys_dept` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,7 +436,7 @@ CREATE TABLE `sys_oper_log` (
   KEY `idx_sys_oper_log_bt` (`business_type`),
   KEY `idx_sys_oper_log_s` (`status`),
   KEY `idx_sys_oper_log_ot` (`oper_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='操作日志记录';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -467,7 +467,7 @@ CREATE TABLE `sys_post` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='岗位信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='岗位信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +476,6 @@ CREATE TABLE `sys_post` (
 
 LOCK TABLES `sys_post` WRITE;
 /*!40000 ALTER TABLE `sys_post` DISABLE KEYS */;
-INSERT INTO `sys_post` VALUES (1,'it','IT',1,'0','admin','2025-03-13 19:33:15','admin','2025-03-13 19:33:15','');
 /*!40000 ALTER TABLE `sys_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -512,7 +511,7 @@ CREATE TABLE `sys_role` (
 
 LOCK TABLES `sys_role` WRITE;
 /*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
-INSERT INTO `sys_role` VALUES (1,'超级管理员','admin',1,'1',1,1,'0','0','admin','2025-03-13 19:33:21','','2025-03-13 19:33:21','超级管理员'),(2,'管理员','user',2,'1',1,1,'0','0','admin','2025-03-13 19:33:21','admin','2025-03-13 19:33:21',NULL),(3,'普通用户','common',3,'1',1,1,'0','0','admin','2025-03-13 19:33:21','admin','2025-03-13 19:33:21',NULL);
+INSERT INTO `sys_role` VALUES (1,'管理员','admin',1,'1',1,1,'0','0','admin','2025-03-13 19:33:21','','2025-03-13 19:33:21','超级管理员'),(2,'普通用户','user',2,'1',1,1,'0','0','admin','2025-03-13 19:33:21','admin','2025-08-20 19:45:28',NULL);
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -536,7 +535,7 @@ CREATE TABLE `sys_role_dept` (
 
 LOCK TABLES `sys_role_dept` WRITE;
 /*!40000 ALTER TABLE `sys_role_dept` DISABLE KEYS */;
-INSERT INTO `sys_role_dept` VALUES (1,1),(2,1),(3,1);
+INSERT INTO `sys_role_dept` VALUES (2,1);
 /*!40000 ALTER TABLE `sys_role_dept` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -560,7 +559,6 @@ CREATE TABLE `sys_role_menu` (
 
 LOCK TABLES `sys_role_menu` WRITE;
 /*!40000 ALTER TABLE `sys_role_menu` DISABLE KEYS */;
-INSERT INTO `sys_role_menu` VALUES (2,1),(2,3),(2,100),(2,102),(2,107),(2,108),(2,109),(2,110),(2,111),(2,112),(2,113),(2,114),(2,500),(2,501),(2,1000),(2,1001),(2,1002),(2,1003),(2,1004),(2,1005),(2,1006),(2,1012),(2,1013),(2,1014),(2,1015),(2,1035),(2,1036),(2,1037),(2,1038),(2,1039),(2,1040),(2,1041),(2,1042),(2,1043),(2,1044),(2,1045),(2,1046),(2,1047),(2,1048),(2,1049),(2,1050),(2,1051),(2,1052),(2,1053),(2,1054),(2,2034);
 /*!40000 ALTER TABLE `sys_role_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -601,7 +599,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,1,'admin','鸣沙','00','admin@site.com','18388888888','0','','$2a$10$1QuRovwH9v7nNDu9ScjlKuRpQf6HbnZaOa16qjZuIHYSe/45Byep2','0','0','10.1.2.121','2025-03-14 03:37:09','admin','2025-03-13 19:33:33','','2025-03-13 19:37:09','管理员');
+INSERT INTO `sys_user` VALUES (1,1,'admin','admin','00','admin@site.com','18388888888','2','','$2a$10$1QuRovwH9v7nNDu9ScjlKuRpQf6HbnZaOa16qjZuIHYSe/45Byep2','0','0','10.1.2.121','2025-03-14 03:37:09','admin','2025-03-13 19:33:33','','2025-03-13 19:37:09','管理员');
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -625,7 +623,6 @@ CREATE TABLE `sys_user_post` (
 
 LOCK TABLES `sys_user_post` WRITE;
 /*!40000 ALTER TABLE `sys_user_post` DISABLE KEYS */;
-INSERT INTO `sys_user_post` VALUES (1,1);
 /*!40000 ALTER TABLE `sys_user_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -662,4 +659,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-14  3:47:26
+-- Dump completed on 2025-08-20 19:48:09
