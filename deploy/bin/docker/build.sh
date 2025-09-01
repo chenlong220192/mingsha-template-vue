@@ -26,7 +26,7 @@ INTEGRATION_PATH=$(cd `dirname $0`; pwd) && cd `dirname $0` && cd .. && cd .. &&
 function build() {
   str="Build Target Env ${PROFILE}"
   echo "${str}."
-  docker buildx build --load --platform linux/amd64 -f ${BASE_PATH}/deploy/docker/Dockerfile-boot --rm -t ${DOCKER_REPOSITORY_NAME}:${DOCKER_IMAGE_NAME}-${DOCKER_IMAGE_TAG}-${PROFILE} ${BASE_PATH}
+  docker build --load --platform linux/amd64 -f ${BASE_PATH}/deploy/docker/Dockerfile-boot --rm -t ${DOCKER_REPOSITORY_NAME}:${DOCKER_IMAGE_NAME}-${DOCKER_IMAGE_TAG}-${PROFILE} ${BASE_PATH}
   if [[ $? -eq 0 ]]
   then
     echo "${str} Success."
