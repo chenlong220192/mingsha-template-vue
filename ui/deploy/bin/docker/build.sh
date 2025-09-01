@@ -19,4 +19,4 @@ APPNAME=$1
 VERSION=$2
 ENV=$3
 
-docker buildx build --load --platform linux/amd64 -f ${BASE_PATH}/deploy/docker/Dockerfile-ui-${ENV} --rm -t mingsha/app:${APPNAME}-${VERSION}-${ENV} .
+docker build --load --platform linux/amd64 -f ${BASE_PATH}/deploy/docker/Dockerfile-ui-${ENV} --rm -t mingsha/app:${APPNAME}-${VERSION}-${ENV} .
