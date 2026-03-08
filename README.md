@@ -181,7 +181,7 @@
 - **问题反馈**: [Issues](https://github.com/mingsha/mingsha-template-vue/issues)
 - **讨论交流**: [Discussions](https://github.com/mingsha/mingsha-template-vue/discussions)
 - **在线文档**: [GitHub](https://github.com/mingsha/mingsha-template-vue)
-- **邮箱**: mingsha@example.com
+- **邮箱**: chenlong220192@gmail.com
 
 ---
 
