@@ -21,7 +21,7 @@ import site.mingsha.common.utils.uuid.IdUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 /**
  * token验证处理
@@ -72,6 +72,13 @@ public class TokenService {
                 return user;
             } catch (Exception e) {
                 log.error("获取用户信息异常'{}'", e.getMessage());
+                // 删除无效的缓存 token
+                try {
+                    String userKey = getTokenKey(token);
+                    redisCache.deleteObject(userKey);
+                } catch (Exception ex) {
+                    // 忽略删除错误
+                }
             }
         }
         return null;
@@ -161,7 +168,7 @@ public class TokenService {
      * @return 令牌
      */
     private String createToken(Map<String, Object> claims) {
-        return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
+        return Jwts.builder().claims(claims).signWith(Keys.hmacShaKeyFor(secret.getBytes()), Jwts.SIG.HS512).compact();
     }
 
     /**
@@ -172,10 +179,10 @@ public class TokenService {
      */
     private Claims parseToken(String token) {
         return Jwts.parser()
-                .setSigningKey(secret)
+                .verifyWith(Keys.hmacShaKeyFor(secret.getBytes()))
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     /**

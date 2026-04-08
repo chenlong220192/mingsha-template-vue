@@ -11,7 +11,7 @@ import site.mingsha.common.constant.Constants;
 
 /**
  * Redis使用FastJson序列化
- * 
+ *
  * @author mingsha
  * @date 2025-07-11
  */
@@ -41,7 +41,11 @@ public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T> {
             return null;
         }
         String str = new String(bytes, DEFAULT_CHARSET);
-
-        return JSON.parseObject(str, clazz, AUTO_TYPE_FILTER);
+        try {
+            return JSON.parseObject(str, clazz, AUTO_TYPE_FILTER);
+        } catch (Exception e) {
+            // 反序列化失败时返回 null，避免旧格式数据导致系统不可用
+            return null;
+        }
     }
 }

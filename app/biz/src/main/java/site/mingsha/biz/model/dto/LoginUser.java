@@ -5,6 +5,7 @@ import site.mingsha.dal.system.model.SysUserDO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -229,6 +230,7 @@ public class LoginUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        // 返回空集合，避免 fastjson2 无法序列化 lambda 的问题
+        return Collections.emptyList();
     }
 }
