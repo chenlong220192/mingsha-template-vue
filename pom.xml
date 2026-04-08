@@ -31,8 +31,9 @@
         <!-- ========== 数据库相关 ========== -->
         <mybatis-spring-boot.version>4.0.1</mybatis-spring-boot.version>
         <mysql.version>9.6.0</mysql.version>
-        <druid.version>1.2.28</druid.version>
         <pagehelper.boot.version>2.1.1</pagehelper.boot.version>
+        <!-- Druid SQL 解析（仅用于代码生成功能） -->
+        <druid.version>1.2.28</druid.version>
 
         <!-- ========== JSON 处理 ========== -->
         <fastjson.version>2.0.61</fastjson.version>
@@ -129,14 +130,15 @@
                 <version>${mysql.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-3-starter</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.boot.version}</version>
+            </dependency>
+            <!-- Druid SQL 解析库（仅用于代码生成功能中的 SQL 解析） -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
             </dependency>
 
             <!-- ========== JSON 处理 ========== -->

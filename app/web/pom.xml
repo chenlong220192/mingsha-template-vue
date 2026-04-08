@@ -21,6 +21,12 @@
             <artifactId>mingsha-template-vue-biz</artifactId>
         </dependency>
 
+        <!-- Druid SQL 解析库（用于代码生成功能） -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
