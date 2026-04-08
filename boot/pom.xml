@@ -26,6 +26,13 @@
             <artifactId>mingsha-template-vue-web</artifactId>
         </dependency>
 
+        <!-- Properties Migrator（临时，用于迁移配置）-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

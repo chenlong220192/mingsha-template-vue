@@ -2,10 +2,12 @@ package site.mingsha.biz.config;
 
 import java.util.TimeZone;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * 程序注解配置
@@ -19,11 +21,17 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 // 指定要扫描的Mapper类的包的路径
 @MapperScan("site.mingsha.**.dao")
 public class ApplicationConfig {
+
     /**
-     * 时区配置
+     * Jackson ObjectMapper 配置
+     * 用于替换 Spring Boot 4.0 移除的 Jackson2ObjectMapperBuilderCustomizer
      */
     @Bean
-    public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization() {
-        return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.timeZone(TimeZone.getDefault());
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.setTimeZone(TimeZone.getDefault());
+        return objectMapper;
     }
 }

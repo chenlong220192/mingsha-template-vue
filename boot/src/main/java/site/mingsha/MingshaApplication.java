@@ -2,7 +2,6 @@ package site.mingsha;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * 启动程序
@@ -10,7 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author mingsha
  * @date 2025-07-11
  */
-@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
+@SpringBootApplication
 public class MingshaApplication {
     public static void main(String[] args) {
         SpringApplication.run(MingshaApplication.class, args);
