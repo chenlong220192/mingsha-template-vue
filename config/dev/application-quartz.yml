@@ -1,0 +1,25 @@
+# Quartz 定时任务配置
+spring:
+  quartz:
+    # 使用数据库存储任务
+    job-store-type: jdbc
+    jdbc:
+      # 启动时初始化表结构
+      initialize-schema: embedded
+    # Scheduler 配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: MingshaScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: false
+            useProperties: true
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5

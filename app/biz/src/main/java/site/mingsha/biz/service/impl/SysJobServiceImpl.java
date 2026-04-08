@@ -1,12 +1,14 @@
 package site.mingsha.biz.service.impl;
 
 import java.util.List;
-import jakarta.annotation.PostConstruct;
 import org.quartz.JobDataMap;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
+import org.quartz.SchedulerListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.mingsha.biz.service.ISysJobService;
@@ -19,12 +21,13 @@ import site.mingsha.biz.utils.ScheduleUtils;
 
 /**
  * 定时任务调度信息 服务层
- * 
+ *
  * @author mingsha
  * @date 2025-07-11
  */
 @Service
-public class SysJobServiceImpl implements ISysJobService {
+public class SysJobServiceImpl implements ISysJobService, ApplicationListener<ContextRefreshedEvent> {
+
     @Autowired
     private Scheduler scheduler;
 
@@ -32,20 +35,25 @@ public class SysJobServiceImpl implements ISysJobService {
     private SysJobDAO jobMapper;
 
     /**
-     * 项目启动时，初始化定时器 主要是防止手动修改数据库导致未同步到定时任务处理（注：不能手动修改数据库ID和任务组名，否则会导致脏数据）
+     * 项目启动时，初始化定时器
+     * 使用 ContextRefreshedEvent 确保 Spring 容器完全初始化后再执行
      */
-    @PostConstruct
-    public void init() throws SchedulerException, TaskException {
-        scheduler.clear();
-        List<SysJobDO> jobList = jobMapper.selectJobAll();
-        for (SysJobDO job : jobList) {
-            ScheduleUtils.createScheduleJob(scheduler, job);
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        try {
+            scheduler.clear();
+            List<SysJobDO> jobList = jobMapper.selectJobAll();
+            for (SysJobDO job : jobList) {
+                ScheduleUtils.createScheduleJob(scheduler, job);
+            }
+        } catch (SchedulerException | TaskException e) {
+            throw new RuntimeException("初始化定时任务失败", e);
         }
     }
 
     /**
      * 获取quartz调度器的计划任务列表
-     * 
+     *
      * @param job 调度信息
      * @return
      */
@@ -56,7 +64,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 通过调度任务ID查询调度信息
-     * 
+     *
      * @param jobId 调度任务ID
      * @return 调度任务对象信息
      */
@@ -67,7 +75,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 暂停任务
-     * 
+     *
      * @param job 调度信息
      */
     @Override
@@ -85,7 +93,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 恢复任务
-     * 
+     *
      * @param job 调度信息
      */
     @Override
@@ -103,7 +111,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 删除任务后，所对应的trigger也将被删除
-     * 
+     *
      * @param job 调度信息
      */
     @Override
@@ -120,7 +128,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 批量删除调度信息
-     * 
+     *
      * @param jobIds 需要删除的任务ID
      * @return 结果
      */
@@ -135,7 +143,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 任务调度状态修改
-     * 
+     *
      * @param job 调度信息
      */
     @Override
@@ -153,7 +161,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 立即运行任务
-     * 
+     *
      * @param job 调度信息
      */
     @Override
@@ -176,7 +184,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 新增任务
-     * 
+     *
      * @param job 调度信息 调度信息
      */
     @Override
@@ -192,7 +200,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 更新任务的时间表达式
-     * 
+     *
      * @param job 调度信息
      */
     @Override
@@ -208,7 +216,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 更新任务
-     * 
+     *
      * @param job 任务对象
      * @param jobGroup 任务组名
      */
@@ -225,7 +233,7 @@ public class SysJobServiceImpl implements ISysJobService {
 
     /**
      * 校验cron表达式是否有效
-     * 
+     *
      * @param cronExpression 表达式
      * @return 结果
      */

@@ -40,7 +40,7 @@
 
         <!-- ========== 安全认证 ========== -->
         <jjwt.version>0.13.0</jjwt.version>
-        <jasypt.version>3.0.2</jasypt.version>
+        <jasypt.version>4.0.4</jasypt.version>
 
         <!-- ========== 工具库 ========== -->
         <oshi.version>6.11.0</oshi.version>
