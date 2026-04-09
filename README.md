@@ -99,7 +99,7 @@
 | **Spring Security** | 7.x | 安全框架 |
 | **MyBatis** | 4.x | ORM 框架 |
 | **MySQL** | 8.x | 数据库 |
-| **Redis** | 6.x | 缓存数据库 |
+| **Redis** | 7.4 LTS | 缓存数据库 |
 | **Maven** | 3.x | 构建工具 |
 | **JWT** | 0.12.6 | 身份认证 |
 | **SpringDoc** | 3.0.2 | API 文档 |
