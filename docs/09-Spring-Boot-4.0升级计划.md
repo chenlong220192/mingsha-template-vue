@@ -761,15 +761,15 @@ git branch -D upgrade/spring-boot-4.0
 升级日期: 2026-04-08
 ```
 
-### F. 待验证项
+### F. 已验证项
 
-- [ ] 应用启动验证
-- [ ] 数据库连接验证
-- [ ] Redis 连接验证
-- [ ] API 文档访问
-- [ ] 登录功能测试
-- [ ] 配置属性迁移（使用 properties-migrator）
+- [x] 应用启动验证
+- [x] 数据库连接验证
+- [x] Redis 连接验证
+- [x] API 文档访问
+- [x] 登录功能测试
+- [x] 配置属性迁移（使用 properties-migrator）
 
 ---
 
-*文档由 Claude AI 生成，最后更新于 2026-04-08*
+*文档由 Claude AI 生成，最后更新于 2026-04-09*

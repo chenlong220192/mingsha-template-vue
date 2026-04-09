@@ -2,10 +2,10 @@
 
 # 🚀 鸣沙管理平台
 
-**企业级前后端分离管理系统 | 基于 Spring Boot 3 + Vue 2**
+**企业级前后端分离管理系统 | 基于 Spring Boot 4 + Vue 2**
 
 [![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square&logo=java)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-green?style=flat-square&logo=spring)](https://spring.io/projects/spring-boot)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.5-green?style=flat-square&logo=spring)](https://spring.io/projects/spring-boot)
 [![Vue](https://img.shields.io/badge/Vue-2.x-4fc08d?style=flat-square&logo=vue.js)](https://vuejs.org/)
 [![Element UI](https://img.shields.io/badge/Element%20UI-2.x-blue?style=flat-square)](https://element.eleme.io/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
@@ -34,7 +34,7 @@
 
 ## 🎯 项目简介
 
-**鸣沙管理平台** 是一个基于 Spring Boot 3 + Vue 2 的企业级前后端分离管理系统，提供完整的用户管理、权限控制、系统监控、数据管理等功能。系统采用现代化的技术栈，支持容器化部署，适用于各种规模的企业应用。
+**鸣沙管理平台** 是一个基于 Spring Boot 4 + Vue 2 的企业级前后端分离管理系统，提供完整的用户管理、权限控制、系统监控、数据管理等功能。系统采用现代化的技术栈，支持容器化部署，适用于各种规模的企业应用。
 
 > **📝 项目来源**: 本项目 Forked from [若依管理系统](https://doc.ruoyi.vip/)，感谢若依团队提供的优秀开源项目基础。
 
@@ -48,7 +48,7 @@
 
 ### 🌟 核心优势
 
-- **🚀 高性能**：基于 Spring Boot 3 的高性能后端架构
+- **🚀 高性能**：基于 Spring Boot 4 的高性能后端架构
 - **🎨 现代化**：Vue 2 + Element UI 的现代化前端界面
 - **🔐 安全性**：完善的权限控制和数据安全保护
 - **📱 响应式**：完美支持桌面端和移动端访问
@@ -95,14 +95,14 @@
 | 技术 | 版本 | 说明 |
 |------|------|------|
 | **Java** | 17 | 基础运行环境 |
-| **Spring Boot** | 3.5.3 | 应用框架 |
-| **Spring Security** | 6.x | 安全框架 |
-| **MyBatis** | 3.x | ORM 框架 |
+| **Spring Boot** | 4.0.5 | 应用框架 |
+| **Spring Security** | 7.x | 安全框架 |
+| **MyBatis** | 4.x | ORM 框架 |
 | **MySQL** | 8.x | 数据库 |
 | **Redis** | 6.x | 缓存数据库 |
 | **Maven** | 3.x | 构建工具 |
 | **JWT** | 0.12.6 | 身份认证 |
-| **SpringDoc** | 2.8.4 | API 文档 |
+| **SpringDoc** | 3.0.2 | API 文档 |
 
 ### 前端技术
 
