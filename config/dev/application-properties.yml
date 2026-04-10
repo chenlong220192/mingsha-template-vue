@@ -3,9 +3,9 @@ mingsha:
   # 名称
   name: mingsha-template-vue
   # 版本
-  version: 1.0.0
+  version: 2026.04.10
   # 版权年份
-  copyrightYear: 2025
+  copyrightYear: 2026
   # 文件路径 示例（ Windows配置D:/mingsha/uploadPath，Linux配置 /home/mingsha/uploadPath）
   profile: /data/containers/mingsha-template-vue/
   # 获取ip地址开关

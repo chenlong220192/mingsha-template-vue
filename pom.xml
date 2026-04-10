@@ -9,13 +9,13 @@
     <version>${revision}</version>
 
     <name>mingsha-template-vue</name>
-    <description>鸣沙管理平台</description>
+    <description>鸣沙项目脚手架</description>
 
     <packaging>pom</packaging>
 
     <properties>
         <!-- ========== 项目基本信息 ========== -->
-        <revision>1.0.0</revision>
+        <revision>2026.04.10</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 

@@ -55,7 +55,7 @@ initContainer:
 
 image:
   repository: mingsha/app
-  tag: mingsha-template-vue-boot-1.0.0-dev
+  tag: mingsha-template-vue-boot-2026.04.10-dev
   pullPolicy: IfNotPresent
 
 replicas: 1

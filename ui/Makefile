@@ -44,7 +44,7 @@ BUILD := 🔨
 ENV ?= dev
 #
 APPNAME ?= mingsha-template-vue-ui
-VERSION ?= 1.0.0
+VERSION ?= 2026.04.10
 PORT ?= 8000
 HELM_NAMESPACE ?= mingsha
 # ----------------------------- variables >-----------------------------

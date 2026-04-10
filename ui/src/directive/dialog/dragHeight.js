@@ -1,6 +1,6 @@
 /**
  * v-dialogDragWidth 可拖动弹窗高度（右下角）
- * Copyright (c) 2025 mingsha
+ * Copyright (c) 2026 mingsha
  */
 
 export default {

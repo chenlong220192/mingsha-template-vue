@@ -5,8 +5,8 @@ home: xxx
 type: application
 sources:
   - xxx
-version: 1.0.0
-appVersion: 1.0.0
+version: 2026.04.10
+appVersion: 2026.04.10
 keywords:
 - nginx
 maintainers:

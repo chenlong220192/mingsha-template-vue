@@ -1,6 +1,6 @@
  /**
  * v-hasRole 角色权限处理
- * Copyright (c) 2025 mingsha
+ * Copyright (c) 2026 mingsha
  */
 
 import store from '@/store'

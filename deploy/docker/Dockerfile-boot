@@ -1,5 +1,5 @@
 # 1、基础镜像
-FROM mingsha/jdk:dragonwell-17-alpine-3.22
+FROM mingsha/jdk:dragonwell-17-alpine-3.23
 
 # 2、镜像作者
 LABEL maintainer="developer chenlong220192@gmail.com"

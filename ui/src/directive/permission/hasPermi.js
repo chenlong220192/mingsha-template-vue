@@ -1,6 +1,6 @@
  /**
  * v-hasPermi 操作权限处理
- * Copyright (c) 2025 mingsha
+ * Copyright (c) 2026 mingsha
  */
 
 import store from '@/store'

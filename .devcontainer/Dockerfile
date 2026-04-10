@@ -1,1 +1,1 @@
-FROM mingsha/jdk:dragonwell-17-alpine-3.22
+FROM mingsha/jdk:dragonwell-17-alpine-3.23

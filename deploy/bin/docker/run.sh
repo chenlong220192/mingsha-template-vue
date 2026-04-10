@@ -11,7 +11,7 @@ DOCKER_REPOSITORY_NAME=mingsha/app
 # 镜像名
 DOCKER_IMAGE_NAME=mingsha-template-vue-boot
 # tag
-DOCKER_IMAGE_TAG=1.0.0
+DOCKER_IMAGE_TAG=2026.04.10
 # 容器名
 DOCKER_CONTAINER_NAME=mingsha-template-vue-boot
 # 端口号
