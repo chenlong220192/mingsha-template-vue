@@ -393,3 +393,6 @@ application-local.properties
 # 取消注释以忽略特定文件
 # config/dev/application-datasource.yml
 # config/prod/application-datasource.yml
+
+# AI agent
+.claude
