@@ -252,20 +252,20 @@ export function addUser(data) {
 
 ```bash
 # 构建开发环境镜像
-docker build -f deploy/docker/Dockerfile-ui-dev -t mingsha-ui:dev .
+docker build -f deploy/docker/Dockerfile-ui-dev -t mingsha-vue2-ui:dev .
 
 # 构建生产环境镜像
-docker build -f deploy/docker/Dockerfile-ui-prod -t mingsha-ui:prod .
+docker build -f deploy/docker/Dockerfile-ui-prod -t mingsha-vue2-ui:prod .
 ```
 
 ### 运行容器
 
 ```bash
 # 运行开发环境容器
-docker run -d -p 8080:80 mingsha-ui:dev
+docker run -d -p 8080:80 mingsha-vue2-ui:dev
 
 # 运行生产环境容器
-docker run -d -p 80:80 mingsha-ui:prod
+docker run -d -p 80:80 mingsha-vue2-ui:prod
 ```
 
 ### Docker Compose
@@ -273,8 +273,8 @@ docker run -d -p 80:80 mingsha-ui:prod
 ```yaml
 version: '3.8'
 services:
-  mingsha-ui:
-    image: mingsha-ui:latest
+  mingsha-vue2-ui:
+    image: mingsha-vue2-ui:latest
     ports:
       - "80:80"
     environment:

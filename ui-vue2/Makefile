@@ -3,7 +3,7 @@
 # example 'make init'
 # example 'make package SKIP_TEST=true ENV=dev'
 #
-# author: mingsha
+# author: mingsha-vue2
 # date: 2025-07-11
 #======================================================================
 
@@ -43,8 +43,8 @@ BUILD := 🔨
 # unit test flag
 ENV ?= dev
 #
-APPNAME ?= mingsha-template-vue-ui
-VERSION ?= 2026.04.10
+APPNAME ?= mingsha-template-vue2-ui
+VERSION ?= 2026.04.15
 PORT ?= 8000
 HELM_NAMESPACE ?= mingsha
 # ----------------------------- variables >-----------------------------
@@ -61,7 +61,7 @@ help: ## $(HELP) 显示帮助信息
 	@printf "\n"
 	@printf "${BOLD}${YELLOW}%-8s:${RESET}\n" "环境变量"
 	@printf "  ${GREEN}%-22s${RESET} %s\n" "ENV" "- 环境配置 (默认: local, 可选: dev, test, prod)"
-	@printf "  ${GREEN}%-22s${RESET} %s\n" "APPNAME" "- 应用名称 (默认: mingsha-template-vue-ui)"
+	@printf "  ${GREEN}%-22s${RESET} %s\n" "APPNAME" "- 应用名称 (默认: mingsha-vue2)"
 	@printf "  ${GREEN}%-22s${RESET} %s\n" "VERSION" "- 版本号 (默认: 1.0.0)"
 	@printf "  ${GREEN}%-22s${RESET} %s\n" "PORT" "- 端口号 (默认: 8000)"
 	@printf "\n"

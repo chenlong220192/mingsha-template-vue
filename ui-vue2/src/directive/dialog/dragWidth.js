@@ -1,6 +1,6 @@
 /**
  * v-dialogDragWidth 可拖动弹窗宽度（右侧边）
- * Copyright (c) 2026 mingsha
+ * Copyright (c) 2026 mingsha-vue2
  */
 
 export default {

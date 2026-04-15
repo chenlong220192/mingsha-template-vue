@@ -42,7 +42,7 @@ service:
 
 image:
   repository: mingsha/app
-  tag: mingsha-template-vue-ui-2026.04.10-dev
+  tag: mingsha-template-vue2-ui-2026.04.15-dev
   pullPolicy: IfNotPresent
 
 replicas: 1
@@ -207,9 +207,9 @@ affinity: {}
 ingress:
   enabled: true
   hosts:
-    - name: mingsha-template-vue-ui.mingsha-dev.internal.local
+    - name: mingsha-template-vue2-ui.mingsha-dev.internal.local
       path: /
-      service: mingsha-template-vue-ui
+      service: mingsha-template-vue2-ui
       port: 8000
   # hostname: app.mydlq.club
   # path: /

@@ -1,6 +1,6 @@
 /**
 * v-dialogDrag 弹窗拖拽
-* Copyright (c) 2026 mingsha
+* Copyright (c) 2026 mingsha-vue2
 */
 
 export default {

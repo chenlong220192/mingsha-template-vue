@@ -2,7 +2,7 @@
 
 /**
  * 通用js方法封装处理
- * Copyright (c) 2026 mingsha
+ * Copyright (c) 2026 mingsha-vue2
  */
 
 // 日期格式化
