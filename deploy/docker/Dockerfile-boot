@@ -1,5 +1,5 @@
 # 1、基础镜像
-FROM mingsha/jdk:dragonwell-17-alpine-3.23
+FROM eclipse-temurin:17-jdk
 
 # 2、镜像作者
 LABEL maintainer="developer chenlong220192@gmail.com"
@@ -14,4 +14,5 @@ WORKDIR /app/
 COPY ./target/app ./
 
 # 6、容器启动后执行命令
-CMD ["sh","/app/bin/startup.sh"]
+# 注意：必须用 bash，startup.sh 使用了 [[ ]] 等 bash 语法，sh(dash) 不支持
+CMD ["bash","/app/bin/startup.sh"]

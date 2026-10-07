@@ -17,7 +17,7 @@
 # 项目名称
 APPLICATION=mingsha-template-vue-boot
 # 项目启动jar包名称
-APPLICATION_JAR=mingsha-template-vue-boot-2026.04.10.jar
+APPLICATION_JAR=mingsha-template-vue-boot-2026.10.03.jar
 
 # bin目录绝对路径
 BIN_PATH=$(cd `dirname $0`; pwd)
@@ -60,12 +60,12 @@ STARTUP_LOG="\n================================================ ${NOW_PRETTY} ==
 
 # 如果logs文件夹不存在，则创建文件夹
 if [[ ! -d "${LOG_DIR}" ]]; then
-  mkdir "${LOG_DIR}"
+  mkdir -p "${LOG_DIR}"
 fi
 
 # 如果logs/back文件夹不存在，则创建文件夹
 if [[ ! -d "${LOG_BACK_DIR}" ]]; then
-  mkdir "${LOG_BACK_DIR}"
+  mkdir -p "${LOG_BACK_DIR}"
 fi
 
 # 如果项目运行日志存在，则重命名备份

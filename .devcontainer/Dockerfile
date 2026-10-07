@@ -1,1 +1,1 @@
-FROM mingsha/jdk:dragonwell-17-alpine-3.23
+FROM eclipse-temurin:17-jdk
