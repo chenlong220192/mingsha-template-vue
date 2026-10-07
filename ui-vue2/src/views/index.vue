@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       // 版本号
-      version: "2026.04.10",
+      version: "2026.10.03",
       deadline: Date.now() + (new Date().setHours(23, 59, 59) - Date.now()),
       stop: true,
     };

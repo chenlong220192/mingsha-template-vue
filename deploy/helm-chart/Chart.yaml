@@ -5,8 +5,8 @@ home: xxx
 type: application
 sources:
   - xxx
-version: 2026.04.10
-appVersion: 2026.04.10
+version: 2026.10.03
+appVersion: 2026.10.03
 keywords:
 - java
 - spring-boot
